@@ -1,5 +1,8 @@
+import { Routes, BrowserRouter, Route } from "react-router-dom";
+import Login from "./page/Login";
+
 function App() {
-  return <div>lens website</div>;
+  return <Login />;
 }
 
 export default App;

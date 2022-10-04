@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import deleteIcon from "../../static/img/VectordeleteIcon.png";
 
 export default function LoginForm() {
   const [id, setId] = useState("");
@@ -22,22 +23,39 @@ export default function LoginForm() {
     <form method="post">
       <InputBox>
         <label>아이디</label>
-        <InputField
-          maxLength="20"
-          type="text"
-          value={id}
-          onChange={idOnchange}
-        />
+        <div>
+          <InputField
+            maxLength="20"
+            type="text"
+            value={id}
+            onChange={idOnchange}
+          />
+          <DeleteBtn
+            className="id"
+            onClick={() => {
+              setId("");
+            }}
+          />
+        </div>
       </InputBox>
       <InputBox>
         <label>비밀번호</label>
-        <InputField
-          maxLength="25"
-          type="password"
-          value={pw}
-          onChange={pwOnchnage}
-        />
+        <div>
+          <InputField
+            maxLength="25"
+            type="password"
+            value={pw}
+            onChange={pwOnchnage}
+          />
+          <DeleteBtn
+            className="pw"
+            onClick={() => {
+              setPw("");
+            }}
+          />
+        </div>
       </InputBox>
+
       <ButtonSt type="submit" disabled={!(id.length >= 5 && pw.length >= 8)}>
         로그인
       </ButtonSt>
@@ -50,19 +68,28 @@ const InputBox = styled.div`
   flex-direction: column;
   height: 68px;
   width: 322px;
-  justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #606060;
 `;
 
 const InputField = styled.input`
   border: none;
   border-bottom: 2px solid #f0f0f0;
   font-size: 18px;
+  margin-top: 10px;
+  width: 90%;
 
   &:focus {
     outline: none;
     border-bottom: 2px solid green;
   }
+`;
+
+const DeleteBtn = styled.img.attrs({ src: deleteIcon, alt: "delete Icon" })`
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 13.67px;
+  cursor: pointer;
 `;
 
 const ButtonSt = styled.button`
