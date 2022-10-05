@@ -1,13 +1,12 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "extends": ["eslint:recommended", "prettier"],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "rules": {
-    }
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["react/babel", "eslint:recommended", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {}
 }
