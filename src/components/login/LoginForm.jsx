@@ -32,9 +32,6 @@ export default function LoginForm() {
                         onFocus={() => {
                             setIsIdOnFoucs(true)
                         }}
-                        // onBlur={() => {
-                        //     setIsIdOnFoucs(false)
-                        // }}
                     />
                     <DeleteBtn
                         onClick={() => {
@@ -57,9 +54,6 @@ export default function LoginForm() {
                         onFocus={() => {
                             setIsPwOnFoucs(true)
                         }}
-                        //   onBlur={() => {
-                        //     setIsIdOnFoucs(false)
-                        // }}
                     />
                     <DeleteBtn
                         style={{
