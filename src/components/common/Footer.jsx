@@ -26,6 +26,12 @@ const StyledSnsLogo = styled.div`
 const StyledFooter = styled.div`
   background-color: #f5f5f5;
 `;
+
+const StyledItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 export default function Footer() {
   return (
     <>
@@ -57,19 +63,23 @@ export default function Footer() {
           <div>
             <div>CONTACT</div>
             <p>주식회사VIVA</p>
+            <StyledItem>
+              <p>LINE ID</p>
+              <p>jp.lenssis</p>
+            </StyledItem>
 
-            <p>LINE ID</p>
-            <p>jp.lenssis</p>
-
-            <p>전화번호</p>
-            <p>050-3558-4887</p>
-
-            <p>영업시간</p>
-            <p>
-              평일 10:00~17:30
-              <br />
-              SAT/SUN/HOLIDAY OFF
-            </p>
+            <StyledItem>
+              <p>전화번호</p>
+              <p>050-3558-4887</p>
+            </StyledItem>
+            <StyledItem>
+              <p>영업시간</p>
+              <p>
+                평일 10:00~17:30
+                <br />
+                SAT/SUN/HOLIDAY OFF
+              </p>
+            </StyledItem>
 
             <p>
               ※전화는 매우 연결되기 어려워지고 있으므로
