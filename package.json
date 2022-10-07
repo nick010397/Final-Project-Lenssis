@@ -20,12 +20,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -39,6 +33,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-config-prettier": "^8.5.0",
     "msw": "^0.47.3"
   },
   "msw": {
