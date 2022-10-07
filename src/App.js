@@ -10,7 +10,7 @@ function App() {
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [fetchProducts]);
   return <div>lens website</div>;
 }
 
