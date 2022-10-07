@@ -3,10 +3,13 @@
     "browser": true,
     "es6": true
   },
-  "extends": ["eslint:recommended", "prettier"],
+  "extends": ["react-app", "react-app/jest", "eslint:recommended", "prettier"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
 }

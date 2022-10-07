@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 function LensItem() {
-  return <ItemFormBox>LensItem</ItemFormBox>
+  return <ItemFormBox>LensItem</ItemFormBox>;
 }
 
 const ItemFormBox = styled.div`
@@ -16,6 +16,6 @@ const ItemFormBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
 
-export default LensItem
+export default LensItem;
