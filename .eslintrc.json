@@ -3,7 +3,7 @@
     "browser": true,
     "es6": true
   },
-  "extends": ["react/babel", "eslint:recommended", "prettier"],
+  "extends": ["eslint:recommended", "prettier"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"

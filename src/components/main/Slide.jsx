@@ -1,18 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Slide() {
+function Slide({ img }) {
   return (
-    <SlideFormBox>
-      <div>slide</div>
-    </SlideFormBox>
+    <>
+      <IMG src={img} />
+    </>
   )
 }
 
-const SlideFormBox = styled.div`
-  height: 400px;
-  border: 1.5px solid gray;
-  background-color: yellow;
+const IMG = styled.img`
+  width: 100%;
+  height: 70vh;
 `
 
 export default Slide

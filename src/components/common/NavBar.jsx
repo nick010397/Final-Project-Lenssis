@@ -4,13 +4,11 @@ import styled from 'styled-components'
 function NavBar() {
   return (
     <NavForm>
-      <span>
-        <div>
-          <div>Lenssis</div>
-          <button>login</button>
-          <button>cart</button>
-        </div>
-      </span>
+      <div>
+        <div>Lenssis</div>
+        <button>login</button>
+        <button>cart</button>
+      </div>
     </NavForm>
   )
 }
