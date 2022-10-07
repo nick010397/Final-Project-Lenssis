@@ -11,11 +11,6 @@ export default function SingupForm() {
     // const [email, setEmail] = useState('')
     // const [gender, setGender] = useState('')
     const [isPwFocused, setIsPwFocused] = useState(false)
-    // const infor = {
-    //     id,
-    //     email,
-    //     gender,
-    // }
 
     const checkId = async () => {
         //id를 서버로 보내서 이미 있는 id인지 확인
