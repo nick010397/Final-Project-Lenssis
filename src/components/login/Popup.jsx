@@ -1,27 +1,43 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Popup({ message, open }) {
+export default function Popup({ message, show }) {
   return (
-    <PopupBox>
-      <CloseIcon
+    <>
+      <PopupBackDrop
         onClick={() => {
-          open(false);
+          show(false);
         }}
-      >
-        X
-      </CloseIcon>
-      <p> {message}</p>
-      <ConfirmBtn
-        onClick={() => {
-          open(false);
-        }}
-      >
-        확인
-      </ConfirmBtn>
-    </PopupBox>
+      />
+      <PopupBox>
+        <CloseIcon
+          onClick={() => {
+            show(false);
+          }}
+        >
+          X
+        </CloseIcon>
+        <p> {message}</p>
+        <ConfirmBtn
+          onClick={() => {
+            show(false);
+          }}
+        >
+          확인
+        </ConfirmBtn>
+      </PopupBox>
+    </>
   );
 }
+
+const PopupBackDrop = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #252424cc;
+  height: 100%;
+  width: 100vw;
+`;
 
 const PopupBox = styled.div`
   position: fixed;

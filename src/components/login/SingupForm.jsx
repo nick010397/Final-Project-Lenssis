@@ -18,7 +18,7 @@ export default function SingupForm() {
   const [emailValidty, setEmailValidty] = useState(false);
   const [gender, setGender] = useState('');
   const [isPwFocused, setIsPwFocused] = useState(false);
-  const [openPopup, setOpenPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
 
   const checkRepetition = async (e) => {
@@ -29,13 +29,13 @@ export default function SingupForm() {
         console.log('유효함!');
       } else {
         setPopupMessage('유효하지 않는 형식의 이메일입니다.');
-        setOpenPopup(true);
+        setShowPopup(true);
       }
     }
 
     if (target === 'id') {
       setPopupMessage('사용할 수 있는 ID입니다.');
-      setOpenPopup(true);
+      setShowPopup(true);
     }
   };
 
@@ -69,8 +69,6 @@ export default function SingupForm() {
       setEmailValidty(false);
     }
   }, [email]);
-
-  useEffect(() => {});
 
   return (
     <SingupBox>
@@ -184,7 +182,7 @@ export default function SingupForm() {
           </Button>
         </ButtonBox>
       </InforBox>
-      {openPopup && <Popup message={popupMessage} open={setOpenPopup} />}
+      {showPopup && <Popup message={popupMessage} show={setShowPopup} />}
     </SingupBox>
   );
 }
