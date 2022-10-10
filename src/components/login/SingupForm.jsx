@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Popup from './Popup';
 
 const pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
@@ -17,7 +16,7 @@ export default function SingupForm() {
   const [pwMatch, setPwMatch] = useState(false);
   const [email, setEmail] = useState('');
   const [emailValidty, setEmailValidty] = useState(false);
-  // const [gender, setGender] = useState('')
+  const [gender, setGender] = useState('');
   const [isPwFocused, setIsPwFocused] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
@@ -71,10 +70,12 @@ export default function SingupForm() {
     }
   }, [email]);
 
+  useEffect(() => {});
+
   return (
     <SingupBox>
       <Title>
-        <span style={{ fontWeight: 'bold' }}>계정 정보</span>를 입력해주세요
+        <strong>계정 정보</strong>를 입력해주세요
       </Title>
       <InforBox noValidate>
         <InforEach>
@@ -89,6 +90,20 @@ export default function SingupForm() {
             value={id}
           />
           <RepetitionCheckBtn id="id" onClick={checkRepetition}>
+            중복 확인
+          </RepetitionCheckBtn>
+        </InforEach>
+        <InforEach>
+          <Label>이메일</Label>
+          <InputField
+            short={true}
+            type="email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            value={email}
+          />
+          <RepetitionCheckBtn id="email" onClick={checkRepetition}>
             중복 확인
           </RepetitionCheckBtn>
         </InforEach>
@@ -134,29 +149,30 @@ export default function SingupForm() {
               <PwErrorMessage>비밀번호가 일치하지 않습니다.</PwErrorMessage>
             ))}
         </InforEach>
-        <InforEach>
-          <Label>이메일</Label>
-          <InputField
-            short={true}
-            type="email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            value={email}
-          />
-          <RepetitionCheckBtn id="email" onClick={checkRepetition}>
-            중복 확인
-          </RepetitionCheckBtn>
-        </InforEach>
+
         <InforEach>
           <Label>성별 ( 선택 )</Label>
           <RadioEach>
             <span>여성</span>
-            <input type="radio" name="gender" value="female" />
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              onChange={(e) => {
+                setGender(e.target.value);
+              }}
+            />
           </RadioEach>
           <RadioEach>
             <span>남성</span>
-            <input type="radio" name="gender" value="male" />
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              onChange={(e) => {
+                setGender(e.target.value);
+              }}
+            />
           </RadioEach>
         </InforEach>
         <ButtonBox>
