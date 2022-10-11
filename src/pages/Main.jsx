@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import NavBar from '../components/common/NavBar';
 import SlideMove from '../components/main/SlideMove';
 import Button from '../components/main/Button';
@@ -13,39 +13,45 @@ function Main() {
   return (
     <>
       <NavBar />
-      <div id="slide">
+      {/* 슬라이드 수정 예정 */}
+      <CenterDiv slide>
         <SlideMove />
-      </div>
-      <div id="category1">
+      </CenterDiv>
+
+      <div>
         <H1Tag>ALL LENS</H1Tag>
         <H2Tag>カラコン</H2Tag>
       </div>
-      <Button>ALL</Button>
-      <Button>1DAY</Button>
-      <Button>1MONTH</Button>
-      <div id="a_cate">
-        <div>
-          <MenuATag href="http://localhost:3000">人気順</MenuATag>
-        </div>
-        <div>
-          <MenuATag href="http://localhost:3000">新着順</MenuATag>
-        </div>
-        <div>
-          <MenuATag href="http://localhost:3000">価格が低い順</MenuATag>
-        </div>
-        <div>
-          <MenuATag href="http://localhost:3000">価格が高い順</MenuATag>
-        </div>
-        <div>
-          <MenuATag href="http://localhost:3000">レビュー件数順</MenuATag>
-        </div>
-        <div>
-          <LensItem />
-          <LensItem />
-          <LensItem />
-        </div>
+      <div>
+        <Center>
+          <Button category>ALL</Button>
+          <Button category>1DAY</Button>
+          <Button category>1MONTH</Button>
+        </Center>
       </div>
-      <Button>もっと見る</Button>
+      <CenterDiv>
+        <CategroyDiv>
+          <MenuATag href="http://localhost:3000">人気順</MenuATag>
+        </CategroyDiv>
+        <CategroyDiv>
+          <MenuATag href="http://localhost:3000">新着順</MenuATag>
+        </CategroyDiv>
+        <CategroyDiv>
+          <MenuATag href="http://localhost:3000">価格が低い順</MenuATag>
+        </CategroyDiv>
+        <CategroyDiv>
+          <MenuATag href="http://localhost:3000">価格が高い順</MenuATag>
+        </CategroyDiv>
+        <CategroyDiv>
+          <MenuATag href="http://localhost:3000">レビュー件数順</MenuATag>
+        </CategroyDiv>
+      </CenterDiv>
+      <div>
+        <LensItem />
+        <LensItem />
+        <LensItem />
+      </div>
+      <Button more>もっと見る</Button>
       <div id="category2">
         <H1Tag>PICKUP ITEM</H1Tag>
         <H2Tag>スタッフおすすめ</H2Tag>
@@ -53,7 +59,7 @@ function Main() {
       <div>
         <LensItem />
       </div>
-      <Button>もっと見る</Button>
+      <Button more>もっと見る</Button>
       <div id="category3">
         <H1Tag>NEW ARRIVAL</H1Tag>
         <H2Tag>新商品</H2Tag>
@@ -62,40 +68,103 @@ function Main() {
           <LensItem />
         </div>
       </div>
-      <Button>もっと見る</Button>
+      <Button more>もっと見る</Button>
       <Event />
 
       <div>
         <H1Tag>NOTICE</H1Tag>
         <H2Tag>お知らせ</H2Tag>
+      </div>
+      <NoticImg>
         <img src={notice} alt="공지" />
+      </NoticImg>
+      <div>
+        <NoticeDiv>
+          <P>2022.09.29</P>
+          <NoticeATag href="/notice">
+            ☆生産中止予定商品7種復活のお知らせ☆{' '}
+          </NoticeATag>
+          <NoticeVectorTag href="/notice">
+            <img link="/notice" src={stroke} alt="이동하기" />
+          </NoticeVectorTag>
+          <Hr />
+        </NoticeDiv>
       </div>
       <div>
-        <p>2022.09.29</p>
-        <ATag href="/notice">☆生産中止予定商品7種復活のお知らせ☆ </ATag>
-        <ADateTag href="/notice">
-          <img link="/notice" src={stroke} alt="이동하기" />
-        </ADateTag>
+        <NoticeDiv>
+          <P>2022.09.29</P>
+          <NoticeATag href="/notice">
+            ☆生産中止予定商品7種復活のお知らせ☆{' '}
+          </NoticeATag>
+          <NoticeVectorTag href="/notice">
+            <img link="/notice" src={stroke} alt="이동하기" />
+          </NoticeVectorTag>
+          <Hr />
+        </NoticeDiv>
       </div>
       <div>
-        <p>2022.09.29</p>
-        <ATag href="/notice">☆生産中止予定商品7種復活のお知らせ☆ </ATag>
-        <ADateTag href="/notice">
-          <img link="/notice" src={stroke} alt="이동하기" />
-        </ADateTag>
+        <NoticeDiv>
+          <P>2022.09.29</P>
+          <NoticeATag href="/notice">
+            ☆生産中止予定商品7種復活のお知らせ☆{' '}
+          </NoticeATag>
+          <NoticeVectorTag href="/notice">
+            <img link="/notice" src={stroke} alt="이동하기" />
+          </NoticeVectorTag>
+          <Hr />
+        </NoticeDiv>
       </div>
-      <div>
-        <p>2022.09.29</p>
-        <ATag href="/notice">☆生産中止予定商品7種復活のお知らせ☆ </ATag>
-        <ADateTag href="/notice">
-          <img link="/notice" src={stroke} alt="이동하기" />
-        </ADateTag>
-      </div>
-      <Button>もっと見る</Button>
+      <Button end>もっと見る</Button>
       <Footer />
     </>
   );
 }
+
+const Center = styled.div`
+  text-align: center;
+`;
+
+const CenterDiv = styled.div`
+  display: flex;
+  margin-left: 8vw;
+  margin-top: 80px;
+
+  // 슬라이드 수정 예정
+  ${(props) =>
+    props.slide &&
+    css`
+      margin-left: 0;
+      margin-top: 0;
+      justify-content: center;
+      margin-bottom: 138px;
+    `}
+`;
+
+const MenuATag = styled.a`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+  text-decoration: none;
+`;
+
+const CategroyDiv = styled.div`
+  text-align: center;
+  padding-right: 22px;
+  padding-left: 22px;
+  padding-bottom: 10px;
+  border-bottom: 4px solid #656f80;
+  &:hover {
+    ${MenuATag} {
+      color: #23314a;
+    }
+    border-bottom: 4px solid #23314a;
+    padding-bottom: 10px;
+  }
+`;
 
 const H1Tag = styled.h1`
   font-family: 'Montserrat';
@@ -106,6 +175,7 @@ const H1Tag = styled.h1`
   text-align: center;
   letter-spacing: -0.016em;
   color: #23314a;
+  margin-bottom: 8px;
 `;
 
 const H2Tag = styled.h2`
@@ -117,9 +187,24 @@ const H2Tag = styled.h2`
   text-align: center;
   letter-spacing: -0.016em;
   color: #23314a;
+  margin-bottom: 80px;
 `;
 
-const ATag = styled.a`
+const NoticImg = styled.div`
+  text-align: center;
+  margin-bottom: 53px;
+`;
+
+const NoticeDiv = styled.div`
+  width: 1200px;
+  display: block;
+  margin: auto;
+`;
+const P = styled.p`
+  margin-bottom: 12px;
+`;
+
+const NoticeATag = styled.a`
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 500;
@@ -129,27 +214,19 @@ const ATag = styled.a`
   color: #23314a;
 `;
 
-const ADateTag = styled.a`
-  font-family: 'Noto Sans JP';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-  letter-spacing: -0.016em;
-  color: #656f80;
+//vector 위치 수정(미묘하게 다름)
+const NoticeVectorTag = styled.a`
+  margin-left: 833.5px;
 `;
 
-const MenuATag = styled.a`
-  font-family: 'Noto Sans JP';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 26px;
-  letter-spacing: -0.016em;
-  color: #23314a;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+const Hr = styled.hr`
+  width: 1200px;
+  height: 1px;
+  background: #d3d6db;
+  text-align: center;
+  border: 0;
+  margin-top: 30px;
+  margin-bottom: 29px;
 `;
 
 export default Main;

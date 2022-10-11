@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 function Button(props) {
   return (
     <>
-      <NormalBtn>{props.children}</NormalBtn>
+      <NormalBtn {...props}>{props.children}</NormalBtn>
     </>
   );
 }
@@ -16,11 +16,36 @@ const NormalBtn = styled.button`
   height: 56px;
   font-size: 20px;
   background-color: #ffffff;
-  margin: 24px;
   &:hover {
     background-color: #23314a;
     border: 1px solid #23314a;
     color: #ffffff;
   }
+
+  ${(props) =>
+    props.category &&
+    css`
+      margin-right: 24px;
+    `}
+
+  ${(props) =>
+    !props.category &&
+    css`
+      display: block;
+      margin: auto;
+    `}
+
+  ${(props) =>
+    props.more &&
+    css`
+      margin-bottom: 225px;
+    `}
+
+  ${(props) =>
+    props.end &&
+    css`
+      margin-top: 85px;
+      margin-bottom: 165px;
+    `}
 `;
 export default Button;
