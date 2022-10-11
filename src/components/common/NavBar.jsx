@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import banner from '../../img/Banner_Header.jpeg';
+import banner from '../../static/img/Banner_Header.jpeg';
 
 const StyledmarketingBanner = styled.img`
   width: 100vw;
