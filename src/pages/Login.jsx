@@ -8,7 +8,7 @@ export default function Login() {
   return (
     <LoginFormBox>
       <Title
-        message={{
+        text={{
           small: '나만의 특별함을 위해 LENSSIS에서',
           big: '렌즈의 진짜 정보를 찾아보세요.',
         }}

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Title({ message }) {
+export default function Title({ text }) {
   return (
     <TitleBox>
-      <SmallTitle>{message.small}</SmallTitle>
-      <BigTitle>{message.big}</BigTitle>
+      <SmallTitle>{text.small}</SmallTitle>
+      <BigTitle>{text.big}</BigTitle>
     </TitleBox>
   );
 }

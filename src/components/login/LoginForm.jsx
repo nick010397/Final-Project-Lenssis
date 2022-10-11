@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import deleteIcon from '../../static/img/VectordeleteIcon.png';
+import Button from './Button';
 
 const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
@@ -9,6 +10,11 @@ export default function LoginForm() {
   const [pw, setPw] = useState('');
   const [isemailOnFocus, setIsemailOnFoucs] = useState(false);
   const [isPwOnFocus, setIsPwOnFoucs] = useState(false);
+  const [validty, setValidty] = useState(true);
+
+  useEffect(() => {
+    setValidty(!(emailReg.test(email) && pw.length >= 8));
+  }, [email, pw, setValidty]);
 
   return (
     <form method="post">
@@ -57,12 +63,7 @@ export default function LoginForm() {
         </div>
       </InputBox>
 
-      <ButtonSt
-        type="submit"
-        disabled={!(emailReg.test(email) && pw.length >= 8)}
-      >
-        로그인
-      </ButtonSt>
+      <Button infor={{ text: '로그인', disabled: validty }} />
     </form>
   );
 }
@@ -97,21 +98,4 @@ const DeleteBtn = styled.img.attrs({ src: deleteIcon, alt: 'delete Icon' })`
   position: absolute;
   transform: translate(-27px, 15px);
   cursor: pointer;
-`;
-
-const ButtonSt = styled.button`
-  width: 322px;
-  height: 48px;
-  font-size: 16px;
-  background: #23314a;
-  border-radius: 6px;
-  border: none;
-  color: white;
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:disabled {
-    background-color: rgba(23, 23, 23, 0.25);
-  }
 `;

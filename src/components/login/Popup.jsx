@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import Button from './Button';
 
 export default function Popup({ message, show }) {
   return (
@@ -20,13 +21,12 @@ export default function Popup({ message, show }) {
           <FontAwesomeIcon icon={faXmark} />
         </CloseIcon>
         <p> {message}</p>
-        <ConfirmBtn
+        <Button
+          infor={{ text: '확인', disabled: false }}
           onClick={() => {
             show(false);
           }}
-        >
-          확인
-        </ConfirmBtn>
+        />
       </PopupBox>
     </>
   );
@@ -61,15 +61,5 @@ const CloseIcon = styled.button`
   font-size: 15px;
   padding-right: 20px;
   align-self: end;
-  cursor: pointer;
-`;
-
-const ConfirmBtn = styled.button`
-  background-color: #00b992;
-  width: 344px;
-  height: 48px;
-  border-radius: 6px;
-  border: none;
-  color: white;
   cursor: pointer;
 `;

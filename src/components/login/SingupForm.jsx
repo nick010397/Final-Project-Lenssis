@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Popup from './Popup';
+import Button from './Button';
 
 const pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
@@ -22,18 +23,11 @@ export default function SingupForm() {
 
   const checkRepetition = async (e) => {
     e.preventDefault();
-    const target = e.target.id;
-    if (target === 'email') {
-      if (emailValidty) {
-        console.log('유효함!');
-      } else {
-        setPopupMessage('유효하지 않는 형식의 이메일입니다.');
-        setShowPopup(true);
-      }
-    }
-
-    if (target === 'id') {
-      setPopupMessage('사용할 수 있는 ID입니다.');
+    if (emailValidty) {
+      setPopupMessage('사용 가능한 이메일입니다.');
+      setShowPopup(true);
+    } else {
+      setPopupMessage('유효하지 않는 형식의 이메일입니다.');
       setShowPopup(true);
     }
   };
@@ -93,7 +87,7 @@ export default function SingupForm() {
             type="text"
             maxLength="20"
             onChange={(e) => {
-              setNickname(e.target.value.trim().replace(/[^a-zA-Z0-9]/g, ''));
+              setNickname(e.target.value.trim());
             }}
             value={nickname}
           />
@@ -169,9 +163,10 @@ export default function SingupForm() {
             />
           </RadioEach>
         </InforEach>
-        <SubmitButton btnType="submit" type="submit" onClick={handleComplete}>
-          완료
-        </SubmitButton>
+        <Button
+          infor={{ text: '완료', disabled: false }}
+          onClick={handleComplete}
+        />
       </InforBox>
       {showPopup && <Popup message={popupMessage} show={setShowPopup} />}
     </>
@@ -246,4 +241,5 @@ const SubmitButton = styled.button`
   background: #23314a;
   border: none;
   color: white;
+  cursor: pointer;
 `;

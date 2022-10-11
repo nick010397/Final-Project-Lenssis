@@ -7,7 +7,7 @@ export default function Signup() {
   return (
     <SingupBox>
       <Title
-        message={{
+        text={{
           small: '나만의 특별함을 위해 LENSSIS.',
           big: '계정정보를 입력해주세요.',
         }}
