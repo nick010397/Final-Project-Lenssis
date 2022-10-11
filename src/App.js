@@ -1,17 +1,15 @@
-import { useCallback, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function App() {
-  // TODO: @hoil 테스트 코드 참고하시라고 남겨놨어요. 아무나 지워주세요ㅎㅎ
-  const fetchProducts = useCallback(async () => {
-    const response = await fetch('/products');
-    const data = await response.json();
-    console.log('data: ', data);
-  }, []);
-
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
-  return <div>lens website</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
 export default App;
