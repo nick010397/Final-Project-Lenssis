@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Popup from './Popup';
-import Title from './Title';
 
 const pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
