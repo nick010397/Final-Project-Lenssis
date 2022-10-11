@@ -39,8 +39,10 @@
     ]
   },
   "devDependencies": {
+
     "eslint-config-prettier": "^8.5.0",
     "msw": "^0.47.3"
+
   },
   "msw": {
     "workerDirectory": "public"
