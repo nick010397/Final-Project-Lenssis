@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Star from '../img/Star.png';
+import Star from '../../img/Star.png';
 
 const StyledLensItems = styled.div`
   margin: 0 8vw 0 8vw;
@@ -11,6 +11,8 @@ const StyledLensItems = styled.div`
 
 const StyledLensItem = styled.div`
   width: 220px;
+  height: 330px;
+  margin-top: 30px;
 `;
 const StyledStars = styled.div`
   justify: flex;

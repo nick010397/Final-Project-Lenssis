@@ -1,5 +1,5 @@
 import React from 'react';
-import LensItem from '../components/LensItem';
+import LensItem from '../components/LensList/LensItem';
 import styled from 'styled-components';
 
 const StyledListTitle = styled.div`
@@ -8,12 +8,22 @@ const StyledListTitle = styled.div`
 
 const StyledPageBtn = styled.div`
   text-align: center;
+  margin-bottom: 50px;
 `;
+
+const StyledBtn = styled.button`
+  margin: 5px;
+`;
+
+const StyledLensDIv = styled.div`
+  margin: 40px 0px 40px 0px;
+`;
+
 export default function ItemList() {
   return (
     <>
       <StyledListTitle>
-        <div>LENS</div>
+        <StyledLensDIv>LENS</StyledLensDIv>
         <button>ALL</button>
         <button>1DAY</button>
         <button>1MONTH</button>
@@ -29,12 +39,12 @@ export default function ItemList() {
       <LensItem />
       <LensItem />
       <StyledPageBtn>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-        <button>5</button>
-        <button>▶</button>
+        <StyledBtn>1</StyledBtn>
+        <StyledBtn>2</StyledBtn>
+        <StyledBtn>3</StyledBtn>
+        <StyledBtn>4</StyledBtn>
+        <StyledBtn>5</StyledBtn>
+        <StyledBtn>▶</StyledBtn>
       </StyledPageBtn>
     </>
   );
