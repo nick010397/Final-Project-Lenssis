@@ -2,34 +2,33 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import deleteIcon from '../../static/img/VectordeleteIcon.png';
 
+const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
 export default function LoginForm() {
-  const [id, setId] = useState('');
+  const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
-  const [isIdOnFocus, setIsIdOnFoucs] = useState(false);
+  const [isemailOnFocus, setIsemailOnFoucs] = useState(false);
   const [isPwOnFocus, setIsPwOnFoucs] = useState(false);
 
   return (
     <form method="post">
       <InputBox>
-        <label>아이디</label>
+        <label>이메일</label>
         <div>
           <InputField
             type="text"
-            maxLength="20"
-            value={id}
-            onChange={(e) =>
-              setId(e.target.value.trim().replace(/[^a-zA-Z0-9]/g, ''))
-            }
+            value={email}
+            onChange={(e) => setEmail(e.target.value.trim())}
             onFocus={() => {
-              setIsIdOnFoucs(true);
+              setIsemailOnFoucs(true);
             }}
           />
           <DeleteBtn
             onClick={() => {
-              setId('');
+              setEmail('');
             }}
             style={{
-              display: isIdOnFocus && id ? 'inline' : 'none',
+              display: isemailOnFocus && email ? 'inline' : 'none',
             }}
           />
         </div>
@@ -58,7 +57,10 @@ export default function LoginForm() {
         </div>
       </InputBox>
 
-      <ButtonSt type="submit" disabled={!(id.length >= 5 && pw.length >= 8)}>
+      <ButtonSt
+        type="submit"
+        disabled={!(emailReg.test(email) && pw.length >= 8)}
+      >
         로그인
       </ButtonSt>
     </form>
@@ -85,7 +87,7 @@ const InputField = styled.input`
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid green;
+    border-bottom: 2px solid #23314a;
   }
 `;
 
@@ -101,7 +103,7 @@ const ButtonSt = styled.button`
   width: 322px;
   height: 48px;
   font-size: 16px;
-  background: #00b992;
+  background: #23314a;
   border-radius: 6px;
   border: none;
   color: white;

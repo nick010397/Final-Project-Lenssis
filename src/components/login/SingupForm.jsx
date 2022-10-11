@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Popup from './Popup';
+import Title from './Title';
 
 const pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
 export default function SingupForm() {
-  const [id, setId] = useState('');
+  const [nickname, setNickname] = useState('');
   const [pw, setPw] = useState('');
   const [pwValidty, setPwValidty] = useState(false);
   const [isPwFocused, setIsPwFocused] = useState(false);
@@ -73,25 +74,13 @@ export default function SingupForm() {
 
   return (
     <SingupBox>
-      <Title>
-        <strong>계정 정보</strong>를 입력해주세요
-      </Title>
+      <Title
+        message={{
+          small: '나만의 특별함을 위해 LENSSIS.',
+          big: '계정정보를 입력해주세요.',
+        }}
+      />
       <InforBox noValidate>
-        <InforEach>
-          <Label>아이디</Label>
-          <InputField
-            short={true}
-            type="text"
-            maxLength="20"
-            onChange={(e) => {
-              setId(e.target.value.trim().replace(/[^a-zA-Z0-9]/g, ''));
-            }}
-            value={id}
-          />
-          <RepetitionCheckBtn id="id" onClick={checkRepetition}>
-            중복 확인
-          </RepetitionCheckBtn>
-        </InforEach>
         <InforEach>
           <Label>이메일</Label>
           <InputField
@@ -106,6 +95,18 @@ export default function SingupForm() {
             중복 확인
           </RepetitionCheckBtn>
         </InforEach>
+        <InforEach>
+          <Label>닉네임</Label>
+          <InputField
+            type="text"
+            maxLength="20"
+            onChange={(e) => {
+              setNickname(e.target.value.trim().replace(/[^a-zA-Z0-9]/g, ''));
+            }}
+            value={nickname}
+          />
+        </InforEach>
+
         <InforEach>
           <Label>비밀번호</Label>
           <InputField
@@ -176,14 +177,9 @@ export default function SingupForm() {
             />
           </RadioEach>
         </InforEach>
-        <ButtonBox>
-          <Link to="/login">
-            <Button btnType="backward">뒤로</Button>
-          </Link>
-          <Button btnType="submit" type="submit" onClick={handleComplete}>
-            완료
-          </Button>
-        </ButtonBox>
+        <SubmitButton btnType="submit" type="submit" onClick={handleComplete}>
+          완료
+        </SubmitButton>
       </InforBox>
       {showPopup && <Popup message={popupMessage} show={setShowPopup} />}
     </SingupBox>
@@ -192,18 +188,13 @@ export default function SingupForm() {
 
 const SingupBox = styled.div`
   width: 534px;
-  height: 708px;
+  height: 858px;
   border: solid gray 1px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   font-family: 'Noto Sans KR';
-`;
-
-const Title = styled.p`
-  font-size: 18px;
-  margin-bottom: 44px;
 `;
 
 const InforBox = styled.form`
@@ -264,22 +255,14 @@ const RadioEach = styled.div`
   justify-content: space-between;
 `;
 
-const ButtonBox = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const Button = styled.button`
-  width: 156px;
+const SubmitButton = styled.button`
+  width: 322px;
   height: 48px;
   font-size: 16px;
   border: none;
   border-radius: 6px;
   margin: 0 8px;
-  background: ${(props) =>
-    props.btnType === 'backward' ? 'white' : '#00B992'};
-  border: ${(props) =>
-    props.btnType === 'backward' ? '1px solid #dedede' : 'none'};
-  color: ${(props) => (props.btnType === 'backward' ? 'black' : 'white')};
-  cursor: pointer;
+  background: #23314a;
+  border: none;
+  color: white;
 `;
