@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default function Popup({ message, show }) {
   return (
@@ -15,7 +17,7 @@ export default function Popup({ message, show }) {
             show(false);
           }}
         >
-          X
+          <FontAwesomeIcon icon={faXmark} />
         </CloseIcon>
         <p> {message}</p>
         <ConfirmBtn

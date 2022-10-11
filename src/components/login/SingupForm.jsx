@@ -8,16 +8,16 @@ const pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
 export default function SingupForm() {
-  //const Idref = useRef()
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [pwValidty, setPwValidty] = useState(false);
+  const [isPwFocused, setIsPwFocused] = useState(false);
+  const [secondPw, setSecondPw] = useState('');
   const [isSecondPwFocused, setisSecondPwFocused] = useState(false);
   const [pwMatch, setPwMatch] = useState(false);
   const [email, setEmail] = useState('');
   const [emailValidty, setEmailValidty] = useState(false);
   const [gender, setGender] = useState('');
-  const [isPwFocused, setIsPwFocused] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
 
@@ -41,6 +41,7 @@ export default function SingupForm() {
 
   const checkPwMatch = (e) => {
     const value = e.target.value.trim();
+    setSecondPw(value);
     if (value === pw) {
       setPwMatch(true);
     } else {
@@ -119,12 +120,12 @@ export default function SingupForm() {
           />
           {isPwFocused &&
             (pwValidty ? (
-              <PwPassMessage>사용 가능한 비밀번호입니다.</PwPassMessage>
+              <PwMessage color="blue">사용 가능한 비밀번호입니다.</PwMessage>
             ) : (
-              <PwErrorMessage>
+              <PwMessage color="red">
                 영문과 숫자, 특수기호(@$!%*#?&)를 포함한 8자리 이상의 비밀번호를
                 입력하세요.
-              </PwErrorMessage>
+              </PwMessage>
             ))}
         </InforEach>
         <InforEach>
@@ -132,6 +133,7 @@ export default function SingupForm() {
           <InputField
             type="password"
             maxLength="25"
+            value={secondPw}
             onChange={checkPwMatch}
             onFocus={() => {
               setisSecondPwFocused(true);
@@ -141,10 +143,11 @@ export default function SingupForm() {
             }}
           />
           {isSecondPwFocused &&
+            secondPw &&
             (pwMatch ? (
-              <PwPassMessage>비밀번호가 일치합니다.</PwPassMessage>
+              <PwMessage color="blue">비밀번호가 일치합니다.</PwMessage>
             ) : (
-              <PwErrorMessage>비밀번호가 일치하지 않습니다.</PwErrorMessage>
+              <PwMessage color="red">비밀번호가 일치하지 않습니다.</PwMessage>
             ))}
         </InforEach>
 
@@ -211,7 +214,7 @@ const InforBox = styled.form`
 const InforEach = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 `;
 const Label = styled.label`
   font-size: 14px;
@@ -246,16 +249,10 @@ const RepetitionCheckBtn = styled.button`
   cursor: pointer;
 `;
 
-const PwErrorMessage = styled.div`
+const PwMessage = styled.div`
   width: 322px;
   font-size: 13px;
-  color: red;
-`;
-
-const PwPassMessage = styled.div`
-  width: 322px;
-  font-size: 13px;
-  color: blue;
+  color: ${(props) => props.color};
 `;
 
 const RadioEach = styled.div`
