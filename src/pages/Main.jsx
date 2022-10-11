@@ -3,7 +3,70 @@ import Event from '../components/main/Event';
 import SlideMove from '../components/main/SlideMove';
 import notice from '../asset/notice.png';
 import stroke from '../asset/Vector.png';
+import styled from 'styled-components';
 
+// const ChoiceBtn = styled.button`
+//   background-color: #23314a;
+//   border: 1px solid #23314a;
+//   width: 282px;
+//   height: 56px;
+//   font-size: 20px;
+//   color: #ffffff;
+//   margin: 24px;
+// text-align: center;
+// `;
+
+const NormalBtn = styled.button`
+  color: #23314a;
+  border: 1px solid #23314a;
+  width: 282px;
+  height: 56px;
+  font-size: 20px;
+  background-color: #ffffff;
+  margin: 24px;
+`;
+
+const H1Tag = styled.h1`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 44px;
+  line-height: 60px;
+  text-align: center;
+  letter-spacing: -0.016em;
+  color: #23314a;
+`;
+
+const H2Tag = styled.h2`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: -0.016em;
+  color: #23314a;
+`;
+
+const ATag = styled.a`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+`;
+
+const ADateTag = styled.a`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.016em;
+  color: #656f80;
+`;
 function Main() {
   return (
     <>
@@ -11,13 +74,12 @@ function Main() {
         <SlideMove />
       </div>
       <div id="category1">
-        <h1>ALL LENS</h1>
-        <h2>カラコン</h2>
+        <H1Tag>ALL LENS</H1Tag>
+        <H2Tag>カラコン</H2Tag>
       </div>
-      <button className="all">ALL</button>
-      <button className="all">1DAY</button>
-      <button className="all">1MONTH</button>
-
+      <NormalBtn>ALL</NormalBtn>
+      <NormalBtn>1DAY</NormalBtn>
+      <NormalBtn>1MONTH</NormalBtn>
       <div id="a_cate">
         <>
           <ul>
@@ -39,46 +101,33 @@ function Main() {
           </ul>
         </>
       </div>
-      <button>もっと見る</button>
+      <NormalBtn>もっと見る</NormalBtn>
       <div id="category2">
-        <h1>PICKUP ITEM</h1>
-        <h2>スタッフおすすめ</h2>
+        <H1Tag>PICKUP ITEM</H1Tag>
+        <H2Tag>スタッフおすすめ</H2Tag>
       </div>
-      <button>もっと見る</button>
+      <NormalBtn>もっと見る</NormalBtn>
       <div id="category3">
-        <h1>NEW ARRIVAL</h1>
-        <h2>新商品</h2>
+        <H1Tag>NEW ARRIVAL</H1Tag>
+        <H2Tag>新商品</H2Tag>
       </div>
-      <button>もっと見る</button>
+      <NormalBtn>もっと見る</NormalBtn>
       <Event />
 
       <div>
-        <h2>NOTICE</h2>
-        <h3>お知らせ</h3>
+        <H1Tag>NOTICE</H1Tag>
+        <H2Tag>お知らせ</H2Tag>
         <img src={notice} alt="공지" />
       </div>
       <div>
         <p>2022.09.29</p>
-        <a href="/notice">☆生産中止予定商品7種復活のお知らせ☆ </a>
-        <a href="/notice">
+        <ATag href="/notice">☆生産中止予定商品7種復活のお知らせ☆ </ATag>
+        <ADateTag href="/notice">
           <img link="/notice" src={stroke} alt="이동하기" />
-        </a>
+        </ADateTag>
       </div>
-      <div>
-        <p>2022.09.29</p>
-        <a href="/notice">☆生産中止予定商品7種復活のお知らせ☆ </a>
-        <a href="/notice">
-          <img link="/notice" src={stroke} alt="이동하기" />
-        </a>
-      </div>
-      <div>
-        <p>2022.09.29</p>
-        <a href="/notice">☆生産中止予定商品7種復活のお知らせ☆ </a>
-        <a href="/notice">
-          <img link="/notice" src={stroke} alt="이동하기" />
-        </a>
-      </div>
-      <button>もっと見る</button>
+
+      <NormalBtn>もっと見る</NormalBtn>
     </>
   );
 }
