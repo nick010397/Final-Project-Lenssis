@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Slide from './Slide';
 import styled from 'styled-components';
-import Banner_main from '../../asset/Banner_main.jpg';
-import Banner_main2 from '../../asset/banner_main_2.jpg';
+import Banner_main from '../../static/img/Banner_main.jpg';
+import Banner_main2 from '../../static/img/banner_main_2.jpg';
 
 //임시로 만들어 놓은 것 수정 예정!
 const Container = styled.div`

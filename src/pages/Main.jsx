@@ -1,8 +1,8 @@
 import React from 'react';
 import Event from '../components/main/Event';
 import SlideMove from '../components/main/SlideMove';
-import notice from '../asset/notice.png';
-import stroke from '../asset/Vector.png';
+import notice from '../static/img/notice.png';
+import stroke from '../static/img/Vector.png';
 import styled from 'styled-components';
 
 // const ChoiceBtn = styled.button`
