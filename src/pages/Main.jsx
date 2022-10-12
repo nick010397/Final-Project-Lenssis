@@ -13,6 +13,13 @@ function Main() {
   return (
     <>
       <NavBar />
+      <Center>
+        <a href="/login">LOGIN </a>
+        <a href="/signup">SIGNUP </a>
+        <a href="/itemdetail">ITEMDETAIL </a>
+        <a href="/itemlist">ITEMLIST </a>
+      </Center>
+
       {/* 슬라이드 수정 예정 */}
       <CenterDiv slide>
         <SlideMove />
@@ -46,6 +53,7 @@ function Main() {
           <MenuATag href="http://localhost:3000">レビュー件数順</MenuATag>
         </CategroyDiv>
       </CenterDiv>
+      <MenuHr />
       <div>
         <LensItem />
         <LensItem />
@@ -127,6 +135,7 @@ const Center = styled.div`
 const CenterDiv = styled.div`
   display: flex;
   margin-left: 8vw;
+  margin-right: 8vw;
   margin-top: 80px;
 
   // 슬라이드 수정 예정
@@ -137,9 +146,18 @@ const CenterDiv = styled.div`
       margin-top: 0;
       justify-content: center;
       margin-bottom: 138px;
+      border-bottom: 0;
     `}
 `;
 
+const MenuHr = styled.hr`
+  margin-top: -4px;
+  // width:1275px;
+  margin-right: 8vw;
+  margin-left: 8vw;
+  border: 0px;
+  border-bottom: 4px solid #656f80;
+`;
 const MenuATag = styled.a`
   font-family: 'Noto Sans JP';
   font-style: normal;
@@ -147,7 +165,7 @@ const MenuATag = styled.a`
   font-size: 18px;
   line-height: 26px;
   letter-spacing: -0.016em;
-  color: #23314a;
+  color: #656f80;
   text-decoration: none;
 `;
 
@@ -156,13 +174,11 @@ const CategroyDiv = styled.div`
   padding-right: 22px;
   padding-left: 22px;
   padding-bottom: 10px;
-  border-bottom: 4px solid #656f80;
   &:hover {
     ${MenuATag} {
       color: #23314a;
     }
     border-bottom: 4px solid #23314a;
-    padding-bottom: 10px;
   }
 `;
 
