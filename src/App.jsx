@@ -4,10 +4,12 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ItemList from './pages/ItemList';
 import ItemDetail from './pages/ItemDetail';
+import GlobalStyle from './styles/GlobalStyle';
 
 function App() {
   return (
     <BrowserRouter>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
