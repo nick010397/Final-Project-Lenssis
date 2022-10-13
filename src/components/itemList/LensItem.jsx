@@ -2,39 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Star from '../../static/img/Star.png';
 
-const StyledLensItems = styled.div`
-  margin: 0 8vw 0 8vw;
-  display: grid;
-  grid-template-columns: 220px 220px 220px 220px 220px;
-  justify-content: space-between;
-`;
-
-const StyledLensItem = styled.div`
-  width: 220px;
-  height: 330px;
-  margin-top: 30px;
-`;
-const StyledStars = styled.div`
-  justify: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-const StyledLensImg = styled.img`
-  width: 220px;
-  height: 220px;
-`;
-
-const StyledLensName = styled.div`
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.15px;
-`;
-
-const StyledLensInfo = styled.div``;
-
 export default function LensItem() {
   return (
     <>
@@ -53,7 +20,9 @@ export default function LensItem() {
               <img src={Star} alt="별점" />
               <img src={Star} alt="별점" />
               <img src={Star} alt="별점" />
+              <StyledReviewDiv>(180)</StyledReviewDiv>
             </StyledStars>
+            <StyledTagDiv>おすすめ</StyledTagDiv>
           </StyledLensInfo>
         </StyledLensItem>
 
@@ -132,3 +101,59 @@ export default function LensItem() {
     </>
   );
 }
+
+const StyledLensItems = styled.div`
+  margin: 0 8vw 0 8vw;
+  display: grid;
+  grid-template-columns: 220px 220px 220px 220px 220px;
+  justify-content: space-between;
+`;
+
+const StyledLensItem = styled.div`
+  width: 220px;
+  height: 330px;
+  margin-top: 30px;
+`;
+const StyledStars = styled.div`
+  justify: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+const StyledLensImg = styled.img`
+  width: 220px;
+  height: 220px;
+`;
+
+const StyledLensName = styled.div`
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+`;
+
+const StyledLensInfo = styled.div``;
+
+const StyledTagDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4px 8px;
+  gap: 10px;
+  width: 64px;
+  height: 28px;
+  background: #e9eaed;
+`;
+
+const StyledReviewDiv = styled.div`
+  width: 28px;
+  height: 18px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.016em;
+  color: #656f80;
+`;

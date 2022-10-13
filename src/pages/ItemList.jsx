@@ -1,6 +1,10 @@
 import React from 'react';
 import LensItem from '../components/itemList/LensItem';
 import styled from 'styled-components';
+import NavBar from '../components/common/NavBar';
+import Footer from '../components/common/Footer';
+import AllLens from '../static/img/All_Lens.png';
+import CategoryBtn from '../components/itemList/CategoryBtn.jsx';
 
 const StyledListTitle = styled.div`
   margin: 0 8vw 0 8vw;
@@ -15,18 +19,19 @@ const StyledBtn = styled.button`
   margin: 5px;
 `;
 
-const StyledLensDIv = styled.div`
+const StyledLensImg = styled.img`
   margin: 40px 0px 40px 0px;
 `;
 
 export default function ItemList() {
   return (
     <>
+      <NavBar />
       <StyledListTitle>
-        <StyledLensDIv>LENS</StyledLensDIv>
-        <button>ALL</button>
-        <button>1DAY</button>
-        <button>1MONTH</button>
+        <div>
+          <StyledLensImg src={AllLens} alt="AllLens" />
+        </div>
+        <CategoryBtn />
       </StyledListTitle>
       <LensItem />
       <LensItem />
@@ -46,6 +51,7 @@ export default function ItemList() {
         <StyledBtn>5</StyledBtn>
         <StyledBtn>▶</StyledBtn>
       </StyledPageBtn>
+      <Footer />
     </>
   );
 }
