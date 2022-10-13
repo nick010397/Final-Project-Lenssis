@@ -8,6 +8,7 @@ import Event from '../components/main/Event';
 import notice from '../static/img/notice.png';
 import stroke from '../static/img/Vector.png';
 import Footer from '../components/common/Footer';
+import TitleName from '../components/main/TitleName';
 
 function Main() {
   return (
@@ -25,10 +26,8 @@ function Main() {
         <SlideMove />
       </CenterDiv>
 
-      <div>
-        <H1Tag>ALL LENS</H1Tag>
-        <H2Tag>カラコン</H2Tag>
-      </div>
+      <TitleName title="ALL LENS" subtitle="カラコン" />
+
       <div>
         <Center>
           <Button category>ALL</Button>
@@ -60,29 +59,19 @@ function Main() {
         <LensItem />
       </div>
       <Button more>もっと見る</Button>
-      <div id="category2">
-        <H1Tag>PICKUP ITEM</H1Tag>
-        <H2Tag>スタッフおすすめ</H2Tag>
-      </div>
+      <TitleName title="PICKUP ITEM" subtitle="スタッフおすすめ" />
       <div>
         <LensItem />
       </div>
       <Button more>もっと見る</Button>
-      <div id="category3">
-        <H1Tag>NEW ARRIVAL</H1Tag>
-        <H2Tag>新商品</H2Tag>
-        <div>
-          <LensItem />
-          <LensItem />
-        </div>
+      <TitleName title="NEW ARRIVAL" subtitle="新商品" />
+      <div>
+        <LensItem />
+        <LensItem />
       </div>
       <Button more>もっと見る</Button>
       <Event />
-
-      <div>
-        <H1Tag>NOTICE</H1Tag>
-        <H2Tag>お知らせ</H2Tag>
-      </div>
+      <TitleName title="NOTICE" subtitle="お知らせ" />
       <NoticImg>
         <img src={notice} alt="공지" />
       </NoticImg>
@@ -180,30 +169,6 @@ const CategroyDiv = styled.div`
     }
     border-bottom: 4px solid #23314a;
   }
-`;
-
-const H1Tag = styled.h1`
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 900;
-  font-size: 44px;
-  line-height: 60px;
-  text-align: center;
-  letter-spacing: -0.016em;
-  color: #23314a;
-  margin-bottom: 8px;
-`;
-
-const H2Tag = styled.h2`
-  font-family: 'Noto Sans JP';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 32px;
-  text-align: center;
-  letter-spacing: -0.016em;
-  color: #23314a;
-  margin-bottom: 80px;
 `;
 
 const NoticImg = styled.div`
