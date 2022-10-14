@@ -19,7 +19,6 @@ export default function Signup() {
 
 const SingupBox = styled.div`
   width: 534px;
-  height: 858px;
   border: solid gray 1px;
   display: flex;
   flex-direction: column;

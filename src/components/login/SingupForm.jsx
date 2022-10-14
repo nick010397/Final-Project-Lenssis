@@ -1,83 +1,146 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Popup from './Popup';
 import Button from './Button';
+import axios from 'axios';
 
-const pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+const PW_REG = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+const EMAIL_REG = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+const GENER_LIST = ['Male', 'Female'];
 
 export default function SingupForm() {
+  const [id, setId] = useState('');
+  const [idValidity, setIdValidty] = useState(false);
   const [nickname, setNickname] = useState('');
-  const [pw, setPw] = useState('');
-  const [pwValidty, setPwValidty] = useState(false);
+  const [pwd, setPwd] = useState('');
+  const [pwdValidty, setPwdValidty] = useState(false);
   const [isPwFocused, setIsPwFocused] = useState(false);
-  const [secondPw, setSecondPw] = useState('');
   const [isSecondPwFocused, setisSecondPwFocused] = useState(false);
-  const [pwMatch, setPwMatch] = useState(false);
+  const [pwdMatch, setPwdMatch] = useState(false);
   const [email, setEmail] = useState('');
   const [emailValidty, setEmailValidty] = useState(false);
   const [gender, setGender] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
 
-  const checkRepetition = async (e) => {
+  const setPopup = useCallback((message) => {
+    setPopupMessage(message);
+    setShowPopup(true);
+  }, []);
+
+  const checkIdValidty = async (e) => {
     e.preventDefault();
-    if (emailValidty) {
-      setPopupMessage('사용 가능한 이메일입니다.');
-      setShowPopup(true);
-    } else {
-      setPopupMessage('유효하지 않는 형식의 이메일입니다.');
-      setShowPopup(true);
+
+    try {
+      await axios.get(
+        `http://13.125.213.209/api/v1/user/exists/loginId?loginId=${id}`
+      );
+      setPopup('사용 가능한 아이디입니다.');
+      setIdValidty(true);
+    } catch {
+      setPopup('이미 사용중인 아이디입니다.');
+      setIdValidty(false);
+    }
+  };
+
+  const checkEmailValidty = async (e) => {
+    e.preventDefault();
+    const valid = EMAIL_REG.test(email);
+
+    if (!valid) {
+      setPopup('올바른 이메일 형식이 아닙니다.');
+      setEmailValidty(false);
+      return;
+    }
+
+    try {
+      await axios.get(
+        `http://13.125.213.209/api/v1/user/exists/email?email=${email}`
+      );
+      setPopup('사용 가능한 이메일입니다.');
+      setEmailValidty(true);
+    } catch {
+      setPopup('이미 사용 중인 이메일 아이디입니다.');
+      setEmailValidty(false);
     }
   };
 
   const checkPwMatch = (e) => {
-    const value = e.target.value.trim();
-    setSecondPw(value);
-    if (value === pw) {
-      setPwMatch(true);
+    const value = e.target.value;
+    if (value === pwd) {
+      setPwdMatch(true);
     } else {
-      setPwMatch(false);
+      setPwdMatch(false);
     }
   };
 
-  const handleComplete = (e) => {
+  useEffect(() => {
+    const validty = PW_REG.test(pwd);
+    if (validty) {
+      setPwdValidty(true);
+    } else {
+      setPwdValidty(false);
+    }
+  }, [pwd]);
+
+  const handleComplete = async (e) => {
     e.preventDefault();
+    console.log('working');
+    if (!idValidity) {
+      setPopup('아이디 중복 확인이 필요합니다.');
+    } else if (!emailValidty) {
+      setPopup('이메일 중복 확인이 필요합니다.');
+    } else if (!pwdValidty) {
+      setIsPwFocused(true);
+    } else if (!pwdMatch) {
+      setisSecondPwFocused(true);
+    } else {
+      const newUser = {
+        birthday: '2000-10-03',
+        email,
+        gender: gender || 'X',
+        loginId: id,
+        password: pwd,
+        phone: '010-1234-5678',
+        username: nickname,
+      };
+      await axios.post(
+        'http://13.125.213.209/api/v1/user/join',
+        JSON.stringify(newUser)
+      );
+      setPopup('회원가입에 성공하셨습니다.');
+    }
   };
-
-  useEffect(() => {
-    const validty = pwReg.test(pw);
-    if (validty) {
-      setPwValidty(true);
-    } else {
-      setPwValidty(false);
-    }
-  }, [pw]);
-
-  useEffect(() => {
-    const validty = emailReg.test(email);
-    if (validty) {
-      setEmailValidty(true);
-    } else {
-      setEmailValidty(false);
-    }
-  }, [email]);
 
   return (
     <>
       <InforBox noValidate>
         <InforEach>
+          <Label>아이디</Label>
+          <InputField
+            short={true}
+            type="text"
+            value={id}
+            onChange={(e) => {
+              setId(e.target.value);
+            }}
+          />
+          <RepetitionCheckBtn onClick={checkIdValidty}>
+            중복 확인
+          </RepetitionCheckBtn>
+        </InforEach>
+        <InforEach>
           <Label>이메일</Label>
           <InputField
             short={true}
             type="email"
+            value={email}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            value={email}
           />
-          <RepetitionCheckBtn id="email" onClick={checkRepetition}>
+          <RepetitionCheckBtn onClick={checkEmailValidty}>
             중복 확인
           </RepetitionCheckBtn>
         </InforEach>
@@ -86,10 +149,10 @@ export default function SingupForm() {
           <InputField
             type="text"
             maxLength="20"
-            onChange={(e) => {
-              setNickname(e.target.value.trim());
-            }}
             value={nickname}
+            onChange={(e) => {
+              setNickname(e.target.value);
+            }}
           />
         </InforEach>
 
@@ -102,11 +165,11 @@ export default function SingupForm() {
               setIsPwFocused(true);
             }}
             onBlur={() => setIsPwFocused(false)}
-            onChange={(e) => setPw(e.target.value.trim())}
-            value={pw}
+            onChange={(e) => setPwd(e.target.value.trim())}
+            value={pwd}
           />
           {isPwFocused &&
-            (pwValidty ? (
+            (pwdValidty ? (
               <PwMessage color="blue">사용 가능한 비밀번호입니다.</PwMessage>
             ) : (
               <PwMessage color="red">
@@ -120,7 +183,6 @@ export default function SingupForm() {
           <InputField
             type="password"
             maxLength="25"
-            value={secondPw}
             onChange={checkPwMatch}
             onFocus={() => {
               setisSecondPwFocused(true);
@@ -130,8 +192,7 @@ export default function SingupForm() {
             }}
           />
           {isSecondPwFocused &&
-            secondPw &&
-            (pwMatch ? (
+            (pwdMatch ? (
               <PwMessage color="blue">비밀번호가 일치합니다.</PwMessage>
             ) : (
               <PwMessage color="red">비밀번호가 일치하지 않습니다.</PwMessage>
@@ -140,28 +201,19 @@ export default function SingupForm() {
 
         <InforEach>
           <Label>성별 ( 선택 )</Label>
-          <RadioEach>
-            <span>여성</span>
-            <input
-              type="radio"
-              name="gender"
-              value="female"
-              onChange={(e) => {
-                setGender(e.target.value);
-              }}
-            />
-          </RadioEach>
-          <RadioEach>
-            <span>남성</span>
-            <input
-              type="radio"
-              name="gender"
-              value="male"
-              onChange={(e) => {
-                setGender(e.target.value);
-              }}
-            />
-          </RadioEach>
+          {GENER_LIST.map((gender) => (
+            <RadioEach key={gender}>
+              <span>{gender === 'Male' ? '남성' : '여성'}</span>
+              <input
+                type="radio"
+                name="gender"
+                value={gender}
+                onChange={(e) => {
+                  setGender(e.target.value);
+                }}
+              />
+            </RadioEach>
+          ))}
         </InforEach>
         <Button
           infor={{ text: '완료', disabled: false }}
@@ -222,24 +274,11 @@ const PwMessage = styled.div`
   color: ${(props) => props.color};
 `;
 
-const RadioEach = styled.div`
+const RadioEach = styled.label`
   font-size: 14px;
   display: flex;
   flex-direction: row;
   width: 60px;
   padding-bottom: 5px;
   justify-content: space-between;
-`;
-
-const SubmitButton = styled.button`
-  width: 322px;
-  height: 48px;
-  font-size: 16px;
-  border: none;
-  border-radius: 6px;
-  margin: 0 8px;
-  background: #23314a;
-  border: none;
-  color: white;
-  cursor: pointer;
 `;
