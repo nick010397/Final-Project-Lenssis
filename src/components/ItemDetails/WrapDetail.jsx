@@ -5,8 +5,8 @@ function WrapDetail() {
   return (
     <Container>
       <h1>에일링 에일</h1>
-      <Upbtn value="인기상품">인기</Upbtn> &nbsp;
-      <BestBtn value="인기상품">추천</BestBtn>
+      <Upbtn>추천</Upbtn> &nbsp;
+      <Bestbtn>인기</Bestbtn>
       <p>가격 1,800엔</p>
       <hr />
       <br />
@@ -21,41 +21,41 @@ function WrapDetail() {
       <br />
       <br />
       <hr />
+      <br />
+      <br />
       <span>
-        색상&nbsp;&nbsp;
+        그래픽 지름&nbsp;&nbsp;
         <select value="선택하세요">
           <option>선택하세요</option>
           <option>0.5</option>
           <option>0.6</option>
           <option>0.7</option>
         </select>
+      </span>
+      <br />
+      <br />
+      <span>
+        사용 기간&nbsp;&nbsp;
+        <select value="선택하세요">
+          <option>선택하세요</option>
+          <option>0.5</option>
+          <option>0.6</option>
+          <option>0.7</option>
+        </select>
+      </span>
+      <br />
+      <br />
+      <span>
+        색상&nbsp;&nbsp;
+        <Brownbtn>브라운</Brownbtn>
+        <Bluebtn>블루</Bluebtn>
+        <Chocobtn>초코</Chocobtn>
+        <Graybtn>그레이</Graybtn>
       </span>
       <br />
       <br />
       <span>
         빈도&nbsp;&nbsp;
-        <select value="선택하세요">
-          <option>선택하세요</option>
-          <option>0.5</option>
-          <option>0.6</option>
-          <option>0.7</option>
-        </select>
-      </span>
-      <br />
-      <br />
-      <span>
-        그래픽지름&nbsp;&nbsp;
-        <select value="선택하세요">
-          <option>선택하세요</option>
-          <option>0.5</option>
-          <option>0.6</option>
-          <option>0.7</option>
-        </select>
-      </span>
-      <br />
-      <br />
-      <span>
-        사용기간&nbsp;&nbsp;
         <select value="선택하세요">
           <option>선택하세요</option>
           <option>0.5</option>
@@ -79,23 +79,27 @@ export default WrapDetail;
 const Container = styled.div`
   width: 50%;
   height: auto;
-  min-height: 1000px;
+
+  min-height: 1100px;
   float: right;
   position: relative;
 `;
 const Upbtn = styled.button`
   width: 59px;
   height: 24px;
-  font-family: 'Pretendard';
+  font-family: 'Noto Sans JP';
   font-style: normal;
+  font-weight: 1500;
+  font-size: 15px;
+  line-height: 24px;
   text-align: center;
   letter-spacing: -0.016em;
 
-  color: white;
-  background-color: skyblue;
+  color: #23314a;
+  background-color: rgba(230, 156, 196, 1);
 `;
-const BestBtn = styled(Upbtn)`
-  background-color: green;
+const Bestbtn = styled(Upbtn)`
+  background-color: rgba(249, 176, 170, 1);
 `;
 
 const Input = styled.input`
@@ -117,10 +121,30 @@ const Orderbtn = styled.button`
   left: 0px;
   top: 0px;
   color: white;
+  cursor: pointer;
 
   background: #eb5072;
   border-radius: 4px;
 `;
 const Keepbtn = styled(Orderbtn)`
   background-color: black;
+`;
+const Brownbtn = styled.button`
+  width: 86px;
+  height: 42px;
+  border: 1px solid #d3d6db;
+  color: white;
+  cursor: pointer;
+
+  background: #483a2e;
+  border-radius: 4px;
+`;
+const Bluebtn = styled(Brownbtn)`
+  background-color: #364c75;
+`;
+const Chocobtn = styled(Brownbtn)`
+  background-color: #5f4935;
+`;
+const Graybtn = styled(Brownbtn)`
+  background-color: #797c82;
 `;

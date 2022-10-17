@@ -18,6 +18,7 @@
     "react-scripts": "5.0.1",
     "recoil": "^0.7.5",
     "styled-components": "^5.3.6",
+    "swiper": "^8.4.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -39,10 +40,8 @@
     ]
   },
   "devDependencies": {
-
     "eslint-config-prettier": "^8.5.0",
     "msw": "^0.47.3"
-
   },
   "msw": {
     "workerDirectory": "public"
