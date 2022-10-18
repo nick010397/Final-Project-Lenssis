@@ -1,70 +1,29 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import Popup from './Popup';
-import Button from './Button';
-import axios from 'axios';
+import Popup from '../login/Popup';
+import Button from '../login/Button';
+import { handleComplete } from '../../api/signupApi';
+import CheckInputField from './CheckInputField';
 
 const PW_REG = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-const EMAIL_REG = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 const GENER_LIST = ['Male', 'Female'];
 
 export default function SingupForm() {
-  const [id, setId] = useState('');
-  const [idValidity, setIdValidty] = useState(false);
   const [nickname, setNickname] = useState('');
   const [pwd, setPwd] = useState('');
   const [pwdValidty, setPwdValidty] = useState(false);
   const [isPwFocused, setIsPwFocused] = useState(false);
   const [isSecondPwFocused, setisSecondPwFocused] = useState(false);
   const [pwdMatch, setPwdMatch] = useState(false);
-  const [email, setEmail] = useState('');
-  const [emailValidty, setEmailValidty] = useState(false);
   const [gender, setGender] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
 
-  const setPopup = useCallback((message) => {
-    setPopupMessage(message);
-    setShowPopup(true);
-  }, []);
-
-  const checkIdValidty = async (e) => {
-    e.preventDefault();
-
-    try {
-      await axios.get(
-        `http://13.125.213.209/api/v1/user/exists/loginId?loginId=${id}`
-      );
-      setPopup('사용 가능한 아이디입니다.');
-      setIdValidty(true);
-    } catch {
-      setPopup('이미 사용중인 아이디입니다.');
-      setIdValidty(false);
-    }
-  };
-
-  const checkEmailValidty = async (e) => {
-    e.preventDefault();
-    const valid = EMAIL_REG.test(email);
-
-    if (!valid) {
-      setPopup('올바른 이메일 형식이 아닙니다.');
-      setEmailValidty(false);
-      return;
-    }
-
-    try {
-      await axios.get(
-        `http://13.125.213.209/api/v1/user/exists/email?email=${email}`
-      );
-      setPopup('사용 가능한 이메일입니다.');
-      setEmailValidty(true);
-    } catch {
-      setPopup('이미 사용 중인 이메일 아이디입니다.');
-      setEmailValidty(false);
-    }
-  };
+  // const setPopup = useCallback((message) => {
+  //   setPopupMessage(message);
+  //   setShowPopup(true);
+  // }, []);
 
   const checkPwMatch = (e) => {
     const value = e.target.value;
@@ -84,66 +43,11 @@ export default function SingupForm() {
     }
   }, [pwd]);
 
-  const handleComplete = async (e) => {
-    e.preventDefault();
-    console.log('working');
-    if (!idValidity) {
-      setPopup('아이디 중복 확인이 필요합니다.');
-    } else if (!emailValidty) {
-      setPopup('이메일 중복 확인이 필요합니다.');
-    } else if (!pwdValidty) {
-      setIsPwFocused(true);
-    } else if (!pwdMatch) {
-      setisSecondPwFocused(true);
-    } else {
-      const newUser = {
-        birthday: '2000-10-03',
-        email,
-        gender: gender || 'X',
-        loginId: id,
-        password: pwd,
-        phone: '010-1234-5678',
-        username: nickname,
-      };
-      await axios.post(
-        'http://13.125.213.209/api/v1/user/join',
-        JSON.stringify(newUser)
-      );
-      setPopup('회원가입에 성공하셨습니다.');
-    }
-  };
-
   return (
     <>
       <InforBox noValidate>
-        <InforEach>
-          <Label>아이디</Label>
-          <InputField
-            short={true}
-            type="text"
-            value={id}
-            onChange={(e) => {
-              setId(e.target.value);
-            }}
-          />
-          <RepetitionCheckBtn onClick={checkIdValidty}>
-            중복 확인
-          </RepetitionCheckBtn>
-        </InforEach>
-        <InforEach>
-          <Label>이메일</Label>
-          <InputField
-            short={true}
-            type="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <RepetitionCheckBtn onClick={checkEmailValidty}>
-            중복 확인
-          </RepetitionCheckBtn>
-        </InforEach>
+        <CheckInputField title={'아이디'} name={'loginId'} />
+        <CheckInputField title={'이메일'} name={'email'} />
         <InforEach>
           <Label>닉네임</Label>
           <InputField
@@ -217,7 +121,7 @@ export default function SingupForm() {
         </InforEach>
         <Button
           infor={{ text: '완료', disabled: false }}
-          onClick={handleComplete}
+          onClick={handleComplete('id', pwd, 'email', gender, nickname)}
         />
       </InforBox>
       {showPopup && <Popup message={popupMessage} show={setShowPopup} />}
@@ -230,18 +134,18 @@ const InforBox = styled.form`
   flex-direction: column;
 `;
 
-const InforEach = styled.div`
+export const InforEach = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 40px;
 `;
-const Label = styled.label`
+export const Label = styled.label`
   font-size: 14px;
   color: #606060;
   padding-bottom: 15px;
 `;
 
-const InputField = styled.input.attrs({ requried: true })`
+export const InputField = styled.input.attrs({ requried: true })`
   border: none;
   border-bottom: 2px solid #f0f0f0;
   width: ${(props) => (props.short ? '238px' : '322px')};
@@ -258,7 +162,7 @@ const InputField = styled.input.attrs({ requried: true })`
   }
 `;
 
-const RepetitionCheckBtn = styled.button`
+export const RepetitionCheckBtn = styled.button`
   position: absolute;
   transform: translate(260px, 10px);
   width: 72px;

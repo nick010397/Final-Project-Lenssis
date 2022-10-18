@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import Button from './Button';
+import { useNavigate } from 'react-router';
 
 export default function Popup({ message, show }) {
+  const navigate = useNavigate();
   return (
     <>
       <PopupBackDrop
@@ -25,6 +27,9 @@ export default function Popup({ message, show }) {
           infor={{ text: '확인', disabled: false }}
           onClick={() => {
             show(false);
+            if (message === '회원가입에 성공하셨습니다.') {
+              navigate('/login');
+            }
           }}
         />
       </PopupBox>

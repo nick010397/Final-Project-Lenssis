@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import LoginInputField from './LoginInputField';
+import axios from 'axios';
 
 export default function LoginForm() {
   const [id, setId] = useState('');
@@ -12,11 +13,19 @@ export default function LoginForm() {
 
   useEffect(() => {
     console.log('working');
-    setValidty(!(id.length >= 5 && pw.length >= 8));
+    setValidty(!(id.length >= 8 && pw.length >= 8));
   }, [id, pw]);
 
+  const submitLogin = async (e) => {
+    e.preventDefault();
+    const res = await axios.post(
+      'http://13.125.213.209/api/v1/user/login',
+      JSON.stringify({ loginId: id, password: pw })
+    );
+    console.log(res);
+  };
   return (
-    <form method="post">
+    <form method="post" onSubmit={submitLogin}>
       <InputBox>
         <label>아이디</label>
         <LoginInputField
