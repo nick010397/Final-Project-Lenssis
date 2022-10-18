@@ -5,8 +5,13 @@ import Footer from '../components/common/Footer';
 import LoginForm from '../components/login/LoginForm';
 import LoginOther from '../components/login/LoginOther';
 import Title from '../components/login/Title';
+import { useSendLogin } from '../api/loginApi';
+import { useSelector } from 'react-redux';
 
 export default function Login() {
+  const loginInfor = useSelector((state) => state.loginInfor);
+  const { refetch, data } = useSendLogin(loginInfor);
+
   return (
     <>
       <NavBar />
@@ -15,7 +20,13 @@ export default function Login() {
           subText="나만의 특별함을 위해 LENSSIS에서"
           text="렌즈의 진짜 정보를 찾아보세요."
         />
-        <LoginForm />
+        <LoginForm
+          onSubmit={async (e) => {
+            e.preventDefault();
+            await refetch();
+            console.log(data.data);
+          }}
+        />
         <LoginOther />
       </LoginFormBox>
       {/* <Footer /> */}

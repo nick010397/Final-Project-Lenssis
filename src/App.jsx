@@ -7,22 +7,27 @@ import ItemDetail from './pages/ItemDetail';
 import GlobalStyle from './styles/GlobalStyle';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/ItemDetail" element={<ItemDetail />} />
-          <Route path="/itemList" element={<ItemList />} />
-        </Routes>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/ItemDetail" element={<ItemDetail />} />
+            <Route path="/itemList" element={<ItemList />} />
+          </Routes>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </Provider>
     </BrowserRouter>
   );
 }

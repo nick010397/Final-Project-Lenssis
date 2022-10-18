@@ -1,51 +1,44 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import Popup from '../login/Popup';
 import Button from '../login/Button';
-import { handleComplete } from '../../api/signupApi';
 import CheckInputField from './CheckInputField';
+import { useDispatch } from 'react-redux';
+import { setInfor } from '../../store/signupInfor';
 
 const PW_REG = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 const GENER_LIST = ['Male', 'Female'];
 
-export default function SingupForm() {
-  const [nickname, setNickname] = useState('');
-  const [pwd, setPwd] = useState('');
-  const [pwdValidty, setPwdValidty] = useState(false);
+export default function SingupForm({ onSubmit }) {
+  const [password, setPassword] = useState('');
+  const [passwordValidty, setPasswordValidty] = useState(false);
   const [isPwFocused, setIsPwFocused] = useState(false);
   const [isSecondPwFocused, setisSecondPwFocused] = useState(false);
-  const [pwdMatch, setPwdMatch] = useState(false);
-  const [gender, setGender] = useState('');
-  const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('');
-
-  // const setPopup = useCallback((message) => {
-  //   setPopupMessage(message);
-  //   setShowPopup(true);
-  // }, []);
+  const [passwordMatch, setPasswordMatch] = useState(false);
+  const dispatch = useDispatch();
 
   const checkPwMatch = (e) => {
     const value = e.target.value;
-    if (value === pwd) {
-      setPwdMatch(true);
+    if (value === password) {
+      setPasswordMatch(true);
+      dispatch(setInfor({ name: 'password', value: password }));
     } else {
-      setPwdMatch(false);
+      setPasswordMatch(false);
     }
   };
 
   useEffect(() => {
-    const validty = PW_REG.test(pwd);
+    const validty = PW_REG.test(password);
     if (validty) {
-      setPwdValidty(true);
+      setPasswordValidty(true);
     } else {
-      setPwdValidty(false);
+      setPasswordValidty(false);
     }
-  }, [pwd]);
+  }, [password]);
 
   return (
     <>
-      <InforBox noValidate>
+      <InforBox noValidate onSubmit={onSubmit}>
         <CheckInputField title={'아이디'} name={'loginId'} />
         <CheckInputField title={'이메일'} name={'email'} />
         <InforEach>
@@ -53,9 +46,8 @@ export default function SingupForm() {
           <InputField
             type="text"
             maxLength="20"
-            value={nickname}
             onChange={(e) => {
-              setNickname(e.target.value);
+              dispatch(setInfor({ name: 'username', value: e.target.value }));
             }}
           />
         </InforEach>
@@ -69,11 +61,11 @@ export default function SingupForm() {
               setIsPwFocused(true);
             }}
             onBlur={() => setIsPwFocused(false)}
-            onChange={(e) => setPwd(e.target.value.trim())}
-            value={pwd}
+            onChange={(e) => setPassword(e.target.value.trim())}
+            value={password}
           />
           {isPwFocused &&
-            (pwdValidty ? (
+            (passwordValidty ? (
               <PwMessage color="blue">사용 가능한 비밀번호입니다.</PwMessage>
             ) : (
               <PwMessage color="red">
@@ -96,7 +88,7 @@ export default function SingupForm() {
             }}
           />
           {isSecondPwFocused &&
-            (pwdMatch ? (
+            (passwordMatch ? (
               <PwMessage color="blue">비밀번호가 일치합니다.</PwMessage>
             ) : (
               <PwMessage color="red">비밀번호가 일치하지 않습니다.</PwMessage>
@@ -113,18 +105,21 @@ export default function SingupForm() {
                 name="gender"
                 value={gender}
                 onChange={(e) => {
-                  setGender(e.target.value);
+                  console.log(e.target);
+                  dispatch(
+                    setInfor({
+                      name: 'gender',
+                      value: e.target.value.slice(0, 1),
+                    })
+                  );
                 }}
               />
             </RadioEach>
           ))}
         </InforEach>
-        <Button
-          infor={{ text: '완료', disabled: false }}
-          onClick={handleComplete('id', pwd, 'email', gender, nickname)}
-        />
+        <Button infor={{ text: '완료', disabled: false }} onClick={onSubmit} />
       </InforBox>
-      {showPopup && <Popup message={popupMessage} show={setShowPopup} />}
+      {/* ///{false && <Popup message={popupMessage} show={setShowPopup} />} */}
     </>
   );
 }

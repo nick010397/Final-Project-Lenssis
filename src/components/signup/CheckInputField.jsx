@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { InforEach } from './SingupForm';
 import { useCheckValidity } from '../../api/signupApi';
+import { useDispatch } from 'react-redux';
+import { setInfor } from '../../store/signupInfor';
 
 const EMAIL_REG = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
 export default function CheckInputField({ title, name }) {
   const [value, setValue] = useState('');
   const { data, refetch } = useCheckValidity(name, value);
+  const dispatch = useDispatch();
   return (
     <InforEach>
       <Label>{title}</Label>
@@ -25,6 +28,11 @@ export default function CheckInputField({ title, name }) {
               alert('유효하지 않는 형식의 이메일입니다');
               return;
             }
+          } else if (name === 'loginId') {
+            if (value.length < 8) {
+              alert('아이디는 최소 8글자여야 합니다.');
+              return;
+            }
           }
           //네트워크 통신으로 데이터가 넘어왔는데 왜 브라우저는 에러를 내보내지?
           //data 가 undefined라고 하네?...음 두번째 click부터는 제대로 동작하긴 함..
@@ -34,7 +42,7 @@ export default function CheckInputField({ title, name }) {
           if (data.data.data.exists) {
             alert(`이미 존재하는 ${title}입니다.`);
           } else {
-            //redux toolkit으로 아이디, 이메일 저장..
+            dispatch(setInfor({ name, value }));
           }
         }}
       >

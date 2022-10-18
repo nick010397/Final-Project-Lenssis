@@ -16,24 +16,17 @@ export const useCheckValidity = (query, queryValue) => {
   );
 };
 
-export const handleComplete =
-  (id, password, email, gender, username) => async (e) => {
-    e.preventDefault();
-    console.log('working');
+const sendUserInfoToServer = (infor) => () =>
+  axios.post('http://13.125.213.209/api/v1/user/join', JSON.stringify(infor), {
+    headers: { 'Content-Type': 'application/json' },
+  });
 
-    const newUser = {
-      birthday: '2000-10-03',
-      email,
-      gender: gender.slice(0, 1) || 'X',
-      loginId: id,
-      password,
-      phone: '010-1234-5678',
-      username,
-    };
-
-    await axios.post(
-      'http://13.125.213.209/api/v1/user/join',
-      JSON.stringify(newUser),
-      { headers: { 'Content-Type': 'application/json' } }
-    );
-  };
+export const usePostUser = (infor) =>
+  useQuery('user', sendUserInfoToServer(infor), {
+    enabled: false,
+    refetchOnWindowFocus: false,
+    manual: true,
+    onSuccess: () => {
+      alert('회원가입에 성공하셨습니다');
+    },
+  });
