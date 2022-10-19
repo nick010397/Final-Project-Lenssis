@@ -1,65 +1,119 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Slide from './Slide';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 import styled from 'styled-components';
+
+// import required modules
+import { Pagination } from 'swiper';
 import event1 from '../../static/img/event1.png';
 import event2 from '../../static/img/event2.png';
 import event3 from '../../static/img/event3.png';
 
-const TOTAL_SLIDES = 1;
-
-export default function Slider() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slideRef = useRef(null);
-  const nextSlide = () => {
-    if (currentSlide >= TOTAL_SLIDES) {
-      setCurrentSlide(0);
-    } else {
-      setCurrentSlide(currentSlide + 1);
-    }
-  };
-  const prevSlide = () => {
-    if (currentSlide === 0) {
-      setCurrentSlide(TOTAL_SLIDES);
-    } else {
-      setCurrentSlide(currentSlide - 1);
-    }
-  };
-
-  useEffect(() => {
-    slideRef.current.style.transition = 'all 0.5s ease-in-out';
-    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
-  }, [currentSlide]);
+export default function Slide() {
   return (
     <Container>
-      <SliderContainer ref={slideRef}>
-        <Slide Img={event1} />
-        <Slide Img={event2} />
-        <Slide Img={event3} />
-      </SliderContainer>
-      <ButtonDiv>
-        <Button onClick={prevSlide}>Previous Slide</Button>
-        <Button onClick={nextSlide}>Next Slide</Button>
-        {currentSlide}
-      </ButtonDiv>
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={16}
+        slidesPerGroup={1}
+        // centeredSlides={true}
+        loop={true}
+        loopFillGroupWithBlank={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+        <SwiperStyled>
+          <SwiperSlide>
+            <EventDiv>
+              <img src={event1} alt="배너1" />
+
+              <EventTitle>イベントタイトル</EventTitle>
+              <EventContents>
+                イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...
+              </EventContents>
+            </EventDiv>
+          </SwiperSlide>
+        </SwiperStyled>
+        <SwiperStyled>
+          <SwiperSlide>
+            <EventDiv>
+              <img src={event2} alt="배너2" />
+
+              <EventTitle>イベントタイトル</EventTitle>
+              <EventContents>
+                イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...
+              </EventContents>
+            </EventDiv>
+          </SwiperSlide>
+        </SwiperStyled>
+        <SwiperStyled>
+          <SwiperSlide>
+            <EventDiv>
+              <img src={event3} alt="배너3" />
+
+              <EventTitle>イベントタイトル</EventTitle>
+              <EventContents>
+                イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...
+              </EventContents>
+            </EventDiv>
+          </SwiperSlide>
+        </SwiperStyled>
+      </Swiper>
     </Container>
   );
 }
 
-//임시로 만들어 놓은 것 수정 예정!
-const Container = styled.div`
-  width:584px
-  height: 248px;
-  overflow: hidden;
-`;
-const ButtonDiv = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-const Button = styled.button`
+const SwiperStyled = styled(SwiperSlide)`
+  background: white;
   border: 1px solid gray;
-  color: gray;
+  width: 384px;
+  height: 384px;
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 248px;
+    object-fit: cover;
+  }
 `;
-const SliderContainer = styled.div`
-  display: flex;
-  justify-content: center;
+const Container = styled.div`
+  .mySwiper {
+    width: 1240px;
+    height: 440px;
+
+    .swiper-pagination-bullet-active {
+      background-color: #23314a;
+    }
+  }
+`;
+const EventDiv = styled.div`
+  object-fit: cover;
+`;
+
+const EventTitle = styled.h3`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+  margin: 24px 0px 16px 24px;
+`;
+const EventContents = styled.p`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+  margin-left: 24px;
+  margin-right: 24px;
 `;
