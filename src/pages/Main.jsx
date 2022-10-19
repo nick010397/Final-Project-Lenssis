@@ -24,7 +24,7 @@ function Main({ products, setProducts }) {
 
   useEffect(() => {
     getProducts();
-  });
+  }, []);
 
   if (loading) {
     return <div>대기 중...</div>;
