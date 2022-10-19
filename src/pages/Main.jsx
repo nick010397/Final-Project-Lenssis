@@ -10,21 +10,25 @@ import stroke from '../static/img/Vector.png';
 import Footer from '../components/common/Footer';
 import TitleName from '../components/main/TitleName';
 import FilterMenu from '../components/main/FilterMenu';
-
+import axios from 'axios';
 function Main({ products, setProducts }) {
   const [loading, setLoading] = useState(false);
 
-  const getProducts = async () => {
-    const json = await (
-      await fetch('http://13.125.213.209:80/api/v1/product')
-    ).json();
-    setProducts(json.data);
-    setLoading(false);
-  };
-
   useEffect(() => {
+    const getProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          'http://13.125.213.209/api/v1/product'
+        );
+        setProducts(response.data.data);
+      } catch (e) {
+        console.log(e);
+      }
+      setLoading(false);
+    };
     getProducts();
-  }, []);
+  }, [setProducts]);
 
   if (loading) {
     return <div>대기 중...</div>;
