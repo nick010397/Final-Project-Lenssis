@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main';
 import Login from './pages/Login';
@@ -7,11 +8,16 @@ import ItemDetail from './pages/ItemDetail';
 import GlobalStyle from './styles/GlobalStyle';
 
 function App() {
+  const [products, setProducts] = useState([]);
+
   return (
     <BrowserRouter>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route
+          path="/"
+          element={<Main products={products} setProducts={setProducts} />}
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/ItemDetail" element={<ItemDetail />} />

@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import NavBar from '../components/common/NavBar';
 import SlideMove from '../components/main/SlideMove';
-import Button from '../components/main/Button';
+import CategoryBtn from '../components/main/CategoryBtn';
 import LensItem from '../components/itemList/LensItem';
 import Event from '../components/main/Event';
 import notice from '../static/img/notice.png';
 import stroke from '../static/img/Vector.png';
 import Footer from '../components/common/Footer';
 import TitleName from '../components/main/TitleName';
+import FilterMenu from '../components/main/FilterMenu';
 
-function Main() {
+function Main({ products, setProducts }) {
+  const [loading, setLoading] = useState(false);
+
+  const getProducts = async () => {
+    const json = await (
+      await fetch('http://13.125.213.209:80/api/v1/product')
+    ).json();
+    setProducts(json.data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getProducts();
+  });
+
+  if (loading) {
+    return <div>대기 중...</div>;
+  }
+  if (!products) {
+    return null;
+  }
   return (
     <>
       <NavBar />
-      <Center>
-        <a href="/login">LOGIN </a>
-        <a href="/signup">SIGNUP </a>
-        <a href="/itemdetail">ITEMDETAIL </a>
-        <a href="/itemlist">ITEMLIST </a>
-      </Center>
-
       {/* 슬라이드 수정 예정 */}
       <CenterDiv slide>
         <SlideMove />
@@ -30,46 +44,28 @@ function Main() {
 
       <div>
         <Center>
-          <Button category>ALL</Button>
-          <Button category>1DAY</Button>
-          <Button category>1MONTH</Button>
+          <CategoryBtn category>ALL</CategoryBtn>
+          <CategoryBtn category>1DAY</CategoryBtn>
+          <CategoryBtn category>1MONTH</CategoryBtn>
         </Center>
       </div>
-      <CenterDiv>
-        <CategroyDiv>
-          <MenuATag href="http://localhost:3000">人気順</MenuATag>
-        </CategroyDiv>
-        <CategroyDiv>
-          <MenuATag href="http://localhost:3000">新着順</MenuATag>
-        </CategroyDiv>
-        <CategroyDiv>
-          <MenuATag href="http://localhost:3000">価格が低い順</MenuATag>
-        </CategroyDiv>
-        <CategroyDiv>
-          <MenuATag href="http://localhost:3000">価格が高い順</MenuATag>
-        </CategroyDiv>
-        <CategroyDiv>
-          <MenuATag href="http://localhost:3000">レビュー件数順</MenuATag>
-        </CategroyDiv>
-      </CenterDiv>
+      <FilterMenu />
       <MenuHr />
       <div>
-        <LensItem />
-        <LensItem />
-        <LensItem />
+        <LensItem products={products} setProducts={setProducts} />
       </div>
-      <Button more>もっと見る</Button>
+      <CategoryBtn more>もっと見る</CategoryBtn>
       <TitleName title="PICKUP ITEM" subtitle="スタッフおすすめ" />
       <div>
         <LensItem />
       </div>
-      <Button more>もっと見る</Button>
+      <CategoryBtn more>もっと見る</CategoryBtn>
       <TitleName title="NEW ARRIVAL" subtitle="新商品" />
       <div>
         <LensItem />
         <LensItem />
       </div>
-      <Button more>もっと見る</Button>
+      <CategoryBtn more>もっと見る</CategoryBtn>
       <Event />
       <TitleName title="NOTICE" subtitle="お知らせ" />
       <NoticImg>
@@ -111,14 +107,16 @@ function Main() {
           <Hr />
         </NoticeDiv>
       </div>
-      <Button end>もっと見る</Button>
+      <CategoryBtn end>もっと見る</CategoryBtn>
       <Footer />
     </>
   );
 }
 
 const Center = styled.div`
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 const CenterDiv = styled.div`
@@ -146,29 +144,6 @@ const MenuHr = styled.hr`
   margin-left: 8vw;
   border: 0px;
   border-bottom: 4px solid #656f80;
-`;
-const MenuATag = styled.a`
-  font-family: 'Noto Sans JP';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 26px;
-  letter-spacing: -0.016em;
-  color: #656f80;
-  text-decoration: none;
-`;
-
-const CategroyDiv = styled.div`
-  text-align: center;
-  padding-right: 22px;
-  padding-left: 22px;
-  padding-bottom: 10px;
-  &:hover {
-    ${MenuATag} {
-      color: #23314a;
-    }
-    border-bottom: 4px solid #23314a;
-  }
 `;
 
 const NoticImg = styled.div`
