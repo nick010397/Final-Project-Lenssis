@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Star from '../../static/img/Star.png';
 
@@ -7,11 +8,15 @@ export default function LensItem({ products }) {
     <Items>
       {products &&
         products.map((products) => (
-          <div>
-            <IMG src={products.image1} alt="렌즈이미지" />
-            <Title>{products.name}</Title>
-            <Price>{products.sellPrice}</Price>
-          </div>
+          <>
+            <Link to={`/itemdetail/${products.id}`}>
+              <div>
+                <IMG src={products.image1} alt="렌즈이미지" />
+                <Title>{products.name}</Title>
+                <Price>{products.sellPrice}</Price>
+              </div>
+            </Link>
+          </>
         ))}
     </Items>
   );
