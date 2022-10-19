@@ -9,7 +9,10 @@ export default function LensItem({ products }) {
       {products &&
         products.map((products) => (
           <>
-            <Link to={`/itemdetail/${products.id}`}>
+            <Link
+              to={`/itemdetail/${products.id}`}
+              style={{ textDecoration: 'none' }}
+            >
               <div>
                 <IMG src={products.image1} alt="렌즈이미지" />
                 <Title>{products.name}</Title>
