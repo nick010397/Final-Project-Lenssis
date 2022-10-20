@@ -4,6 +4,7 @@ import banner from '../../static/img/Banner_Header.jpeg';
 import cart from '../../static/img/Icon_Cart.png';
 import mypage from '../../static/img/Icon_MyPage.png';
 import Search from '../../static/img/Icon_Search.png';
+import Logo from '../../static/img/Lensis_Logo.png';
 
 export default function NavBar() {
   return (
@@ -12,15 +13,12 @@ export default function NavBar() {
       <StyledNavItem id="Lens" class="nav-items">
         <Styledlogo>
           <a href="/">
-            <StyledLogoImg
-              src="https://lenssis.jp/data/common/logo_img?ver=20211014"
-              alt="렌시스 로고"
-            />
+            <StyledLogoImg src={Logo} alt="렌시스 로고" />
           </a>
         </Styledlogo>
         <StyledInputDiv>
+          <StyledInputImg src={Search} alt="검색" />
           <StyledInput type="text" />
-          <StyledInputImg src={Search} alt="" />
         </StyledInputDiv>
         <StyledIconsDiv>
           <div class="nav-item">
@@ -35,18 +33,38 @@ export default function NavBar() {
           </div>
         </StyledIconsDiv>
       </StyledNavItem>
-      <StyledMenuContainerDiv>
-        <StyledMenuDiv>カラコン</StyledMenuDiv>
-        <StyledMenuDiv>新着順</StyledMenuDiv>
-        <StyledMenuDiv>パーソナル診断</StyledMenuDiv>
-        <StyledMenuDiv>人生カラコン探し</StyledMenuDiv>
-        <StyledMenuDiv>私にぴったりのレンズを探す</StyledMenuDiv>
-        <StyledBarDiv></StyledBarDiv>
-        <StyledMenuDiv>イベント</StyledMenuDiv>
-        <StyledMenuDiv>ブランド</StyledMenuDiv>
-        <StyledMenuDiv>ブログ</StyledMenuDiv>
-        <StyledMenuDiv>お問い合わせ</StyledMenuDiv>
-      </StyledMenuContainerDiv>
+      <StyledMenuContainerUl>
+        <li>
+          <FirstBtn>カラコン</FirstBtn>
+        </li>
+        <li>
+          <StyledMenuBtn>新着順</StyledMenuBtn>
+        </li>
+        <li>
+          <StyledMenuBtn>パーソナル診断</StyledMenuBtn>
+        </li>
+        <li>
+          <StyledMenuBtn>人生カラコン探し</StyledMenuBtn>
+        </li>
+        <li>
+          <StyledMenuBtn>私にぴったりのレンズを探す</StyledMenuBtn>
+        </li>
+        <li>
+          <StyledBarDiv></StyledBarDiv>
+        </li>
+        <li>
+          <StyledMenuBtn>イベント</StyledMenuBtn>
+        </li>
+        <li>
+          <StyledMenuBtn>ブランド</StyledMenuBtn>
+        </li>
+        <li>
+          <StyledMenuBtn>ブログ</StyledMenuBtn>
+        </li>
+        <li>
+          <StyledMenuBtn>お問い合わせ</StyledMenuBtn>
+        </li>
+      </StyledMenuContainerUl>
       <NavBarEndDiv></NavBarEndDiv>
     </>
   );
@@ -54,12 +72,13 @@ export default function NavBar() {
 
 const StyledmarketingBanner = styled.img`
   width: 100vw;
-  height: 56.25px;
+  height: 56px;
   left: 0px;
   top: 0px;
   background: #f5f5f5;
   text-align: center;
 `;
+
 const StyledNavItem = styled.div`
   width: 100vw;
   height: 64px;
@@ -71,7 +90,7 @@ const StyledNavItem = styled.div`
 `;
 
 const Styledlogo = styled.div`
-  margin-left: 8vw;
+  margin-left: 8.5vw;
   width: 92.18px;
   height: 20px;
   left: 360px;
@@ -89,24 +108,31 @@ const StyledIconsDiv = styled.div`
   justify-content: space-between;
 `;
 const StyledInputDiv = styled.div`
-  height: 64px;
+  position: relative;
+  border: 1.5px solid #23314a;
+  height: 36px;
   width: 280px;
+  left: 370px;
 `;
 const StyledInputImg = styled.img`
   position: absolute;
   left: 5.21%;
   right: 17.71%;
-  top: 5.21%;
-  bottom: 17.71%;
+  top: 9px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
 `;
 const StyledInput = styled.input`
-  border: 1.5px solid #23314a;
-  width: 280px;
+  padding-left: 40px;
+  width: 239px;
   height: 36px;
   left: 1129px;
   top: 14px;
-  margin-left: 25vw;
+  border: 0px;
+  background-color: transparent;
 `;
+
 const StyledMyPageImg = styled.img`
   margin: 0px 15px;
   width: 33px;
@@ -119,18 +145,43 @@ const StyledCartImg = styled.img`
   height: 35.74px;
 `;
 
-const StyledMenuContainerDiv = styled.div`
+const StyledMenuContainerUl = styled.ul`
   margin: 0 8vw;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 `;
 
-const StyledMenuDiv = styled.div`
+const StyledMenuBtn = styled.button`
+  left: 360px;
+  top: 16px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+  background-color: #ffff;
+  border: 0;
   padding: 8px 16px;
-  gap: 10px;
+  margin: 0 9px;
 `;
 
+const FirstBtn = styled.button`
+  top: 16px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+  background-color: #ffff;
+  border: 0;
+  padding: 8px 16px 8px 0px;
+  margin-left: 9px;
+`;
 const StyledBarDiv = styled.div`
   width: 2px;
   height: 15px;

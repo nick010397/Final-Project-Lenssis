@@ -1,45 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import Instagram from '../../static/img/Instagram.png';
+import Twiiter from '../../static/img/Twiiter.png';
+import LINE from '../../static/img/LINE.png';
+import Ameba from '../../static/img/Ameba.png';
+import Youtube from '../../static/img/YouTube.png';
+import TikTok from '../../static/img/TikTok.png';
+import Logo from '../../static/img/Lensis_Logo.png';
 
-const StyledFooterContainer = styled.div`
-  margin-right: 8vw;
-  margin-left: 8vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-const StyledLogo = styled.img`
-  margin-left: 8vw;
-  margin-bottom: 10px;
-  width: 92.18px;
-  height: 20px;
-  left: 360px;
-  top: 100px;
-`;
-
-const StyledSnsLogo = styled.div`
-  flex-wrap: wrap;
-  align-content: stretch;
-`;
-
-const StyledFooter = styled.div`
-  background-color: #f5f5f5;
-`;
-
-const StyledItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
 export default function Footer() {
   return (
     <>
       <StyledFooter>
-        <StyledLogo
-          src="https://lenssis.jp/data/common/logo_img?ver=20211014"
-          alt="렌시스 로고"
-        />
+        <StyledLogo src={Logo} alt="렌시스 로고" />
         <StyledFooterContainer>
           <div>
             <p>
@@ -61,35 +34,43 @@ export default function Footer() {
           </div>
 
           <div>
-            <div>CONTACT</div>
+            <StyledTitleDiv>CONTACT</StyledTitleDiv>
             <p>주식회사VIVA</p>
-            <StyledItem>
-              <p>LINE ID</p>
-              <p>jp.lenssis</p>
-            </StyledItem>
-
-            <StyledItem>
-              <p>전화번호</p>
-              <p>050-3558-4887</p>
-            </StyledItem>
-            <StyledItem>
-              <p>영업시간</p>
-              <p>
-                평일 10:00~17:30
-                <br />
-                SAT/SUN/HOLIDAY OFF
-              </p>
-            </StyledItem>
-
-            <p>
-              ※전화는 매우 연결되기 어려워지고 있으므로
-              <br />
-              공식 LINE에서 문의 부탁드리겠습니다.
-            </p>
+            <ul>
+              <li>
+                <StyledItem>
+                  <p>LINE ID</p>
+                  <p>jp.lenssis</p>
+                </StyledItem>
+              </li>
+              <li>
+                <StyledItem>
+                  <p>전화번호</p>
+                  <p>050-3558-4887</p>
+                </StyledItem>
+              </li>
+              <li>
+                <StyledItem>
+                  <p>영업시간</p>
+                  <p>
+                    평일 10:00~17:30
+                    <br />
+                    SAT/SUN/HOLIDAY OFF
+                  </p>
+                </StyledItem>
+              </li>
+              <li>
+                <p>
+                  ※전화는 매우 연결되기 어려워지고 있으므로
+                  <br />
+                  공식 LINE에서 문의 부탁드리겠습니다.
+                </p>
+              </li>
+            </ul>
           </div>
 
           <div>
-            <div>ABOUT</div>
+            <StyledTitleDiv>ABOUT</StyledTitleDiv>
             <ul>
               <a href="">
                 <li>공지</li>
@@ -118,16 +99,16 @@ export default function Footer() {
           </div>
 
           <div>
-            <div>FOLLOW US</div>
+            <StyledTitleDiv>FOLLOW US</StyledTitleDiv>
             <StyledSnsLogo>
-              <img src="" alt="인스타" />
-              <img src="" alt="트위터" />
-              <img src="" alt="라인" />
+              <StyledLogoImg src={Instagram} alt="인스타" />
+              <StyledLogoImg src={Twiiter} alt="트위터" />
+              <StyledLogoImg src={LINE} alt="라인" />
             </StyledSnsLogo>
             <StyledSnsLogo>
-              <img src="" alt="아메바" />
-              <img src="" alt="유튜브" />
-              <img src="" alt="틱톡" />
+              <StyledLogoImg src={Ameba} alt="아메바" />
+              <StyledLogoImg src={Youtube} alt="유튜브" />
+              <StyledLogoImg src={TikTok} alt="틱톡" />
             </StyledSnsLogo>
           </div>
         </StyledFooterContainer>
@@ -135,3 +116,49 @@ export default function Footer() {
     </>
   );
 }
+
+const StyledFooterContainer = styled.div`
+  margin-right: 8vw;
+  margin-left: 8vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const StyledLogo = styled.img`
+  margin-left: 8vw;
+  margin: 100px;
+  width: 92.18px;
+  height: 20px;
+  left: 360px;
+  top: 100px;
+`;
+
+const StyledSnsLogo = styled.div`
+  flex-wrap: wrap;
+  align-content: stretch;
+`;
+
+const StyledFooter = styled.div`
+  background-color: #f5f5f5;
+`;
+
+const StyledItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const StyledLogoImg = styled.img`
+  margin: 18px 16px;
+`;
+
+const StyledTitleDiv = styled.div`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+`;

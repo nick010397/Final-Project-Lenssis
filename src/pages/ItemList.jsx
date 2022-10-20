@@ -4,24 +4,6 @@ import styled from 'styled-components';
 import NavBar from '../components/common/NavBar';
 import Footer from '../components/common/Footer';
 import AllLens from '../static/img/All_Lens.png';
-import CategoryBtn from '../components/itemList/CategoryBtn.jsx';
-
-const StyledListTitle = styled.div`
-  margin: 0 8vw 0 8vw;
-`;
-
-const StyledPageBtn = styled.div`
-  text-align: center;
-  margin-bottom: 50px;
-`;
-
-const StyledBtn = styled.button`
-  margin: 5px;
-`;
-
-const StyledLensImg = styled.img`
-  margin: 40px 0px 40px 0px;
-`;
 
 export default function ItemList() {
   return (
@@ -31,27 +13,45 @@ export default function ItemList() {
         <div>
           <StyledLensImg src={AllLens} alt="AllLens" />
         </div>
-        <CategoryBtn />
       </StyledListTitle>
       <LensItem />
-      <LensItem />
-      <LensItem />
-      <LensItem />
-      <LensItem />
-      <LensItem />
-      <LensItem />
-      <LensItem />
-      <LensItem />
-      <LensItem />
-      <StyledPageBtn>
-        <StyledBtn>1</StyledBtn>
-        <StyledBtn>2</StyledBtn>
-        <StyledBtn>3</StyledBtn>
-        <StyledBtn>4</StyledBtn>
-        <StyledBtn>5</StyledBtn>
-        <StyledBtn>▶</StyledBtn>
-      </StyledPageBtn>
+      <StyledPageBtns>
+        <StyledPageBtn>1</StyledPageBtn>
+        <StyledPageBtn>2</StyledPageBtn>
+        <StyledPageBtn>3</StyledPageBtn>
+        <StyledPageBtn>4</StyledPageBtn>
+        <StyledPageBtn>5</StyledPageBtn>
+        <StyledPageBtn>▶</StyledPageBtn>
+      </StyledPageBtns>
       <Footer />
     </>
   );
 }
+
+const StyledListTitle = styled.div`
+  margin: 0 8vw 0 8vw;
+`;
+
+const StyledPageBtns = styled.div`
+  text-align: center;
+  margin-bottom: 50px;
+`;
+
+const StyledPageBtn = styled.button`
+  margin: 5px;
+  width: 48px;
+  height: 48px;
+  background: #23314a;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.15px;
+  color: #ffffff;
+`;
+
+const StyledLensImg = styled.img`
+  margin: 40px 0px 40px 0px;
+`;
