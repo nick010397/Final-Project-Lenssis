@@ -1,20 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-import banner from '../../static/img/Banner_Header.jpeg';
+import { useNavigate } from 'react-router-dom';
 import cart from '../../static/img/Icon_Cart.png';
+import Logo from '../../static/img/Lensis_Logo.png';
 import mypage from '../../static/img/Icon_MyPage.png';
 import Search from '../../static/img/Icon_Search.png';
-import Logo from '../../static/img/Lensis_Logo.png';
+import banner from '../../static/img/Banner_Header.jpeg';
 
 export default function NavBar() {
+  const navigate = useNavigate();
+
   return (
     <>
       <StyledmarketingBanner src={banner} alt="마케팅 배너" />
       <StyledNavItem id="Lens" class="nav-items">
         <Styledlogo>
-          <a href="/">
-            <StyledLogoImg src={Logo} alt="렌시스 로고" />
-          </a>
+          <StyledLogoImg
+            src={Logo}
+            alt="렌시스 로고"
+            onClick={() => {
+              navigate(`/`);
+            }}
+          />
         </Styledlogo>
         <StyledInputDiv>
           <StyledInputImg src={Search} alt="검색" />
@@ -22,14 +29,22 @@ export default function NavBar() {
         </StyledInputDiv>
         <StyledIconsDiv>
           <div class="nav-item">
-            <a href="">
-              <StyledMyPageImg src={mypage} alt="마이페이지" />
-            </a>
+            <StyledMyPageImg
+              src={mypage}
+              alt="마이페이지"
+              onClick={() => {
+                navigate(`/login`);
+              }}
+            />
           </div>
           <div class="nav-item">
-            <a href="">
-              <StyledCartImg src={cart} alt="장바구니" />
-            </a>
+            <StyledCartImg
+              src={cart}
+              alt="장바구니"
+              onClick={() => {
+                navigate(`/cart`);
+              }}
+            />
           </div>
         </StyledIconsDiv>
       </StyledNavItem>
@@ -100,6 +115,7 @@ const Styledlogo = styled.div`
 const StyledLogoImg = styled.img`
   width: 92.18px;
   height: 20px;
+  cursor: pointer;
 `;
 const StyledIconsDiv = styled.div`
   margin-right: 8vw;
@@ -137,12 +153,14 @@ const StyledMyPageImg = styled.img`
   margin: 0px 15px;
   width: 33px;
   height: 34.83px;
+  cursor: pointer;
 `;
 
 const StyledCartImg = styled.img`
   margin: 0px 15px;
   width: 36.67px;
   height: 35.74px;
+  cursor: pointer;
 `;
 
 const StyledMenuContainerUl = styled.ul`
@@ -166,6 +184,7 @@ const StyledMenuBtn = styled.button`
   border: 0;
   padding: 8px 16px;
   margin: 0 9px;
+  cursor: pointer;
 `;
 
 const FirstBtn = styled.button`
@@ -181,6 +200,7 @@ const FirstBtn = styled.button`
   border: 0;
   padding: 8px 16px 8px 0px;
   margin-left: 9px;
+  cursor: pointer;
 `;
 const StyledBarDiv = styled.div`
   width: 2px;

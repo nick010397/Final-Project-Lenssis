@@ -1,9 +1,10 @@
 import React from 'react';
-import LensItem from '../components/itemList/LensItem';
 import styled from 'styled-components';
+import Button from '../components/common/Button';
 import NavBar from '../components/common/NavBar';
 import Footer from '../components/common/Footer';
 import AllLens from '../static/img/All_Lens.png';
+import LensItem from '../components/common/LensItem';
 
 export default function ItemList() {
   return (
@@ -14,6 +15,11 @@ export default function ItemList() {
           <StyledLensImg src={AllLens} alt="AllLens" />
         </div>
       </StyledListTitle>
+      <Center>
+        <Button category>ALL</Button>
+        <Button category>1DAY</Button>
+        <Button category>1MONTH</Button>
+      </Center>
       <LensItem />
       <StyledPageBtns>
         <StyledPageBtn>1</StyledPageBtn>
@@ -27,6 +33,10 @@ export default function ItemList() {
     </>
   );
 }
+
+const Center = styled.div`
+  text-align: center;
+`;
 
 const StyledListTitle = styled.div`
   margin: 0 8vw 0 8vw;
