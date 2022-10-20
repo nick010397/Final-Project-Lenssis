@@ -7,10 +7,12 @@ import LoginOther from '../components/login/LoginOther';
 import Title from '../components/login/Title';
 import { useSendLogin } from '../api/loginApi';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 export default function Login() {
   const loginInfor = useSelector((state) => state.loginInfor);
   const { refetch, data } = useSendLogin(loginInfor);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -24,7 +26,7 @@ export default function Login() {
           onSubmit={async (e) => {
             e.preventDefault();
             await refetch();
-            console.log(data.data);
+            navigate('/');
           }}
         />
         <LoginOther />

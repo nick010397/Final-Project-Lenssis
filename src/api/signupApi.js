@@ -2,9 +2,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 const checkValidityFromServer = (query, queryValue) => () =>
-  axios.get(
-    `http://13.125.213.209/api/v1/user/exists/${query}?${query}=${queryValue}`
-  );
+  axios.get(`/api/v1/user/exists/${query}?${query}=${queryValue}`);
 
 export const useCheckValidity = (query, queryValue) => {
   return useQuery(
@@ -17,7 +15,7 @@ export const useCheckValidity = (query, queryValue) => {
 };
 
 const sendUserInfoToServer = (infor) => () =>
-  axios.post('http://13.125.213.209/api/v1/user/join', JSON.stringify(infor), {
+  axios.post('/api/v1/user/join', JSON.stringify(infor), {
     headers: { 'Content-Type': 'application/json' },
   });
 
