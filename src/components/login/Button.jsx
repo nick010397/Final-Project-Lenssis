@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Button({ infor, onClick }) {
+export default function Button({ text, onClick }) {
   return (
-    <ConfirmButton type="sibmit" disabled={infor.disabled} onClick={onClick}>
-      {infor.text}
+    <ConfirmButton type="sibmit" onClick={onClick}>
+      {text}
     </ConfirmButton>
   );
 }

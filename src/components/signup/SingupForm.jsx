@@ -3,27 +3,29 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Button from '../login/Button';
 import CheckInputField from './CheckInputField';
-import { useDispatch } from 'react-redux';
-import { setInfor } from '../../store/signupInfor';
 
 const PW_REG = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 const GENER_LIST = ['Male', 'Female'];
 
-export default function SingupForm({ onSubmit }) {
+export default function SingupForm({ onSubmit, setSignupInfor }) {
   const [password, setPassword] = useState('');
   const [passwordValidty, setPasswordValidty] = useState(false);
   const [isPwFocused, setIsPwFocused] = useState(false);
   const [isSecondPwFocused, setisSecondPwFocused] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(false);
-  const dispatch = useDispatch();
 
   const checkPwMatch = (e) => {
     const value = e.target.value;
     if (value === password) {
       setPasswordMatch(true);
-      dispatch(setInfor({ name: 'password', value: password }));
+      setSignupInfor((infor) => {
+        return { ...infor, password: password };
+      });
     } else {
       setPasswordMatch(false);
+      setSignupInfor((infor) => {
+        return { ...infor, password: '' };
+      });
     }
   };
 
@@ -33,21 +35,34 @@ export default function SingupForm({ onSubmit }) {
       setPasswordValidty(true);
     } else {
       setPasswordValidty(false);
+      setSignupInfor((infor) => {
+        return { ...infor, password: '' };
+      });
     }
-  }, [password]);
+  }, [password, setSignupInfor]);
 
   return (
     <>
       <InforBox noValidate onSubmit={onSubmit}>
-        <CheckInputField title={'아이디'} name={'loginId'} />
-        <CheckInputField title={'이메일'} name={'email'} />
+        <CheckInputField
+          title={'아이디'}
+          name={'loginId'}
+          setSignupInfor={setSignupInfor}
+        />
+        <CheckInputField
+          title={'이메일'}
+          name={'email'}
+          setSignupInfor={setSignupInfor}
+        />
         <InforEach>
           <Label>닉네임</Label>
           <InputField
             type="text"
             maxLength="20"
             onChange={(e) => {
-              dispatch(setInfor({ name: 'username', value: e.target.value }));
+              setSignupInfor((infor) => {
+                return { ...infor, username: e.target.value };
+              });
             }}
           />
         </InforEach>
@@ -105,13 +120,10 @@ export default function SingupForm({ onSubmit }) {
                 name="gender"
                 value={gender}
                 onChange={(e) => {
-                  console.log(e.target);
-                  dispatch(
-                    setInfor({
-                      name: 'gender',
-                      value: e.target.value.slice(0, 1),
-                    })
-                  );
+                  setSignupInfor((infor) => ({
+                    ...infor,
+                    gender: e.target.value.slice(0, 1),
+                  }));
                 }}
               />
             </RadioEach>

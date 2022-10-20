@@ -1,44 +1,68 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import NavBar from '../components/common/NavBar';
 import Footer from '../components/common/Footer';
 import LoginForm from '../components/login/LoginForm';
 import LoginOther from '../components/login/LoginOther';
 import Title from '../components/login/Title';
+import Popup from '../components/login/Popup';
 import { useSendLogin } from '../api/loginApi';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 export default function Login() {
-  const loginInfor = useSelector((state) => state.loginInfor);
-  const { refetch, data } = useSendLogin(loginInfor);
+  const [loginInfor, setLoginInfor] = useState({ loginId: '', password: '' });
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const { refetch } = useSendLogin(loginInfor);
   const navigate = useNavigate();
 
+  const tryToLogin = async (e) => {
+    e.preventDefault();
+    console.log(loginInfor.loginId, !loginInfor.loginId);
+    if (!loginInfor.loginId) {
+      setPopupMessage('아이디를 입력하세요');
+      setShowPopup(true);
+      return;
+    }
+    if (!loginInfor.password) {
+      setPopupMessage('비밀번호를 입력하세요');
+      setShowPopup(true);
+      return;
+    }
+
+    // const { data, isSuccess } = await refetch();
+    // console.log(data);
+    // if (!isSuccess) {
+    //   setShowPopup(true);
+    // } else {
+    //   navigate('/');
+    // }
+  };
+
   return (
-    <>
+    <Container>
       <NavBar />
       <LoginFormBox>
         <Title
           subText="나만의 특별함을 위해 LENSSIS에서"
           text="렌즈의 진짜 정보를 찾아보세요."
         />
-        <LoginForm
-          onSubmit={async (e) => {
-            e.preventDefault();
-            await refetch();
-            navigate('/');
-          }}
-        />
+        <LoginForm onSubmit={tryToLogin} setLoginInfor={setLoginInfor} />
         <LoginOther />
       </LoginFormBox>
-      {/* <Footer /> */}
-    </>
+      <Footer />
+      {showPopup && <Popup show={setShowPopup} message={popupMessage} />}
+    </Container>
   );
 }
+const Container = styled.div`
+  height: inherit;
+`;
 
 const LoginFormBox = styled.div`
   box-sizing: border-box;
-  position: absolute;
+  margin: 100px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

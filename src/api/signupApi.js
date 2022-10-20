@@ -1,8 +1,12 @@
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
+const header = { 'Content-Type': 'application/json' };
+
 const checkValidityFromServer = (query, queryValue) => () =>
-  axios.get(`/api/v1/user/exists/${query}?${query}=${queryValue}`);
+  axios.get(`/api/v1/user/exists/${query}?${query}=${queryValue}`, {
+    headers: header,
+  });
 
 export const useCheckValidity = (query, queryValue) => {
   return useQuery(
@@ -16,11 +20,12 @@ export const useCheckValidity = (query, queryValue) => {
 
 const sendUserInfoToServer = (infor) => () =>
   axios.post('/api/v1/user/join', JSON.stringify(infor), {
-    headers: { 'Content-Type': 'application/json' },
+    headers: header,
   });
 
 export const usePostUser = (infor) =>
   useQuery('user', sendUserInfoToServer(infor), {
+    retry: 0,
     enabled: false,
     refetchOnWindowFocus: false,
     manual: true,

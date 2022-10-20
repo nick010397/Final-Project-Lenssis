@@ -7,13 +7,14 @@ import { useNavigate } from 'react-router';
 
 export default function Popup({ message, show }) {
   const navigate = useNavigate();
+
   return (
-    <>
-      <PopupBackDrop
-        onClick={() => {
-          show(false);
-        }}
-      />
+    <PopupBackDrop
+      onClick={() => {
+        show(false);
+      }}
+    >
+      {' '}
       <PopupBox>
         <CloseIcon
           onClick={() => {
@@ -24,7 +25,7 @@ export default function Popup({ message, show }) {
         </CloseIcon>
         <p> {message}</p>
         <Button
-          infor={{ text: '확인', disabled: false }}
+          text="확인"
           onClick={() => {
             show(false);
             if (message === '회원가입에 성공하셨습니다.') {
@@ -33,12 +34,15 @@ export default function Popup({ message, show }) {
           }}
         />
       </PopupBox>
-    </>
+    </PopupBackDrop>
   );
 }
 
 const PopupBackDrop = styled.div`
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0;
   left: 0;
   background: #252424cc;
@@ -47,7 +51,6 @@ const PopupBackDrop = styled.div`
 `;
 
 const PopupBox = styled.div`
-  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
