@@ -6,19 +6,17 @@ export default function LensItem({ products }) {
   return (
     <Items>
       {products &&
-        products.map((products) => (
-          <>
+        products.map((product) => (
+          <div key={`key-${product.id}`}>
             <Link
-              to={`/itemdetail/${products.id}`}
+              to={`/itemdetail/${product.id}`}
               style={{ textDecoration: 'none' }}
             >
-              <div>
-                <IMG src={products.image1} alt="렌즈이미지" />
-                <Title>{products.name}</Title>
-                <Price>{products.sellPrice}</Price>
-              </div>
+              <IMG src={product.image1} alt="렌즈이미지" />
+              <Title>{product.name}</Title>
+              <Price>{product.sellPrice}</Price>
             </Link>
-          </>
+          </div>
         ))}
     </Items>
   );
