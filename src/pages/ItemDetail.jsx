@@ -5,6 +5,7 @@ import DetailWrap from '../components/ItemDetails/DetailWrap';
 import Footer from '../components/common/Footer';
 import NavBar from '../components/common/NavBar';
 import Wrapslide from '../components/ItemDetails/DetailSlide';
+import ShoppingBasketModal from '../modals/ShoppingBasketModal';
 
 function ItemDetail() {
   return (
@@ -13,6 +14,7 @@ function ItemDetail() {
       <Container>
         <DetailWrap></DetailWrap>
         <Wrapslide></Wrapslide>
+        <ShoppingBasketModal></ShoppingBasketModal>
 
         <DetailSection></DetailSection>
       </Container>
