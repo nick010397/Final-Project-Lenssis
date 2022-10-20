@@ -1,76 +1,96 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import NavBar from '../components/common/NavBar';
-import SlideMove from '../components/main/SlideMove';
-import Button from '../components/main/Button';
+import CategoryBtn from '../components/main/CategoryBtn';
 import LensItem from '../components/itemList/LensItem';
 import Event from '../components/main/Event';
 import notice from '../static/img/notice.png';
 import stroke from '../static/img/Vector.png';
 import Footer from '../components/common/Footer';
 import TitleName from '../components/main/TitleName';
+import FilterMenu from '../components/main/FilterMenu';
+import MainBanner from '../components/main/MainBanner';
+import { useGetProducts } from '../api/productApi';
+function Main({ products, setProducts }) {
+  console.log(useGetProducts());
+  // const [loading, setLoading] = useState(false);
 
-function Main() {
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await axios.get(
+  //         'http://13.125.213.209/api/v1/product'
+  //       );
+  //       setProducts(response.data.data);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //     setLoading(false);
+  //   };
+  //   getProducts();
+  // }, [setProducts]);
+
+  // console.log(products);
+
+  // if (loading) {
+  //   return <div>대기 중...</div>;
+  // }
+  // if (!products) {
+  //   return null;
+  // }
   return (
     <>
+      {/* Navbar */}
       <NavBar />
-      <Center>
-        <a href="/login">LOGIN </a>
-        <a href="/signup">SIGNUP </a>
-        <a href="/itemdetail">ITEMDETAIL </a>
-        <a href="/itemlist">ITEMLIST </a>
-      </Center>
-
       {/* 슬라이드 수정 예정 */}
-      <CenterDiv slide>
-        <SlideMove />
+      <CenterDiv>
+        <MainBanner />
       </CenterDiv>
 
+      {/* 모든 아이템 */}
       <TitleName title="ALL LENS" subtitle="カラコン" />
-
       <div>
         <Center>
-          <Button category>ALL</Button>
-          <Button category>1DAY</Button>
-          <Button category>1MONTH</Button>
+          <CategoryBtn category>ALL</CategoryBtn>
+          <CategoryBtn category>1DAY</CategoryBtn>
+          <CategoryBtn category>1MONTH</CategoryBtn>
         </Center>
       </div>
-      <CenterDiv>
-        <CategroyDiv>
-          <MenuATag href="http://localhost:3000">人気順</MenuATag>
-        </CategroyDiv>
-        <CategroyDiv>
-          <MenuATag href="http://localhost:3000">新着順</MenuATag>
-        </CategroyDiv>
-        <CategroyDiv>
-          <MenuATag href="http://localhost:3000">価格が低い順</MenuATag>
-        </CategroyDiv>
-        <CategroyDiv>
-          <MenuATag href="http://localhost:3000">価格が高い順</MenuATag>
-        </CategroyDiv>
-        <CategroyDiv>
-          <MenuATag href="http://localhost:3000">レビュー件数順</MenuATag>
-        </CategroyDiv>
-      </CenterDiv>
+      {/* 메뉴필터 */}
+      <FilterMenu />
       <MenuHr />
+      {/* 렌즈 아이템 */}
       <div>
-        <LensItem />
-        <LensItem />
-        <LensItem />
+        <LensItem products={products} setProducts={setProducts} />
       </div>
-      <Button more>もっと見る</Button>
+      <CategoryBtn more>もっと見る</CategoryBtn>
+      {/* 추천 아이템 */}
       <TitleName title="PICKUP ITEM" subtitle="スタッフおすすめ" />
-      <div>
-        <LensItem />
-      </div>
-      <Button more>もっと見る</Button>
+
+      {/* 임시로 만들어봄 */}
+      <Items>
+        {products
+          .filter((data) => data.sellPrice === 990)
+          .map((data) => (
+            <div>
+              <IMG src={data.image1} alt="이미지" />
+              <Title>{data.name}</Title>
+              <Price>{data.sellPrice}</Price>
+            </div>
+          ))}
+      </Items>
+      <CategoryBtn more>もっと見る</CategoryBtn>
+      {/* 신상품 */}
       <TitleName title="NEW ARRIVAL" subtitle="新商品" />
       <div>
         <LensItem />
         <LensItem />
       </div>
-      <Button more>もっと見る</Button>
+      <CategoryBtn more>もっと見る</CategoryBtn>
+      {/* 이벤트 배너 */}
       <Event />
+      {/* 공지 */}
       <TitleName title="NOTICE" subtitle="お知らせ" />
       <NoticImg>
         <img src={notice} alt="공지" />
@@ -111,14 +131,17 @@ function Main() {
           <Hr />
         </NoticeDiv>
       </div>
-      <Button end>もっと見る</Button>
+      <CategoryBtn end>もっと見る</CategoryBtn>
+      {/* Footer */}
       <Footer />
     </>
   );
 }
 
 const Center = styled.div`
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 const CenterDiv = styled.div`
@@ -126,17 +149,6 @@ const CenterDiv = styled.div`
   margin-left: 8vw;
   margin-right: 8vw;
   margin-top: 80px;
-
-  // 슬라이드 수정 예정
-  ${(props) =>
-    props.slide &&
-    css`
-      margin-left: 0;
-      margin-top: 0;
-      justify-content: center;
-      margin-bottom: 138px;
-      border-bottom: 0;
-    `}
 `;
 
 const MenuHr = styled.hr`
@@ -146,29 +158,6 @@ const MenuHr = styled.hr`
   margin-left: 8vw;
   border: 0px;
   border-bottom: 4px solid #656f80;
-`;
-const MenuATag = styled.a`
-  font-family: 'Noto Sans JP';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 26px;
-  letter-spacing: -0.016em;
-  color: #656f80;
-  text-decoration: none;
-`;
-
-const CategroyDiv = styled.div`
-  text-align: center;
-  padding-right: 22px;
-  padding-left: 22px;
-  padding-bottom: 10px;
-  &:hover {
-    ${MenuATag} {
-      color: #23314a;
-    }
-    border-bottom: 4px solid #23314a;
-  }
 `;
 
 const NoticImg = styled.div`
@@ -208,6 +197,44 @@ const Hr = styled.hr`
   border: 0;
   margin-top: 30px;
   margin-bottom: 29px;
+`;
+
+//임시 추천 아이템
+
+const Items = styled.div`
+  margin: 0 8vw 16px 8vw;
+  display: grid;
+  grid-template-columns: repeat(5, 220px);
+  justify-content: space-between;
+`;
+
+const IMG = styled.img`
+  weight: 220px;
+  height: 220px;
+  margin: 0;
+`;
+
+const Title = styled.p`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+  margin-bottom: 8px;
+`;
+
+const Price = styled.p`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+  margin-top: 8px;
+  margin-bottom: 16px;
 `;
 
 export default Main;
