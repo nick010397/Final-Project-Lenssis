@@ -5,18 +5,21 @@ import LensItem from '../components/common/LensItem';
 import Event from '../components/main/Event';
 import notice from '../static/img/notice.png';
 import stroke from '../static/img/Vector.png';
-import Footer from '../components/common/Footer';
 import TitleName from '../components/main/TitleName';
 import FilterMenu from '../components/main/FilterMenu';
 import MainBanner from '../components/main/MainBanner';
 import { useGetProducts } from '../api/productApi';
-function Main({ products, setProducts }) {
-  console.log(useGetProducts());
+
+function Main() {
+  const { data, isLoading } = useGetProducts();
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
 
   return (
     <>
       {/* Navbar */}
-      <NavBar />
+      {/* <NavBar /> */}
       {/* 슬라이드 수정 예정 */}
       <CenterDiv>
         <MainBanner />
@@ -36,24 +39,14 @@ function Main({ products, setProducts }) {
       <MenuHr />
       {/* 렌즈 아이템 */}
       <div>
-        <LensItem products={products} setProducts={setProducts} />
+        <LensItem products={data.data.data} />
       </div>
       <CategoryBtn more>もっと見る</CategoryBtn>
       {/* 추천 아이템 */}
       <TitleName title="PICKUP ITEM" subtitle="スタッフおすすめ" />
 
       {/* 임시로 만들어봄 */}
-      <Items>
-        {products
-          .filter((data) => data.sellPrice === 990)
-          .map((data) => (
-            <div>
-              <IMG src={data.image1} alt="이미지" />
-              <Title>{data.name}</Title>
-              <Price>{data.sellPrice}</Price>
-            </div>
-          ))}
-      </Items>
+      <Items></Items>
       <CategoryBtn more>もっと見る</CategoryBtn>
       {/* 신상품 */}
       <TitleName title="NEW ARRIVAL" subtitle="新商品" />
@@ -107,7 +100,7 @@ function Main({ products, setProducts }) {
       </div>
       <CategoryBtn end>もっと見る</CategoryBtn>
       {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
@@ -180,35 +173,6 @@ const Items = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 220px);
   justify-content: space-between;
-`;
-
-const IMG = styled.img`
-  weight: 220px;
-  height: 220px;
-  margin: 0;
-`;
-
-const Title = styled.p`
-  font-family: 'Noto Sans JP';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.016em;
-  color: #23314a;
-  margin-bottom: 8px;
-`;
-
-const Price = styled.p`
-  font-family: 'Noto Sans JP';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 26px;
-  letter-spacing: -0.016em;
-  color: #23314a;
-  margin-top: 8px;
-  margin-bottom: 16px;
 `;
 
 export default Main;

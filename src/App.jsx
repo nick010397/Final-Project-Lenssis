@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main';
 import Login from './pages/Login';
@@ -14,21 +14,16 @@ import { store } from './store/store';
 const queryClient = new QueryClient();
 
 function App() {
-  const [products, setProducts] = useState([]);
-
   return (
     <BrowserRouter>
       <GlobalStyle />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <Routes>
-            <Route
-              path="/"
-              element={<Main products={products} setProducts={setProducts} />}
-            />
+            <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/ItemDetail" element={<ItemDetail />} />
+            <Route path="/ItemDetail:id" element={<ItemDetail />} />
             <Route path="/itemList" element={<ItemList />} />
           </Routes>
           <ReactQueryDevtools initialIsOpen={false} />
