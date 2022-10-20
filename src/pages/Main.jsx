@@ -9,35 +9,36 @@ import stroke from '../static/img/Vector.png';
 import Footer from '../components/common/Footer';
 import TitleName from '../components/main/TitleName';
 import FilterMenu from '../components/main/FilterMenu';
-import axios from 'axios';
 import MainBanner from '../components/main/MainBanner';
+import { useGetProducts } from '../api/productApi';
 function Main({ products, setProducts }) {
-  const [loading, setLoading] = useState(false);
+  console.log(useGetProducts());
+  // const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const getProducts = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(
-          'http://13.125.213.209/api/v1/product'
-        );
-        setProducts(response.data.data);
-      } catch (e) {
-        console.log(e);
-      }
-      setLoading(false);
-    };
-    getProducts();
-  }, [setProducts]);
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await axios.get(
+  //         'http://13.125.213.209/api/v1/product'
+  //       );
+  //       setProducts(response.data.data);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //     setLoading(false);
+  //   };
+  //   getProducts();
+  // }, [setProducts]);
 
-  console.log(products);
+  // console.log(products);
 
-  if (loading) {
-    return <div>대기 중...</div>;
-  }
-  if (!products) {
-    return null;
-  }
+  // if (loading) {
+  //   return <div>대기 중...</div>;
+  // }
+  // if (!products) {
+  //   return null;
+  // }
   return (
     <>
       {/* Navbar */}

@@ -34,7 +34,7 @@ const Grid = styled.div`
 `;
 
 const FirstItem = styled.div`
-  background-color: tomato;
+  background-color: gray;
   &.one {
     height: 592px;
     grid-row-start: 1;
@@ -42,13 +42,13 @@ const FirstItem = styled.div`
   }
 `;
 const SecondItem = styled.div`
-  background-color: skyblue;
+  background-color: gray;
   &.two {
     height: 220px;
   }
 `;
 const ThirdItem = styled.div`
-  background-color: green;
+  background-color: gray;
   &.three {
     grid-row-start: 2;
     height: 356px;
