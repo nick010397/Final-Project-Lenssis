@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 function WrapDetail() {
   return (
     <Container>
-      <h1>에일링 에일</h1>
+      <H1>에일링 에일</H1>
       <Upbtn>추천</Upbtn> &nbsp;
       <Bestbtn>인기</Bestbtn>
       <p>가격 1,800엔</p>
@@ -145,4 +145,7 @@ const Chocobtn = styled(Brownbtn)`
 `;
 const Graybtn = styled(Brownbtn)`
   background-color: #797c82;
+`;
+const H1 = styled.h1`
+  color: red;
 `;
