@@ -24,7 +24,6 @@ const EventDiv = styled.div`
 const EventsLIDEDiv = styled.div`
   height: 520px;
   background: #f1faff;
-  border-top: 1px solid;
   margin-bottom: 140px;
 `;
 

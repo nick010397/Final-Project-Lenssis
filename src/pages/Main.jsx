@@ -30,6 +30,8 @@ function Main({ products, setProducts }) {
     getProducts();
   }, [setProducts]);
 
+  console.log(products);
+
   if (loading) {
     return <div>대기 중...</div>;
   }

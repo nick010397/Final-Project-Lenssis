@@ -71,8 +71,7 @@ export default function Slide() {
 
 const SwiperStyled = styled(SwiperSlide)`
   background: white;
-  border: 1px solid gray;
-  width: 384px;
+  // width: 384px;
   height: 384px;
 
   .swiper-slide img {
@@ -84,7 +83,7 @@ const SwiperStyled = styled(SwiperSlide)`
 `;
 const Container = styled.div`
   .mySwiper {
-    width: 1240px;
+    width: 1200px;
     height: 440px;
 
     .swiper-pagination-bullet-active {
