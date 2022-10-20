@@ -10,6 +10,7 @@ export default function LensItem({ products }) {
           <div key={`key-${product.id}`}>
             <Link
               to={`/itemdetail/${product.id}`}
+              products={products}
               style={{ textDecoration: 'none' }}
             >
               <IMG src={product.image1} alt="렌즈이미지" />
