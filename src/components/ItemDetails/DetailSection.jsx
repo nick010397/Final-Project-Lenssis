@@ -9,7 +9,7 @@ function DetailSection() {
       <Btn>리뷰(100)</Btn> */}
       <GnbLists>
         <GnbItem>
-          <NavLink exact to="/" activeClassName="active">
+          <NavLink exact to="/itemDetail" activeClassName="active">
             제품 상세설명
           </NavLink>
         </GnbItem>
@@ -27,7 +27,7 @@ function DetailSection() {
       <br />
       <br />
       <table
-        border="1px solid"
+        border="1px solid black"
         width="800"
         height="500"
         align="center"

@@ -64,8 +64,7 @@ function WrapPvi() {
 export default WrapPvi;
 
 const Container = styled.div`
-max-width:40%  
-width: 40%;
+  width: 40%;
   height: 900px;
   float: left;
 `;

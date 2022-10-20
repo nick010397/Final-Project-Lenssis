@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 function WrapDetail() {
@@ -68,7 +68,8 @@ function WrapDetail() {
       <br />
       <br />
       <Orderbtn>주문하기</Orderbtn>&nbsp;&nbsp;
-      <Keepbtn>장바구니</Keepbtn>&nbsp;&nbsp;
+      <Keepbtn>장바구니</Keepbtn>
+      &nbsp;&nbsp;
       <Keepbtn>좋아요♡</Keepbtn>
     </Container>
   );
@@ -79,10 +80,7 @@ export default WrapDetail;
 const Container = styled.div`
   width: 50%;
   height: auto;
-
-  min-height: 1100px;
   float: right;
-  position: relative;
 `;
 const Upbtn = styled.button`
   width: 59px;

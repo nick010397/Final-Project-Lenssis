@@ -10,9 +10,17 @@ import 'swiper/css/navigation';
 function Wrapslide() {
   return (
     <Container>
+      <P>관련상품</P>
+      <hr
+        style={{
+          width: '50%',
+          textAlign: 'center',
+          marginBottom: '50px',
+        }}
+      ></hr>
       <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
+        slidesPerView={5}
+        spaceBetween={10}
         slidesPerGroup={3}
         loop={true}
         loopFillGroupWithBlank={true}
@@ -23,7 +31,7 @@ function Wrapslide() {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide>
+        <SwiperSlide style={{ width: '30%' }}>
           <SlideLensImg
             src="https://lenssis.jp/data/item/8729694823/7JeQ7J2866aw6re466CI7J20_67Kg7Iqk7Yq466qo64247IKs7KeE.jpg"
             alt=""
@@ -86,10 +94,18 @@ export default Wrapslide;
 
 const Container = styled.div`
   width: 100%;
-  height: 500px;
+  height: 400px;
+  text-align: center;
 `;
 
 const SlideLensImg = styled.img`
   width: 250px;
   height: 250px;
+`;
+
+const P = styled.div`
+  width: 10%;
+  height: 400px
+  float: center;
+  
 `;

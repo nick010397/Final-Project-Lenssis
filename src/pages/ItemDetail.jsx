@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import DetailSection from '../components/ItemDetails/DetailSection';
-
 import DetailWrap from '../components/ItemDetails/DetailWrap';
 import Footer from '../components/common/Footer';
 import NavBar from '../components/common/NavBar';
@@ -25,6 +24,8 @@ function ItemDetail() {
 const Container = styled.div`
   width: 100%;
   height: auto;
+  margin: 0 auto;
+  padding: 0;
 `;
 
 export default ItemDetail;

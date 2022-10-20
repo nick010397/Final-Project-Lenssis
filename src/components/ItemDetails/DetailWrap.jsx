@@ -16,5 +16,6 @@ export default DetailWrap;
 
 const Container = styled.div`
   width: 100%;
-  height: 1000px;
+  height: 900px;
+  max-height: 900px;
 `;
