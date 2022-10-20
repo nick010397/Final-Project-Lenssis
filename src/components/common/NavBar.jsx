@@ -13,7 +13,7 @@ export default function NavBar() {
   return (
     <>
       <StyledmarketingBanner src={banner} alt="마케팅 배너" />
-      <StyledNavItem id="Lens" class="nav-items">
+      <StyledNavItem id="Lens" className="nav-items">
         <Styledlogo>
           <StyledLogoImg
             src={Logo}

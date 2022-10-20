@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../components/common/Button';
+import Button from '../components/common/CategoryBtn';
 import NavBar from '../components/common/NavBar';
 import Footer from '../components/common/Footer';
 import AllLens from '../static/img/All_Lens.png';
