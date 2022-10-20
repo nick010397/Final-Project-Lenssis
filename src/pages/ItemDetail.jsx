@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import DetailSection from '../components/ItemDetails/DetailSection';
 import DetailWrap from '../components/ItemDetails/DetailWrap';
@@ -10,12 +9,11 @@ function ItemDetail() {
   return (
     <div>
       <NavBar />
-      <Container>
-        <DetailWrap></DetailWrap>
-        <Wrapslide></Wrapslide>
 
-        <DetailSection></DetailSection>
-      </Container>
+      <DetailWrap></DetailWrap>
+      <Wrapslide></Wrapslide>
+
+      <DetailSection></DetailSection>
 
       <Footer />
     </div>
