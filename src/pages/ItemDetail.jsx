@@ -1,17 +1,12 @@
-<<<<<<< HEAD
 import styled from 'styled-components';
 import DetailSection from '../components/ItemDetails/DetailSection';
 import DetailWrap from '../components/ItemDetails/DetailWrap';
 import Footer from '../components/common/Footer';
 import NavBar from '../components/common/NavBar';
 import Wrapslide from '../components/ItemDetails/DetailSlide';
-
-function ItemDetail() {
-=======
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import DetailContainer from '../components/ItemDetails/DetailContainer';
 
 function ItemDetail() {
   const { id } = useParams();
@@ -26,17 +21,18 @@ function ItemDetail() {
 
   console.log(product);
 
->>>>>>> 79401a0673673bdf369265ee7246ef203b565996
   return (
     <div>
-      <NavBar />
+      <Container>
+        <NavBar />
 
-      <DetailWrap></DetailWrap>
-      <Wrapslide></Wrapslide>
+        <DetailWrap></DetailWrap>
+        <Wrapslide></Wrapslide>
 
-      <DetailSection></DetailSection>
+        <DetailSection></DetailSection>
 
-      <Footer />
+        <Footer />
+      </Container>
     </div>
   );
 }

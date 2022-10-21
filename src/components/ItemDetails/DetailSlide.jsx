@@ -20,7 +20,7 @@ function Wrapslide() {
       ></hr>
       <Swiper
         slidesPerView={5}
-        spaceBetween={10}
+        spaceBetween={0}
         slidesPerGroup={3}
         loop={true}
         loopFillGroupWithBlank={true}
