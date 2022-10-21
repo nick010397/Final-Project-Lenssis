@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import NavBar from '../components/common/NavBar';
 import CategoryBtn from '../components/main/CategoryBtn';
 import LensItem from '../components/itemList/LensItem';
 import Event from '../components/main/Event';
@@ -6,8 +7,8 @@ import notice from '../static/img/notice.png';
 import stroke from '../static/img/Vector.png';
 import TitleName from '../components/main/TitleName';
 import FilterMenu from '../components/main/FilterMenu';
-import MainBanner from '../components/main/MainBanner';
 import { useGetProducts } from '../api/productApi';
+import MainSlide from '../components/main/MainSlide';
 
 const Main = () => {
   const { data, isLoading } = useGetProducts();
@@ -17,12 +18,11 @@ const Main = () => {
   return (
     <>
       {/* Navbar */}
-      {/* <NavBar /> */}
-      {/* 슬라이드 수정 예정 */}
-      <CenterDiv>
-        <MainBanner />
-      </CenterDiv>
-
+      <NavBar />
+      {/* 메인 슬라이드 */}
+      <div>
+        <MainSlide />
+      </div>
       {/* 모든 아이템 */}
       <TitleName title="ALL LENS" subtitle="カラコン" />
       <div>
