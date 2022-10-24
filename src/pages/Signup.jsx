@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
+import NavBar from '../components/common/NavBar';
+import Footer from '../components/common/Footer';
 import Title from '../components/login/Title';
 import SingupForm from '../components/signup/SingupForm';
 import { usePostUser } from '../api/signupApi';
@@ -18,8 +20,12 @@ export default function Signup() {
   const { refetch } = usePostUser(singUpInfor);
   console.log(singUpInfor);
 
-  const submitSignup = async (e) => {
+  const submitSignup = (pwdValidty) => async (e) => {
     e.preventDefault();
+    if (!pwdValidty) {
+      alert('비밀번호가 일치하지 않습니다.');
+      return;
+    }
     const { isSuccess, onSuccess, data } = await refetch();
     if (isSuccess) {
       console.log(data);
@@ -27,19 +33,28 @@ export default function Signup() {
     }
   };
 
+  const setUserInfor = (name, value) => {
+    setSignupInfor((infor) => ({ ...infor, [name]: value }));
+  };
+
   return (
-    <SingupBox>
-      <Title
-        subText="나만의 특별함을 위해 LENSSIS."
-        text="계정정보를 입력해주세요."
-      />
-      <SingupForm onSubmit={submitSignup} setSignupInfor={setSignupInfor} />
-    </SingupBox>
+    <>
+      <NavBar />
+      <SingupBox>
+        <Title
+          subText="나만의 특별함을 위해 LENSSIS."
+          text="계정정보를 입력해주세요."
+        />
+        <SingupForm onSubmit={submitSignup} setUserInfor={setUserInfor} />
+      </SingupBox>
+      <Footer />
+    </>
   );
 }
 
 const SingupBox = styled.div`
   width: 534px;
+  margin: 100px auto;
   border: solid gray 1px;
   display: flex;
   flex-direction: column;

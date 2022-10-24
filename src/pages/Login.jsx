@@ -31,13 +31,10 @@ export default function Login() {
       return;
     }
 
-    // const { data, isSuccess } = await refetch();
-    // console.log(data);
-    // if (!isSuccess) {
-    //   setShowPopup(true);
-    // } else {
-    //   navigate('/');
-    // }
+    const data = await refetch();
+    console.log(data);
+
+    navigate('/');
   };
 
   return (

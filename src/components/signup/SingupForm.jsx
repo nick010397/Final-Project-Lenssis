@@ -7,7 +7,7 @@ import CheckInputField from './CheckInputField';
 const PW_REG = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 const GENER_LIST = ['Male', 'Female'];
 
-export default function SingupForm({ onSubmit, setSignupInfor }) {
+export default function SingupForm({ onSubmit, setUserInfor }) {
   const [password, setPassword] = useState('');
   const [passwordValidty, setPasswordValidty] = useState(false);
   const [isPwFocused, setIsPwFocused] = useState(false);
@@ -18,15 +18,10 @@ export default function SingupForm({ onSubmit, setSignupInfor }) {
     const value = e.target.value;
     if (value === password) {
       setPasswordMatch(true);
-      setSignupInfor((infor) => {
-        return { ...infor, password: password };
-      });
     } else {
       setPasswordMatch(false);
-      setSignupInfor((infor) => {
-        return { ...infor, password: '' };
-      });
     }
+    setUserInfor('password', value);
   };
 
   useEffect(() => {
@@ -35,11 +30,9 @@ export default function SingupForm({ onSubmit, setSignupInfor }) {
       setPasswordValidty(true);
     } else {
       setPasswordValidty(false);
-      setSignupInfor((infor) => {
-        return { ...infor, password: '' };
-      });
     }
-  }, [password, setSignupInfor]);
+    setUserInfor('password', password);
+  }, [password]);
 
   return (
     <>
@@ -47,12 +40,12 @@ export default function SingupForm({ onSubmit, setSignupInfor }) {
         <CheckInputField
           title={'아이디'}
           name={'loginId'}
-          setSignupInfor={setSignupInfor}
+          setUserInfor={setUserInfor}
         />
         <CheckInputField
           title={'이메일'}
           name={'email'}
-          setSignupInfor={setSignupInfor}
+          setUserInfor={setUserInfor}
         />
         <InforEach>
           <Label>닉네임</Label>
@@ -60,13 +53,10 @@ export default function SingupForm({ onSubmit, setSignupInfor }) {
             type="text"
             maxLength="20"
             onChange={(e) => {
-              setSignupInfor((infor) => {
-                return { ...infor, username: e.target.value };
-              });
+              setUserInfor('username', e.target.value);
             }}
           />
         </InforEach>
-
         <InforEach>
           <Label>비밀번호</Label>
           <InputField
@@ -109,7 +99,6 @@ export default function SingupForm({ onSubmit, setSignupInfor }) {
               <PwMessage color="red">비밀번호가 일치하지 않습니다.</PwMessage>
             ))}
         </InforEach>
-
         <InforEach>
           <Label>성별 ( 선택 )</Label>
           {GENER_LIST.map((gender) => (
@@ -120,16 +109,13 @@ export default function SingupForm({ onSubmit, setSignupInfor }) {
                 name="gender"
                 value={gender}
                 onChange={(e) => {
-                  setSignupInfor((infor) => ({
-                    ...infor,
-                    gender: e.target.value.slice(0, 1),
-                  }));
+                  setUserInfor('gender', e.target.value.slice(0, 1));
                 }}
               />
             </RadioEach>
           ))}
         </InforEach>
-        <Button infor={{ text: '완료', disabled: false }} onClick={onSubmit} />
+        <Button text="완료" onClick={onSubmit(passwordMatch)} />
       </InforBox>
       {/* ///{false && <Popup message={popupMessage} show={setShowPopup} />} */}
     </>

@@ -3,7 +3,6 @@ import userSignupReducer from './signupInfor';
 import userLoginReducer from './loginInfor';
 
 const reducer = combineReducers({
-  signupInfor: userSignupReducer,
   loginInfor: userLoginReducer,
 });
 

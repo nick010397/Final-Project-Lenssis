@@ -5,7 +5,7 @@ import { useCheckValidity } from '../../api/signupApi';
 
 const EMAIL_REG = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
-export default function CheckInputField({ title, name, setSignupInfor }) {
+export default function CheckInputField({ title, name, setUserInfor }) {
   const [value, setValue] = useState('');
   const { refetch } = useCheckValidity(name, value);
   return (
@@ -36,9 +36,8 @@ export default function CheckInputField({ title, name, setSignupInfor }) {
           if (data.data.data.data.exists) {
             alert(`이미 존재하는 ${title}입니다.`);
           } else {
-            setSignupInfor((infor) => {
-              return { ...infor, [name]: value };
-            });
+            alert(`사용 가능한 ${title}입니다`);
+            setUserInfor(name, value);
           }
         }}
       >
