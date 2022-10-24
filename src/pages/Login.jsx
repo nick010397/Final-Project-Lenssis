@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import LoginForm from '../components/login/LoginForm';
 import LoginOther from '../components/login/LoginOther';
 import Title from '../components/login/Title';
-import Popup from '../components/login/Popup';
+import Popup from '../components/common/Popup';
 import { useSendLogin } from '../api/loginApi';
 import { useNavigate } from 'react-router';
 
@@ -29,10 +29,10 @@ export default function Login() {
       return;
     }
 
-    const data = await refetch();
-    console.log(data);
+    // const data = await refetch();
+    // console.log(data);
 
-    navigate('/');
+    //navigate('/');
   };
 
   return (

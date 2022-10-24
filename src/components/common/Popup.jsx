@@ -2,12 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import Button from './Button';
+import Button from '../login/Button';
 import { useNavigate } from 'react-router';
 
 export default function Popup({ message, show }) {
-  const navigate = useNavigate();
-
   return (
     <PopupBackDrop
       onClick={() => {

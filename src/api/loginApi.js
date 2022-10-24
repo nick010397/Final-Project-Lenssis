@@ -11,6 +11,7 @@ const sendLoginInfo = (loginInfor) => () =>
 export const useSendLogin = (loginInfor) =>
   useQuery('loginInfor', sendLoginInfo(loginInfor), {
     retry: 0,
-    enable: false,
+    enabled: false,
+    refetchOnWindowFocus: false,
     manual: true,
   });
