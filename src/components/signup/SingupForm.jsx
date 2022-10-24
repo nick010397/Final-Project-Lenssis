@@ -115,7 +115,10 @@ export default function SingupForm({ onSubmit, setUserInfor }) {
             </RadioEach>
           ))}
         </InforEach>
-        <Button text="완료" onClick={onSubmit(passwordMatch)} />
+        <Button
+          text="완료"
+          onClick={onSubmit(passwordValidty, passwordMatch)}
+        />
       </InforBox>
       {/* ///{false && <Popup message={popupMessage} show={setShowPopup} />} */}
     </>

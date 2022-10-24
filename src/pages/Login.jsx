@@ -1,8 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import NavBar from '../components/common/NavBar';
-import Footer from '../components/common/Footer';
 import LoginForm from '../components/login/LoginForm';
 import LoginOther from '../components/login/LoginOther';
 import Title from '../components/login/Title';
@@ -39,7 +37,6 @@ export default function Login() {
 
   return (
     <Container>
-      <NavBar />
       <LoginFormBox>
         <Title
           subText="나만의 특별함을 위해 LENSSIS에서"
@@ -48,7 +45,6 @@ export default function Login() {
         <LoginForm onSubmit={tryToLogin} setLoginInfor={setLoginInfor} />
         <LoginOther />
       </LoginFormBox>
-      <Footer />
       {showPopup && <Popup show={setShowPopup} message={popupMessage} />}
     </Container>
   );

@@ -1,8 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import NavBar from '../components/common/NavBar';
-import Footer from '../components/common/Footer';
 import Title from '../components/login/Title';
 import SingupForm from '../components/signup/SingupForm';
 import { usePostUser } from '../api/signupApi';
@@ -20,12 +18,24 @@ export default function Signup() {
   const { refetch } = usePostUser(singUpInfor);
   console.log(singUpInfor);
 
-  const submitSignup = (pwdValidty) => async (e) => {
+  const submitSignup = (pwdValidty, pwdMatch) => async (e) => {
     e.preventDefault();
-    if (!pwdValidty) {
+
+    if (!singUpInfor.username) {
+      alert('닉네임을 입력하세요');
+    }
+
+    if (singUpInfor.loginId)
+      if (!pwdValidty) {
+        alert('비밀번호가 형식이 옳지 않습니다.');
+        return;
+      }
+
+    if (!pwdMatch) {
       alert('비밀번호가 일치하지 않습니다.');
       return;
     }
+
     const { isSuccess, onSuccess, data } = await refetch();
     if (isSuccess) {
       console.log(data);
@@ -39,7 +49,6 @@ export default function Signup() {
 
   return (
     <>
-      <NavBar />
       <SingupBox>
         <Title
           subText="나만의 특별함을 위해 LENSSIS."
@@ -47,7 +56,6 @@ export default function Signup() {
         />
         <SingupForm onSubmit={submitSignup} setUserInfor={setUserInfor} />
       </SingupBox>
-      <Footer />
     </>
   );
 }

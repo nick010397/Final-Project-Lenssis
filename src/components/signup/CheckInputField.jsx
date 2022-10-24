@@ -7,7 +7,34 @@ const EMAIL_REG = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
 export default function CheckInputField({ title, name, setUserInfor }) {
   const [value, setValue] = useState('');
+  const [validty, setValidty] = useState(false);
   const { refetch } = useCheckValidity(name, value);
+
+  const checkEmailValidity = () => {
+    if (EMAIL_REG.text(value)) {
+      alert('유효하지 않는 형식의 이메일입니다');
+      return;
+    }
+  };
+
+  const checkIdValidity = () => {
+    if (value.length < 8) {
+      alert('아이디는 최소 8글자여야 합니다.');
+      return;
+    }
+  };
+
+  const setInfor = async () => {
+    const data = await refetch();
+    console.log(data.data.data.data.exists);
+    if (data.data.data.data.exists) {
+      alert(`이미 존재하는 ${title}입니다.`);
+    } else {
+      alert(`사용 가능한 ${title}입니다`);
+      setUserInfor(name, value);
+    }
+  };
+
   return (
     <InforEach>
       <Label>{title}</Label>
@@ -20,25 +47,12 @@ export default function CheckInputField({ title, name, setUserInfor }) {
         onClick={async (e) => {
           e.preventDefault();
           if (name === 'email') {
-            if (!EMAIL_REG.test(value)) {
-              alert('유효하지 않는 형식의 이메일입니다');
-              return;
-            }
+            checkEmailValidity();
           } else if (name === 'loginId') {
-            if (value.length < 8) {
-              alert('아이디는 최소 8글자여야 합니다.');
-              return;
-            }
+            checkIdValidity();
           }
 
-          const data = await refetch();
-          console.log(data.data.data.data.exists);
-          if (data.data.data.data.exists) {
-            alert(`이미 존재하는 ${title}입니다.`);
-          } else {
-            alert(`사용 가능한 ${title}입니다`);
-            setUserInfor(name, value);
-          }
+          await setInfor();
         }}
       >
         중복 확인
