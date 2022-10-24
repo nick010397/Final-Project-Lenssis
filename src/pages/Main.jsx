@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import NavBar from '../components/common/NavBar';
-import Footer from '../components/common/Footer';
 import CategoryBtn from '../components/main/CategoryBtn';
 import LensItem from '../components/common/LensItem';
 import Event from '../components/main/Event';
@@ -11,6 +9,7 @@ import FilterMenu from '../components/main/FilterMenu';
 import { useGetProducts } from '../api/productApi';
 import MainSlide from '../components/main/MainSlide';
 import PickupItem from '../components/itemList/PickupItem';
+import NewItem from '../components/itemList/NewItem';
 
 const Main = () => {
   const { data, isLoading } = useGetProducts();
@@ -43,32 +42,14 @@ const Main = () => {
       {/* 추천 아이템 */}
       <TitleName title="PICKUP ITEM" subtitle="スタッフおすすめ" />
       <Center>
-        <Items>
-          {data.data.data
-            .filter((data) => data.sellPrice <= 990)
-            .map((data) => (
-              <div>
-                <IMG src={data.image1} alt="이미지" />
-                <Title>{data.name}</Title>
-                <Price>{data.sellPrice}</Price>
-              </div>
-            ))}
-        </Items>
+        <PickupItem products={data.data.data} />
       </Center>
       <CategoryBtn more>もっと見る</CategoryBtn>
       {/* 신상품 */}
       <TitleName title="NEW ARRIVAL" subtitle="新商品" />
-      <div>
-        {/* <Center>
-          <Items>
-            {data.data.data
-              .filter((data) => data.sellPrice > 990)
-              .map((data) => (
-                <LensItem products={data} />
-              ))}
-          </Items>
-        </Center> */}
-      </div>
+      <Center>
+        <NewItem products={data.data.data} />
+      </Center>
       <CategoryBtn more>もっと見る</CategoryBtn>
       {/* 이벤트 배너 */}
       <Event />

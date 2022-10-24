@@ -69,9 +69,28 @@ export default function Slide() {
   );
 }
 
+const EventSlide = [
+  {
+    src: { event1 },
+    title: 'イベントタイトル',
+    contents:
+      'イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...',
+  },
+  {
+    src: { event2 },
+    title: 'イベントタイトル',
+    contents:
+      'イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...',
+  },
+  {
+    src: { event3 },
+    title: 'イベントタイトル',
+    contents:
+      'イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...',
+  },
+];
 const SwiperStyled = styled(SwiperSlide)`
   background: white;
-  // width: 384px;
   height: 384px;
 
   .swiper-slide img {

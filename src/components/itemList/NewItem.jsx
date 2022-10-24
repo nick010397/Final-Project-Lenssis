@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
-function PickupItem({ products }) {
+export default function NewItem({ products }) {
   return (
     <Items>
       {products
@@ -20,13 +20,14 @@ function PickupItem({ products }) {
 const Items = styled.div`
   margin: 0 8vw 16px 8vw;
   display: grid;
-  grid-template-columns: repeat(4, 282px);
-  gap: 24px;
+  grid-template-columns: repeat(5, 220px);
+  grid-gap: 25px;
+  justify-items: center;
 `;
 
 const IMG = styled.img`
-  weight: 282px;
-  height: 282px;
+  weight: 220px;
+  height: 220px;
   margin: 0;
 `;
 
@@ -52,5 +53,3 @@ const Price = styled.p`
   margin-top: 8px;
   margin-bottom: 16px;
 `;
-
-export default PickupItem;
