@@ -42,7 +42,7 @@ export default function MainSlide() {
 
 const Container = styled.div`
   .mySwiper {
-    height: 640px;
+    height: 630px;
     width: 100%;
   }
   .swiper-pagination-bullet-active {

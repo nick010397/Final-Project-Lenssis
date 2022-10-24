@@ -26,7 +26,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/ItemDetail/:id" element={<ItemDetail />} />
+            <Route path="/ItemDetail:id" element={<ItemDetail />} />
             <Route path="/itemList" element={<ItemList />} />
           </Routes>
           <ReactQueryDevtools initialIsOpen={false} />

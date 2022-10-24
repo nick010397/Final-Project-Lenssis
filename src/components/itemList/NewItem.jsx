@@ -7,7 +7,7 @@ export default function NewItem({ products }) {
       {products
         .filter((data) => data.sellPrice <= 990)
         .map((data) => (
-          <div>
+          <div key={data.id}>
             <IMG src={data.image1} alt="이미지" />
             <Title>{data.name}</Title>
             <Price>{data.sellPrice}</Price>

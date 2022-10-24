@@ -19,6 +19,7 @@ const Title = styled.h1`
   letter-spacing: -0.016em;
   color: #23314a;
   margin-bottom: 8px;
+  margin-top: 138px;
   ${(props) =>
     props.event &&
     css`
