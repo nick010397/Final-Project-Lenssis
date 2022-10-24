@@ -4,20 +4,22 @@ import DetailWrap from '../components/ItemDetails/DetailWrap';
 import Footer from '../components/common/Footer';
 import NavBar from '../components/common/NavBar';
 import Wrapslide from '../components/ItemDetails/DetailSlide';
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useGetProducts } from '../api/productApi';
 
 function ItemDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const { data, isLoading } = useGetProducts();
 
-  console.log(typeof id);
   useEffect(() => {
-    axios.get('/api/v1/product').then((data) => {
-      setProduct(data.data.data.find((product) => product.id === parseInt(id)));
-    });
+    setProduct(data.data.data.find((product) => product.id === parseInt(id)));
   }, [id]);
+
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
 
   console.log(product);
 
@@ -26,7 +28,7 @@ function ItemDetail() {
       <Container>
         <NavBar />
 
-        <DetailWrap></DetailWrap>
+        <DetailWrap product={product}></DetailWrap>
         <Wrapslide></Wrapslide>
 
         <DetailSection></DetailSection>

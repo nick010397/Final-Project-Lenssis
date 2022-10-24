@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Star from '../../static/img/Star.png';
-import { useParams } from 'react-router-dom';
 
 export default function LensItem({ products }) {
   return (

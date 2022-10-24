@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../components/common/CategoryBtn';
-import NavBar from '../components/common/NavBar';
-import Footer from '../components/common/Footer';
+import LensItem from '../components/common/LensItem';
 import AllLens from '../static/img/All_Lens.png';
-import LensItem from '../components/itemList/LensItem';
 import { useGetProducts } from '../api/productApi';
 import FilterMenu from '../components/main/FilterMenu';
 import StyledPagesBtn from '../components/itemList/StyledPagesBtn';
@@ -16,7 +14,6 @@ export default function ItemList() {
   }
   return (
     <>
-      <NavBar />
       <StyledListTitle>
         <div>
           <StyledLensImg src={AllLens} alt="AllLens" />
@@ -39,7 +36,6 @@ export default function ItemList() {
         <StyledPageBtn>▶</StyledPageBtn>
       </StyledPageBtns>
       <StyledPagesBtn />
-      <Footer />
     </>
   );
 }

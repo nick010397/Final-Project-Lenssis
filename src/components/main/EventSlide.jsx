@@ -12,7 +12,7 @@ import event1 from '../../static/img/event1.png';
 import event2 from '../../static/img/event2.png';
 import event3 from '../../static/img/event3.png';
 
-export default function Slide() {
+export default function EventSlide() {
   return (
     <Container>
       <Swiper
@@ -28,50 +28,48 @@ export default function Slide() {
         modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperStyled>
-          <SwiperSlide>
-            <EventDiv>
-              <img src={event1} alt="배너1" />
+        {EventSlideList.map((data) => (
+          <SwiperStyled key={data.id}>
+            <SwiperSlide>
+              <EventDiv>
+                <img src={data.src} alt="이벤트" />
 
-              <EventTitle>イベントタイトル</EventTitle>
-              <EventContents>
-                イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...
-              </EventContents>
-            </EventDiv>
-          </SwiperSlide>
-        </SwiperStyled>
-        <SwiperStyled>
-          <SwiperSlide>
-            <EventDiv>
-              <img src={event2} alt="배너2" />
-
-              <EventTitle>イベントタイトル</EventTitle>
-              <EventContents>
-                イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...
-              </EventContents>
-            </EventDiv>
-          </SwiperSlide>
-        </SwiperStyled>
-        <SwiperStyled>
-          <SwiperSlide>
-            <EventDiv>
-              <img src={event3} alt="배너3" />
-
-              <EventTitle>イベントタイトル</EventTitle>
-              <EventContents>
-                イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...
-              </EventContents>
-            </EventDiv>
-          </SwiperSlide>
-        </SwiperStyled>
+                <EventTitle>{data.title}</EventTitle>
+                <EventContents>{data.contents}</EventContents>
+              </EventDiv>
+            </SwiperSlide>
+          </SwiperStyled>
+        ))}
       </Swiper>
     </Container>
   );
 }
 
+const EventSlideList = [
+  {
+    src: event1,
+    title: 'イベントタイトル',
+    contents:
+      'イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...',
+    id: 1,
+  },
+  {
+    src: event2,
+    title: 'イベントタイトル',
+    contents:
+      'イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...',
+    id: 2,
+  },
+  {
+    src: event3,
+    title: 'イベントタイトル',
+    contents:
+      'イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...',
+    id: 3,
+  },
+];
 const SwiperStyled = styled(SwiperSlide)`
   background: white;
-  // width: 384px;
   height: 384px;
 
   .swiper-slide img {
