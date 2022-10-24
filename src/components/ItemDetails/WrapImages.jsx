@@ -26,8 +26,7 @@ function WrapImages({ product }) {
             alt=""
             onMouseEnter={() =>
               setImg(
-                'https://lenssis.jp/data/item/8729694823/7JeQ7J2866aw6re466CI7J20_64Z6rO167Cc7IOJ367aE7ZWg.jpg',
-                'https://lenssis.jp/data/item/8729694823/7JeQ7J2866aw6re466CI7J20_1month_7IOB7IS42.jpg'
+                'https://lenssis.jp/data/item/8729694823/7JeQ7J2866aw6re466CI7J20_64Z6rO167Cc7IOJ367aE7ZWg.jpg'
               )
             }
           />

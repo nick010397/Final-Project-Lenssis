@@ -28,7 +28,7 @@ export default function NavBar() {
           <StyledInput type="text" />
         </StyledInputDiv>
         <StyledIconsDiv>
-          <div class="nav-item">
+          <div className="nav-item">
             <StyledMyPageImg
               src={mypage}
               alt="마이페이지"
