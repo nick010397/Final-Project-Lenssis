@@ -4,9 +4,16 @@ import Button from '../components/common/CategoryBtn';
 import NavBar from '../components/common/NavBar';
 import Footer from '../components/common/Footer';
 import AllLens from '../static/img/All_Lens.png';
-import LensItem from '../components/common/LensItem';
+import LensItem from '../components/itemList/LensItem';
+import { useGetProducts } from '../api/productApi';
+import FilterMenu from '../components/main/FilterMenu';
+import StyledPagesBtn from '../components/itemList/StyledPagesBtn';
 
 export default function ItemList() {
+  const { data, isLoading } = useGetProducts();
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
   return (
     <>
       <NavBar />
@@ -20,7 +27,9 @@ export default function ItemList() {
         <Button category>1DAY</Button>
         <Button category>1MONTH</Button>
       </Center>
-      <LensItem />
+      <FilterMenu />
+      <MenuHr />
+      <LensItem products={data.data.data} />
       <StyledPageBtns>
         <StyledPageBtn>1</StyledPageBtn>
         <StyledPageBtn>2</StyledPageBtn>
@@ -29,6 +38,7 @@ export default function ItemList() {
         <StyledPageBtn>5</StyledPageBtn>
         <StyledPageBtn>▶</StyledPageBtn>
       </StyledPageBtns>
+      <StyledPagesBtn />
       <Footer />
     </>
   );
@@ -64,4 +74,13 @@ const StyledPageBtn = styled.button`
 
 const StyledLensImg = styled.img`
   margin: 40px 0px 40px 0px;
+`;
+
+const MenuHr = styled.hr`
+  margin-top: -4px;
+  // width:1275px;
+  margin-right: 8vw;
+  margin-left: 8vw;
+  border: 0px;
+  border-bottom: 4px solid #d3d6db;
 `;

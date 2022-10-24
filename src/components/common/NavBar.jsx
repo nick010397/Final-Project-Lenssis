@@ -37,7 +37,7 @@ export default function NavBar() {
               }}
             />
           </div>
-          <div class="nav-item">
+          <div className="nav-item">
             <StyledCartImg
               src={cart}
               alt="장바구니"

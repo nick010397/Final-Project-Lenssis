@@ -72,29 +72,17 @@ export default function Footer() {
           <div>
             <StyledTitleDiv>ABOUT</StyledTitleDiv>
             <ul>
-              <a href="">
-                <li>공지</li>
-              </a>
+              <li>공지</li>
 
-              <a href="">
-                <li>이용약관 및 정책</li>
-              </a>
+              <li>이용약관 및 정책</li>
 
-              <a href="">
-                <li>개인 정보 보호 정책</li>
-              </a>
+              <li>개인 정보 보호 정책</li>
 
-              <a href="">
-                <li>쇼핑 가이드</li>
-              </a>
+              <li>쇼핑 가이드</li>
 
-              <a href="">
-                <li>특정 상거래에 관한 법률에 근거한 표기</li>
-              </a>
+              <li>특정 상거래에 관한 법률에 근거한 표기</li>
 
-              <a href="">
-                <li>모바일 디스플레이</li>
-              </a>
+              <li>모바일 디스플레이</li>
             </ul>
           </div>
 
