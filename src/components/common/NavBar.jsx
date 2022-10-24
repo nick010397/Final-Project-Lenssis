@@ -16,6 +16,7 @@ export default function NavBar() {
       <StyledNavItem id="Lens" className="nav-items">
         <Styledlogo>
           <StyledLogoImg
+          title = 'home으로 이동'
             src={Logo}
             alt="렌시스 로고"
             onClick={() => {
@@ -28,7 +29,7 @@ export default function NavBar() {
           <StyledInput type="text" />
         </StyledInputDiv>
         <StyledIconsDiv>
-          <div class="nav-item">
+          <div className="nav-item">
             <StyledMyPageImg
               src={mypage}
               alt="마이페이지"

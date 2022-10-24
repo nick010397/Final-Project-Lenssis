@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Star from '../../static/img/Star.png';
-import { useParams } from 'react-router-dom';
 
 export default function LensItem({ products }) {
   return (
@@ -43,6 +42,7 @@ const Items = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 220px);
   justify-content: space-between;
+  gap: 24px;
 `;
 
 const IMG = styled.img`

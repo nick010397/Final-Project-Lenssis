@@ -4,25 +4,37 @@ import styled from 'styled-components';
 function FilterMenu() {
   return (
     <CenterDiv>
-      <CategroyDiv>
-        <MenuATag href="http://localhost:3000">人気順</MenuATag>
-      </CategroyDiv>
-      <CategroyDiv>
-        <MenuATag href="http://localhost:3000">新着順</MenuATag>
-      </CategroyDiv>
-      <CategroyDiv>
-        <MenuATag href="http://localhost:3000">価格が低い順</MenuATag>
-      </CategroyDiv>
-      <CategroyDiv>
-        <MenuATag href="http://localhost:3000">価格が高い順</MenuATag>
-      </CategroyDiv>
-      <CategroyDiv>
-        <MenuATag href="http://localhost:3000">レビュー件数順</MenuATag>
-      </CategroyDiv>
+      {MenuItem.map((data) => (
+        <CategroyDiv key={data.title}>
+          <MenuATag href={data.url}>{data.title}</MenuATag>
+        </CategroyDiv>
+      ))}
     </CenterDiv>
   );
 }
 
+const MenuItem = [
+  {
+    title: '人気順',
+    url: 'http://localhost:3000',
+  },
+  {
+    title: '新着順',
+    url: 'http://localhost:3000',
+  },
+  {
+    title: '価格が低い順',
+    url: 'http://localhost:3000',
+  },
+  {
+    title: '価格が高い順',
+    url: 'http://localhost:3000',
+  },
+  {
+    title: 'レビュー件数順',
+    url: 'http://localhost:3000',
+  },
+];
 const CenterDiv = styled.div`
   display: flex;
   margin-left: 8vw;
