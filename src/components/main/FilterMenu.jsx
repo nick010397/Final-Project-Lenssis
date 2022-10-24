@@ -29,6 +29,7 @@ const CenterDiv = styled.div`
   margin-right: 8vw;
   margin-top: 80px;
 `;
+
 const MenuATag = styled.a`
   font-family: 'Noto Sans JP';
   font-style: normal;
