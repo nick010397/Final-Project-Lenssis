@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import WrapDetail from './WrapDetail';
 import WrapPvi from './WrapImages';
 
-function DetailWrap() {
+function DetailWrap({ product }) {
   return (
     <Container>
-      <WrapPvi></WrapPvi>
+      <WrapPvi product={product}></WrapPvi>
       <WrapDetail></WrapDetail>
     </Container>
   );
