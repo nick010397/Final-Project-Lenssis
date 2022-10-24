@@ -1,29 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-function WrapPvi() {
-  const [imgChange, setImgChange] = useState(
-    'https://lenssis.jp/data/item/8729694823/7JeQ7J2866aw6re466CI7J20_1month_7IOB7IS42.jpg'
-  );
-
+function WrapImages({ product }) {
+  const [imgChange, setImgChange] = useState(product);
   const setImg = (imgChange) => {
     setImgChange(imgChange);
   };
+  useEffect(() => {
+    setImgChange(product.image1);
+  }, [product]);
 
+  console.log(imgChange);
   return (
     <Container>
       <Picture>
         <StyledLensImg src={imgChange} alt="" />
         <MiniPicture>
           <StyledMiniImg
-            src="https://lenssis.jp/data/item/8729694823/7JeQ7J2866aw6re466CI7J20_1month_7IOB7IS42.jpg"
+            src={product.image1}
             alt=""
-            onMouseEnter={() =>
-              setImg(
-                'https://lenssis.jp/data/item/8729694823/7JeQ7J2866aw6re466CI7J20_1month_7IOB7IS42.jpg',
-                'https://lenssis.jp/data/item/8729694823/7JeQ7J2866aw6re466CI7J20_1month_7IOB7IS42.jpg'
-              )
-            }
+            onMouseEnter={() => setImg(product.image1)}
           />
           <StyledMiniImg
             src="https://lenssis.jp/data/item/8729694823/7JeQ7J2866aw6re466CI7J20_64Z6rO167Cc7IOJ367aE7ZWg.jpg"
@@ -61,7 +57,7 @@ function WrapPvi() {
   );
 }
 
-export default WrapPvi;
+export default WrapImages;
 
 const Container = styled.div`
   width: 40%;

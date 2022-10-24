@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ItemList from './pages/ItemList';
 import ItemDetail from './pages/ItemDetail';
+import ShoppingBasket from './pages/ShoppingBasket';
 import GlobalStyle from './styles/GlobalStyle';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -23,7 +24,8 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/ItemDetail/:id" element={<ItemDetail />} />
+            <Route path="/itemdetail/:id" element={<ItemDetail />} />
+            <Route path="/shoppingbasket" element={<ShoppingBasket />} />
             <Route path="/itemList" element={<ItemList />} />
           </Routes>
           <ReactQueryDevtools initialIsOpen={false} />

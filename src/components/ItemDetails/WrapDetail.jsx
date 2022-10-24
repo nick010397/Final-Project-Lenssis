@@ -1,12 +1,17 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+import ShoppingBasketModal from '../../modals/ShoppingBasketModal';
 
 function WrapDetail() {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <Container>
       <H1>에일링 에일</H1>
       <Upbtn>추천</Upbtn> &nbsp;
       <Bestbtn>인기</Bestbtn>
+      <br />
+      <br />
       <p>가격 1,800엔</p>
       <hr />
       <br />
@@ -68,7 +73,11 @@ function WrapDetail() {
       <br />
       <br />
       <Orderbtn>주문하기</Orderbtn>&nbsp;&nbsp;
-      <Keepbtn>장바구니</Keepbtn>
+      <Keepbtn onClick={() => setOpenModal(true)}>장바구니</Keepbtn>
+      <ShoppingBasketModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+      />
       &nbsp;&nbsp;
       <Keepbtn>좋아요♡</Keepbtn>
     </Container>

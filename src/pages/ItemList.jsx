@@ -2,23 +2,6 @@ import React from 'react';
 import LensItem from '../components/itemList/LensItem';
 import styled from 'styled-components';
 
-const StyledListTitle = styled.div`
-  margin: 0 8vw 0 8vw;
-`;
-
-const StyledPageBtn = styled.div`
-  text-align: center;
-  margin-bottom: 50px;
-`;
-
-const StyledBtn = styled.button`
-  margin: 5px;
-`;
-
-const StyledLensDIv = styled.div`
-  margin: 40px 0px 40px 0px;
-`;
-
 export default function ItemList() {
   return (
     <>
@@ -49,3 +32,19 @@ export default function ItemList() {
     </>
   );
 }
+const StyledListTitle = styled.div`
+  margin: 0 8vw 0 8vw;
+`;
+
+const StyledPageBtn = styled.div`
+  text-align: center;
+  margin-bottom: 50px;
+`;
+
+const StyledBtn = styled.button`
+  margin: 5px;
+`;
+
+const StyledLensDIv = styled.div`
+  margin: 40px 0px 40px 0px;
+`;
