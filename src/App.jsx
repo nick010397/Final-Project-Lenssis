@@ -26,6 +26,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/itemdetail/:id" element={<ItemDetail />} />
             <Route path="/shoppingbasket" element={<ShoppingBasket />} />
+            <Route path="/ItemDetail:id" element={<ItemDetail />} />
             <Route path="/itemList" element={<ItemList />} />
           </Routes>
           <ReactQueryDevtools initialIsOpen={false} />
