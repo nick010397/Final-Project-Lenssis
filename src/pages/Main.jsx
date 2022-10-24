@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import CategoryBtn from '../components/main/CategoryBtn';
-import LensItem from '../components/itemList/LensItem';
+import NavBar from '../components/common/NavBar';
+import CategoryBtn from '../components/common/CategoryBtn';
+import LensItem from '../components/common/LensItem';
 import Event from '../components/main/Event';
 import notice from '../static/img/notice.png';
 import stroke from '../static/img/Vector.png';
@@ -9,11 +10,12 @@ import FilterMenu from '../components/main/FilterMenu';
 import MainBanner from '../components/main/MainBanner';
 import { useGetProducts } from '../api/productApi';
 
-const Main = () => {
+function Main() {
   const { data, isLoading } = useGetProducts();
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
+
   return (
     <>
       {/* Navbar */}
@@ -101,7 +103,7 @@ const Main = () => {
       {/* <Footer /> */}
     </>
   );
-};
+}
 
 const Center = styled.div`
   display: flex;
