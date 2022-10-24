@@ -59,7 +59,7 @@ const Title = styled.p`
   line-height: 24px;
   letter-spacing: -0.016em;
   color: #23314a;
-  margin-bottom: 8px;
+  margin: 8px 0px;
 `;
 
 const Price = styled.p`
@@ -78,6 +78,7 @@ const StyledStars = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-start;
+  margin-bottom: 13.5px;
 `;
 
 const StyledReviewDiv = styled.div`
@@ -108,10 +109,11 @@ const StyledTagDiv = styled.div`
   line-height: 28px;
   letter-spacing: -0.016em;
   justify-content: center;
+  margin-left: 4px;
 `;
 
 const Itemdiv = styled.div`
   textdecoration: 'none';
   height: 330px;
-  margin-top: 30px;
+  margin: 40px 0px;
 `;
