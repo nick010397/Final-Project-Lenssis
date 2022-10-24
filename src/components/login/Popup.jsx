@@ -14,7 +14,6 @@ export default function Popup({ message, show }) {
         show(false);
       }}
     >
-      {' '}
       <PopupBox>
         <CloseIcon
           onClick={() => {
@@ -28,9 +27,6 @@ export default function Popup({ message, show }) {
           text="확인"
           onClick={() => {
             show(false);
-            if (message === '회원가입에 성공하셨습니다.') {
-              navigate('/login');
-            }
           }}
         />
       </PopupBox>

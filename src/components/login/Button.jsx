@@ -15,13 +15,9 @@ const ConfirmButton = styled.button`
   font-size: 16px;
   border: none;
   border-radius: 6px;
-  margin: 0 8px;
+  margin: 40px 8px;
   background: #23314a;
   border: none;
   color: white;
   cursor: pointer;
-
-  &:disabled {
-    background-color: rgba(23, 23, 23, 0.25);
-  }
 `;
