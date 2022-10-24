@@ -16,6 +16,7 @@ export default function LensItem({ products }) {
               <IMG src={product.image1} alt="렌즈이미지" />
               <Title>{product.name}</Title>
               <Price>{product.sellPrice}</Price>
+              <Price>{product.id}</Price>
             </Link>
           </div>
         ))}
@@ -27,7 +28,8 @@ const Items = styled.div`
   margin: 0 8vw 16px 8vw;
   display: grid;
   grid-template-columns: repeat(5, 220px);
-  justify-content: space-between;
+  grid-gap: 25px;
+  justify-items: center;
 `;
 
 const IMG = styled.img`

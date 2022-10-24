@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import WrapDetail from './WrapDetail';
-import DetailSitPvi from './WrapPvi';
+import WrapPvi from './WrapImages';
 
-function DetailWrap() {
+function DetailWrap({ product }) {
   return (
     <Container>
-      <hr></hr>
-      <DetailSitPvi></DetailSitPvi>
+      <WrapPvi product={product}></WrapPvi>
       <WrapDetail></WrapDetail>
     </Container>
   );
@@ -17,5 +16,6 @@ export default DetailWrap;
 
 const Container = styled.div`
   width: 100%;
-  height: 1200px;
+  height: 900px;
+  max-height: 900px;
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import LensItem from '../components/itemList/LensItem';
+import LensItem from '../components/common/LensItem';
 import styled from 'styled-components';
 
 const StyledListTitle = styled.div`

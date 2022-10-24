@@ -10,6 +10,8 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import NavBar from './components/common/NavBar';
+import Footer from './components/common/Footer';
 
 const queryClient = new QueryClient();
 
@@ -17,6 +19,7 @@ function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
+      <NavBar />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <Routes>
@@ -29,6 +32,7 @@ function App() {
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </Provider>
+      <Footer />
     </BrowserRouter>
   );
 }

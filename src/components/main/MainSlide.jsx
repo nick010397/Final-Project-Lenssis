@@ -43,6 +43,7 @@ export default function MainSlide() {
 const Container = styled.div`
   .mySwiper {
     height: 640px;
+    width: 100%;
   }
   .swiper-pagination-bullet-active {
     background-color: #23314a;
@@ -52,32 +53,5 @@ const Container = styled.div`
   }
   .swiper-slide-active {
     opacity: 1;
-  }
-`;
-const Grid = styled.div`
-  display: grid;
-  grid-gap: 16px;
-  grid-template-columns: repeat(2, 592px);
-`;
-
-const FirstItem = styled.div`
-  background-color: tomato;
-  &.one {
-    height: 592px;
-    grid-row-start: 1;
-    grid-row-end: 3;
-  }
-`;
-const SecondItem = styled.div`
-  background-color: skyblue;
-  &.two {
-    height: 220px;
-  }
-`;
-const ThirdItem = styled.div`
-  background-color: green;
-  &.three {
-    grid-row-start: 2;
-    height: 356px;
   }
 `;

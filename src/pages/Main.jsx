@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import NavBar from '../components/common/NavBar';
+import Footer from '../components/common/Footer';
 import CategoryBtn from '../components/main/CategoryBtn';
-import LensItem from '../components/itemList/LensItem';
+import LensItem from '../components/common/LensItem';
 import Event from '../components/main/Event';
 import notice from '../static/img/notice.png';
 import stroke from '../static/img/Vector.png';
@@ -9,6 +10,7 @@ import TitleName from '../components/main/TitleName';
 import FilterMenu from '../components/main/FilterMenu';
 import { useGetProducts } from '../api/productApi';
 import MainSlide from '../components/main/MainSlide';
+import PickupItem from '../components/itemList/PickupItem';
 
 const Main = () => {
   const { data, isLoading } = useGetProducts();
@@ -17,8 +19,6 @@ const Main = () => {
   }
   return (
     <>
-      {/* Navbar */}
-      <NavBar />
       {/* 메인 슬라이드 */}
       <div>
         <MainSlide />
@@ -36,21 +36,38 @@ const Main = () => {
       <FilterMenu />
       <MenuHr />
       {/* 렌즈 아이템 */}
-      <div>
+      <Center>
         <LensItem products={data.data.data} />
-      </div>
+      </Center>
       <CategoryBtn more>もっと見る</CategoryBtn>
       {/* 추천 아이템 */}
       <TitleName title="PICKUP ITEM" subtitle="スタッフおすすめ" />
-
-      {/* 임시로 만들어봄 */}
-      <Items></Items>
+      <Center>
+        <Items>
+          {data.data.data
+            .filter((data) => data.sellPrice <= 990)
+            .map((data) => (
+              <div>
+                <IMG src={data.image1} alt="이미지" />
+                <Title>{data.name}</Title>
+                <Price>{data.sellPrice}</Price>
+              </div>
+            ))}
+        </Items>
+      </Center>
       <CategoryBtn more>もっと見る</CategoryBtn>
       {/* 신상품 */}
       <TitleName title="NEW ARRIVAL" subtitle="新商品" />
       <div>
-        <LensItem />
-        <LensItem />
+        {/* <Center>
+          <Items>
+            {data.data.data
+              .filter((data) => data.sellPrice > 990)
+              .map((data) => (
+                <LensItem products={data} />
+              ))}
+          </Items>
+        </Center> */}
       </div>
       <CategoryBtn more>もっと見る</CategoryBtn>
       {/* 이벤트 배너 */}
@@ -97,8 +114,6 @@ const Main = () => {
         </NoticeDiv>
       </div>
       <CategoryBtn end>もっと見る</CategoryBtn>
-      {/* Footer */}
-      {/* <Footer /> */}
     </>
   );
 };
@@ -109,12 +124,12 @@ const Center = styled.div`
   justify-content: center;
 `;
 
-const CenterDiv = styled.div`
-  display: flex;
-  margin-left: 8vw;
-  margin-right: 8vw;
-  margin-top: 80px;
-`;
+// const CenterDiv = styled.div`
+//   display: flex;
+//   margin-left: 8vw;
+//   margin-right: 8vw;
+//   margin-top: 80px;
+// `;
 
 const MenuHr = styled.hr`
   margin-top: -4px;
@@ -122,7 +137,7 @@ const MenuHr = styled.hr`
   margin-right: 8vw;
   margin-left: 8vw;
   border: 0px;
-  border-bottom: 4px solid #656f80;
+  border-bottom: 4px solid #d3d6db;
 `;
 
 const NoticImg = styled.div`
@@ -169,8 +184,37 @@ const Hr = styled.hr`
 const Items = styled.div`
   margin: 0 8vw 16px 8vw;
   display: grid;
-  grid-template-columns: repeat(5, 220px);
-  justify-content: space-between;
+  grid-template-columns: repeat(4, 282px);
+  gap: 24px;
+`;
+
+const IMG = styled.img`
+  weight: 282px;
+  height: 282px;
+  margin: 0;
+`;
+
+const Title = styled.p`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+  margin-bottom: 8px;
+`;
+
+const Price = styled.p`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+  margin-top: 8px;
+  margin-bottom: 16px;
 `;
 
 export default Main;
