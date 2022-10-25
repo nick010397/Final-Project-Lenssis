@@ -15,7 +15,7 @@ export default function Footer() {
         <StyledLogo src={Logo} alt="렌시스 로고" />
         <StyledFooterContainer>
           <div>
-            <p>
+            <div>
               <p>
                 렌시스는 #나다움에서 출발했습니다.
                 <br />
@@ -30,7 +30,7 @@ export default function Footer() {
                 <br />
                 #JUST_BE_YOURSELF
               </p>
-            </p>
+            </div>
           </div>
 
           <div>

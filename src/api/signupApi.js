@@ -29,7 +29,4 @@ export const usePostUser = (infor) =>
     enabled: false,
     refetchOnWindowFocus: false,
     manual: true,
-    onSuccess: () => {
-      alert('회원가입에 성공하셨습니다');
-    },
   });

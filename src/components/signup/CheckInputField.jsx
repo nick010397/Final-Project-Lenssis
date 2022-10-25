@@ -2,18 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { InforEach, Label, InputField } from './SingupForm';
 import { useCheckValidity } from '../../api/signupApi';
-
-const EMAIL_REG = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+import { EMAIL_REG } from '../../utils/reg';
 
 export default function CheckInputField({ title, name, setUserInfor }) {
   const [value, setValue] = useState('');
-  const [validity, setValidity] = useState(false);
   const { refetch } = useCheckValidity(name, value);
 
   const checkEmailValidity = () => {
     if (!EMAIL_REG.test(value)) {
       alert('유효하지 않는 형식의 이메일입니다');
-      setValidity(false);
       return false;
     } else {
       return true;
@@ -21,9 +18,9 @@ export default function CheckInputField({ title, name, setUserInfor }) {
   };
 
   const checkIdValidity = () => {
+    setUserInfor(`${name}`, value);
     if (value.length < 8) {
       alert('아이디는 최소 8글자여야 합니다.');
-      setValidity(false);
       return false;
     } else {
       return true;
@@ -35,12 +32,10 @@ export default function CheckInputField({ title, name, setUserInfor }) {
 
     if (data.data.data.data.exists) {
       alert(`이미 존재하는 ${title}입니다.`);
-      setValidity(false);
       setUserInfor(`is${name}Unique`, false);
     } else {
       alert(`사용 가능한 ${title}입니다`);
       setUserInfor(`is${name}Unique`, true);
-      setValidity(true);
     }
     setUserInfor(name, value);
   };

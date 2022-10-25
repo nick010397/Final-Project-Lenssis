@@ -10,13 +10,13 @@ export default function SingupForm({ onSubmit, setUserInfor }) {
     <>
       <InforBox noValidate onSubmit={onSubmit}>
         <CheckInputField
-          title={'아이디'}
-          name={'loginId'}
+          title="아이디"
+          name="loginId"
           setUserInfor={setUserInfor}
         />
         <CheckInputField
-          title={'이메일'}
-          name={'email'}
+          title="이메일"
+          name="email"
           setUserInfor={setUserInfor}
         />
         <InforEach>
@@ -31,7 +31,7 @@ export default function SingupForm({ onSubmit, setUserInfor }) {
         </InforEach>
         <PasswordInputField setPasswordInfor={setUserInfor} />
         <GenderInputField setGenderInfor={setUserInfor} />
-        <Button text="완료" onClick={onSubmit()} />
+        <Button text="회원가입" onClick={onSubmit()} />
       </InforBox>
       {/* ///{false && <Popup message={popupMessage} show={setShowPopup} />} */}
     </>

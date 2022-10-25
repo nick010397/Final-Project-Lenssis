@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import Button from '../login/Button';
-import { useNavigate } from 'react-router';
 
 export default function Popup({ message, show }) {
   return (
@@ -33,15 +32,15 @@ export default function Popup({ message, show }) {
 }
 
 const PopupBackDrop = styled.div`
-  position: absolute;
+  background: #252424cc;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   top: 0;
   left: 0;
-  background: #252424cc;
-  height: 100%;
-  width: 100vw;
 `;
 
 const PopupBox = styled.div`

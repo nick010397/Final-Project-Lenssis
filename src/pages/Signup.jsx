@@ -3,7 +3,10 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Title from '../components/login/Title';
 import SingupForm from '../components/signup/SingupForm';
+import Popup from '../components/common/Popup';
 import { usePostUser } from '../api/signupApi';
+import { validation } from '../utils/validation';
+import { useNavigate } from 'react-router';
 
 export default function Signup() {
   const [signupInfor, setSignupInfor] = useState({
@@ -18,48 +21,48 @@ export default function Signup() {
     gender: 'X',
     phone: '010-1234-5678',
   });
+  const [errorMsg, setErrorMsg] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
   const { refetch } = usePostUser(signupInfor);
-  console.log(signupInfor);
+  const navigate = useNavigate();
 
   const submitSignup = () => async (e) => {
     e.preventDefault();
+    console.log(signupInfor);
+    const {
+      loginId,
+      isloginIdUnique,
+      password,
+      isPasswordMatch,
+      email,
+      isemailUnique,
+      username,
+    } = signupInfor;
 
-    const validation = {
-      loginId: (id, uniquness) => {
-        if (id.length < 8) {
-          return '아이디는 8글자 이상이여합니다.';
-        }
-        if (!uniquness) {
-          return '아이디 중복 확인 해주세요.';
-        }
-      },
-      email: (email, uniquness) => {
-        if (email) {
-          return '유효한 형식의 이메일이 아닙니다.';
-        }
-        if (uniquness) {
-          return '이메일 중복 확인 해주세요.';
-        }
-      },
-      password: (password, match) => {
-        if (!password) {
-          return '유요한 형식의 비밀번호가 아닙니다.';
-        }
-        if (match) {
-          return '비밀번호가 일치하지 않습니다.';
-        }
-      },
-      username: (username) => {
-        if (!username) {
-          return '닉네임을 입력하세요.';
-        }
-      },
-    };
+    const error =
+      validation.loginId(loginId, isloginIdUnique) ||
+      validation.password(password, isPasswordMatch) ||
+      validation.email(email, isemailUnique) ||
+      validation.username(username);
 
-    const { isSuccess, onSuccess, data } = await refetch();
-    if (isSuccess) {
-      console.log(data);
-      onSuccess();
+    if (error) {
+      setShowPopup(true);
+      setErrorMsg(error);
+    } else {
+      const { isSuccess, data } = await refetch({
+        loginId,
+        password,
+        email,
+        username,
+        phone: signupInfor.phone,
+        gender: signupInfor.gender,
+        birthday: signupInfor.birthday,
+      });
+      if (isSuccess) {
+        console.log(data);
+        alert('회원가입에 성공하셨습니다.');
+        navigate('/login');
+      }
     }
   };
 
@@ -76,6 +79,7 @@ export default function Signup() {
         />
         <SingupForm onSubmit={submitSignup} setUserInfor={setUserInfor} />
       </SingupBox>
+      {showPopup && <Popup message={errorMsg} show={setShowPopup} />}
     </>
   );
 }

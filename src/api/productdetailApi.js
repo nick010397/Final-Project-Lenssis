@@ -6,6 +6,5 @@ const productDetailInfo = (productId) => () =>
     headers: { 'Content-Type': 'application/json' },
   });
 
-export const useProductDetail = (productId) => {
+export const useProductDetail = (productId) =>
   useQuery(['productDetailInfo', productId], productDetailInfo(productId), {});
-};

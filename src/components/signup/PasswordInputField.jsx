@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { InforEach, Label, InputField } from './SingupForm';
 import styled from 'styled-components';
-const PW_REG = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+import { PW_REG } from '../../utils/reg';
 
 export default function PasswordInputField({ setPasswordInfor }) {
   const [password, setPassword] = useState('');

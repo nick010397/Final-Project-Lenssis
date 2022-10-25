@@ -3,28 +3,29 @@ import styled from 'styled-components';
 import deleteIcon from '../../static/img/VectordeleteIcon.png';
 
 export default function LoginInputField({ name, setLoginInfor }) {
-  const [isFocused, setIsFocused] = useState(false);
+  const [value, setValue] = useState('');
 
   return (
     <div>
       <InputField
         type={name === 'loginId' ? 'text' : 'password'}
+        value={value}
         onChange={(e) => {
+          setValue(e.target.value);
           setLoginInfor((infor) => ({ ...infor, [name]: e.target.value }));
         }}
-        onFocus={() => {
-          setIsFocused(true);
-        }}
-        onBlur={() => {
-          setIsFocused(false);
-        }}
       />
-      <DeleteBtn
-        style={{
-          display: isFocused ? 'inline' : 'none',
-          transform: name === 'password' ? 'translate(-50px, 15px)' : '',
-        }}
-      />
+      {value && (
+        <DeleteBtn
+          onClick={() => {
+            setValue('');
+            setLoginInfor((infor) => ({ ...infor, [name]: '' }));
+          }}
+          style={{
+            transform: name === 'password' ? 'translate(-50px, 15px)' : '',
+          }}
+        />
+      )}
     </div>
   );
 }

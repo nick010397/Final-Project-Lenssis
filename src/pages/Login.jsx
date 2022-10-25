@@ -7,32 +7,33 @@ import Title from '../components/login/Title';
 import Popup from '../components/common/Popup';
 import { useSendLogin } from '../api/loginApi';
 import { useNavigate } from 'react-router';
+import { validation } from '../utils/validation';
 
 export default function Login() {
   const [loginInfor, setLoginInfor] = useState({ loginId: '', password: '' });
   const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const { refetch } = useSendLogin(loginInfor);
   const navigate = useNavigate();
 
   const tryToLogin = async (e) => {
     e.preventDefault();
-    console.log(loginInfor.loginId, !loginInfor.loginId);
-    if (!loginInfor.loginId) {
-      setPopupMessage('아이디를 입력하세요');
+    const { loginId, password } = loginInfor;
+    console.log('login');
+    const clientError =
+      validation.idforLogin(loginId) || validation.pwforLogin(password);
+    if (clientError) {
+      setErrorMsg(clientError);
       setShowPopup(true);
-      return;
+    } else {
+      const { data, isError } = await refetch();
+      if (isError) {
+        setErrorMsg('존재하지 않는 아이디이거나 비밀번호가 틀립니다.');
+        setShowPopup(true);
+      }
+      console.log(data);
+      //navigate('/');
     }
-    if (!loginInfor.password) {
-      setPopupMessage('비밀번호를 입력하세요');
-      setShowPopup(true);
-      return;
-    }
-
-    // const data = await refetch();
-    // console.log(data);
-
-    //navigate('/');
   };
 
   return (
@@ -45,7 +46,7 @@ export default function Login() {
         <LoginForm onSubmit={tryToLogin} setLoginInfor={setLoginInfor} />
         <LoginOther />
       </LoginFormBox>
-      {showPopup && <Popup show={setShowPopup} message={popupMessage} />}
+      {showPopup && <Popup show={setShowPopup} message={errorMsg} />}
     </Container>
   );
 }
