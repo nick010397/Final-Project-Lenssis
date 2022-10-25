@@ -8,6 +8,8 @@ import Popup from '../components/common/Popup';
 import { useSendLogin } from '../api/loginApi';
 import { useNavigate } from 'react-router';
 import { validation } from '../utils/validation';
+import { useDispatch } from 'react-redux';
+import { setLogIn } from '../store/loginInfor';
 
 export default function Login() {
   const [loginInfor, setLoginInfor] = useState({ loginId: '', password: '' });
@@ -15,6 +17,7 @@ export default function Login() {
   const [errorMsg, setErrorMsg] = useState('');
   const { refetch } = useSendLogin(loginInfor);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const tryToLogin = async (e) => {
     e.preventDefault();
@@ -30,9 +33,12 @@ export default function Login() {
       if (isError) {
         setErrorMsg('존재하지 않는 아이디이거나 비밀번호가 틀립니다.');
         setShowPopup(true);
+      } else {
+        console.log(data);
+        //전역상태 로그인으로 바꾸는 거
+        dispatch(setLogIn({ login: true }));
+        //navigate('/');
       }
-      console.log(data);
-      //navigate('/');
     }
   };
 

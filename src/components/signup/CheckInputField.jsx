@@ -2,25 +2,20 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { InforEach, Label, InputField } from './SingupForm';
 import { useCheckValidity } from '../../api/signupApi';
-import { EMAIL_REG } from '../../utils/reg';
+import { validation } from '../../utils/validation';
+import Popup from '../common/Popup';
 
 export default function CheckInputField({ title, name, setUserInfor }) {
   const [value, setValue] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
   const { refetch } = useCheckValidity(name, value);
 
-  const checkEmailValidity = () => {
-    if (!EMAIL_REG.test(value)) {
-      alert('유효하지 않는 형식의 이메일입니다');
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const checkIdValidity = () => {
-    setUserInfor(`${name}`, value);
-    if (value.length < 8) {
-      alert('아이디는 최소 8글자여야 합니다.');
+  const checkClientValidity = () => {
+    const error = validation[name](value);
+    if (error) {
+      setPopupMessage(error);
+      setShowPopup(true);
       return false;
     } else {
       return true;
@@ -31,10 +26,12 @@ export default function CheckInputField({ title, name, setUserInfor }) {
     const data = await refetch();
 
     if (data.data.data.data.exists) {
-      alert(`이미 존재하는 ${title}입니다.`);
+      setPopupMessage(`이미 존재하는 ${title}입니다.`);
+      setShowPopup(true);
       setUserInfor(`is${name}Unique`, false);
     } else {
-      alert(`사용 가능한 ${title}입니다`);
+      setPopupMessage(`사용 가능한 ${title}입니다`);
+      setShowPopup(true);
       setUserInfor(`is${name}Unique`, true);
     }
     setUserInfor(name, value);
@@ -51,12 +48,8 @@ export default function CheckInputField({ title, name, setUserInfor }) {
       <RepetitionCheckBtn
         onClick={async (e) => {
           e.preventDefault();
-          let result = false;
-          if (name === 'email') {
-            result = checkEmailValidity();
-          } else if (name === 'loginId') {
-            result = checkIdValidity();
-          }
+          const result = checkClientValidity();
+
           if (result) {
             await setInfor();
           }
@@ -64,12 +57,12 @@ export default function CheckInputField({ title, name, setUserInfor }) {
       >
         중복 확인
       </RepetitionCheckBtn>
+      {showPopup && <Popup message={popupMessage} show={setShowPopup} />}
     </InforEach>
   );
 }
 const RepetitionCheckBtn = styled.button`
-  position: absolute;
-  transform: translate(260px, 10px);
+  transform: translate(260px, -50px);
   width: 72px;
   height: 48px;
   background-color: white;

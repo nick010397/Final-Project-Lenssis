@@ -1,7 +1,7 @@
 import { EMAIL_REG, PW_REG } from './reg';
 
 export const validation = {
-  loginId: (id, uniquness) => {
+  loginId: (id, uniquness = true) => {
     if (id.length < 8) {
       return '아이디는 8글자 이상이여합니다.';
     }
@@ -9,7 +9,7 @@ export const validation = {
       return '아이디 중복 확인 해주세요.';
     }
   },
-  email: (email, uniquness) => {
+  email: (email, uniquness = true) => {
     if (!EMAIL_REG.test(email)) {
       return '유효한 형식의 이메일이 아닙니다.';
     }
