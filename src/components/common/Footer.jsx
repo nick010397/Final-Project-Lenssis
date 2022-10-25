@@ -17,16 +17,16 @@ export default function Footer() {
           <div>
             <div>
               <p>
-                렌시스는 #나다움에서 출발했습니다.
+                レンシスは #私らしさから 出発しました。
                 <br />
-                렌즈에 나를 맞추는 게 아닌,
+                レンズに私を合わせるのではなく、
                 <br />
-                나에게 맞는 렌즈를 제안해주고 싶었습니다.
+                私に合うレンズを提案したかったでした。
                 <br />
               </p>
               <br />
               <p>
-                나로 시작하는 렌즈,
+                私から 始まる レンズ、
                 <br />
                 #JUST_BE_YOURSELF
               </p>
@@ -35,7 +35,7 @@ export default function Footer() {
 
           <div>
             <StyledTitleDiv>CONTACT</StyledTitleDiv>
-            <p>주식회사VIVA</p>
+            <div>주식회사VIVA</div>
             <ul>
               <li>
                 <StyledItem>
@@ -113,6 +113,15 @@ const StyledFooterContainer = styled.div`
   justify-content: space-between;
 `;
 
+const StyledP = styled.p`
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: -0.016em;
+  color: #7b8392;
+`;
 const StyledLogo = styled.img`
   margin-left: 8vw;
   margin: 100px;

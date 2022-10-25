@@ -18,17 +18,6 @@ export default function StyledPagesBtn() {
     } else if (currentButton === 3) {
       const sliced = numberOfPages.slice(0, 5);
       tempNumberOfPages = [...sliced, '...', numberOfPages.length];
-    } else if (currentButton > 3 && currentButton.length - 2) {
-      const sliced1 = numberOfPages.slice(currentButton - 2, currentButton);
-      const sliced2 = numberOfPages.slice(currentButton, currentButton + 1);
-      tempNumberOfPages = [
-        1,
-        '...',
-        ...sliced1,
-        ...sliced2,
-        '...',
-        numberOfPages.length,
-      ];
     }
     setArrOfCurrButtons(tempNumberOfPages);
   }, [currentButton]);
@@ -46,7 +35,7 @@ export default function StyledPagesBtn() {
           </StyledPageBtn>
         );
       })}
-      <StyledPageBtn
+      <StyledPagenationBtn
         onClick={() =>
           setCurrentButton((prev) =>
             prev === numberOfPages.length + 1 ? prev : prev + 1
@@ -54,7 +43,7 @@ export default function StyledPagesBtn() {
         }
       >
         ▶
-      </StyledPageBtn>
+      </StyledPagenationBtn>
     </>
   );
 }
@@ -75,6 +64,37 @@ const StyledPageBtn = styled.button`
   border: 0;
 
   &.active {
+    margin: 5px;
+    width: 48px;
+    height: 48px;
+    background: #23314a;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.15px;
+    color: #ffffff;
+  }
+`;
+
+const StyledPagenationBtn = styled.button`
+  margin: 5px;
+  width: 48px;
+  height: 48px;
+  background: #e9eaed;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.15px;
+  color: #23314a;
+  border: 0;
+
+  &:hover {
     margin: 5px;
     width: 48px;
     height: 48px;
