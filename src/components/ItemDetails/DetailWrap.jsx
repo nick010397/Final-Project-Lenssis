@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import WrapDetail from './WrapDetail';
-import WrapPvi from './WrapImages';
+import WrapImages from './WrapImages';
 
 function DetailWrap({ product }) {
   return (
     <Container>
-      <WrapPvi product={product}></WrapPvi>
-      <WrapDetail></WrapDetail>
+      <WrapImages product={product}></WrapImages>
+      <WrapDetail product={product}></WrapDetail>
     </Container>
   );
 }

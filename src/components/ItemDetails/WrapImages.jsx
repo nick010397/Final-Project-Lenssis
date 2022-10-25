@@ -59,7 +59,7 @@ function WrapImages({ product }) {
 export default WrapImages;
 
 const Container = styled.div`
-  width: 40%;
+  width: 30%;
   height: 900px;
   float: left;
 `;
@@ -81,8 +81,8 @@ const StyledLensImg = styled.img`
   height: 550px;
 `;
 const StyledMiniImg = styled.img`
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   margin-top: 10px;
   border: 1px solid black;
 `;

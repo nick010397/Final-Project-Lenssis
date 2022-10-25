@@ -2,7 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-function DetailSection() {
+function DetailSection({ product }) {
+  function handleClick() {
+    alert('준비중입니다.');
+  }
+  console.log(product);
   return (
     <Container>
       {/* <Btn>제품 상세설명</Btn>
@@ -14,9 +18,15 @@ function DetailSection() {
           </NavLink>
         </GnbItem>
         <GnbItem>
-          <NavLink exact to="/itemList" activeClassName="active">
+          {/* <NavLink
+            // exact
+            // to="/itemList"
+            // activeClassName="active"
+            onClick={handleClick}
+          >
             리뷰(100)
-          </NavLink>
+          </NavLink> */}
+          <span onClick={handleClick}>리뷰(100)</span>
         </GnbItem>
       </GnbLists>
       <hr
@@ -147,14 +157,9 @@ function DetailSection() {
         </tr>
       </table>
 
-      <img
-        src="https://lenssis.jp/data/editor/2112/dc0adf8c18404aa304f7803e94ce8ab6_1640067355_7707.jpg"
-        alt=""
-      />
-      <img
-        src="https://lenssis.jp/data/editor/2103/b18665a8c73e3fb369ef3eedf797e6ad_1617166449_9869.jpg"
-        alt=""
-      />
+      <img src={product.image1} alt="" />
+      <img src={product.description} alt="" />
+      <div>{product.description}</div>
     </Container>
   );
 }
@@ -166,14 +171,7 @@ const Container = styled.div`
   height: auto;
   text-align: center;
 `;
-// const Btn = styled.button`
-//   width: 170px;
-//   height: 38px;
-//   background-color: white;
-//   border: none;
-//   borderbotttom: soild 1px blue;
-//   cursor: pointer;
-// `;
+
 const GnbLists = styled.ul`
   list-style: none;
   height: 60px;
@@ -199,5 +197,8 @@ const GnbItem = styled.li`
   }
   .active {
     border-bottom: solid 3px black;
+  }
+  span {
+    cursor: pointer;
   }
 `;
