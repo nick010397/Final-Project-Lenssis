@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 // import required modules
 import { Pagination } from 'swiper';
-import { EventSlideList } from '../../static/img/data/EventSlide';
+import { EventSlideList } from '../../static/data/EventSlide';
 export default function EventSlide() {
   return (
     <Container>

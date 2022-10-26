@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import CategoryBtn from '../components/common/CategoryBtn';
-import LensItem from '../components/common/LensItem';
 import Event from '../components/main/Event';
 import notice from '../static/img/notice.png';
 import TitleName from '../components/main/TitleName';
@@ -10,12 +9,17 @@ import MainSlide from '../components/main/MainSlide';
 import PickupItem from '../components/itemList/PickupItem';
 import NewItem from '../components/itemList/NewItem';
 import Notice from '../components/main/Notice';
+import Item from '../components/itemList/Item';
+import { useProducts } from '../api/testApi';
+import Tag from '../components/main/Tag';
 
 function Main() {
   const { data, isLoading } = useGetProducts();
+  // const { data, isLoading } = useProducts('price_asc');
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
+  console.log(data);
 
   return (
     <div>
@@ -33,24 +37,46 @@ function Main() {
         </Center>
       </div>
       {/* 메뉴필터 */}
-      <FilterMenu />
-      <MenuHr />
+      <div>
+        <FilterMenu />
+        <MenuHr />
+      </div>
       {/* 렌즈 아이템 */}
       <div>
-        <LensItem products={data.data.data} />
+        <AllLens>
+          {data.data.data
+            ?.map((product, index) => {
+              return (
+                <>
+                  <TagStyle>
+                    <Tag index={product.index} />
+                  </TagStyle>
+                  <Item {...product} />
+                </>
+              );
+            })
+            .slice(0, 15)}
+        </AllLens>
       </div>
       <CategoryBtn more>もっと見る</CategoryBtn>
       {/* 추천 아이템 */}
       <TitleName title="PICKUP ITEM" subtitle="スタッフおすすめ" />
-      <Center>
-        <PickupItem products={data.data.data} />
-      </Center>
+      <PickLens>
+        {data.data.data
+          ?.filter((product, index) => product.colorName === 'ブラウン')
+          .map((product) => <PickupItem {...product} />)
+          .splice(0, 8)}
+      </PickLens>
       <CategoryBtn more>もっと見る</CategoryBtn>
       {/* 신상품 */}
       <TitleName title="NEW ARRIVAL" subtitle="新商品" />
-      <Center>
-        <NewItem products={data.data.data} />
-      </Center>
+      <AllLens>
+        {data.data.data
+          ?.filter((product) => product.sellPrice <= 990)
+          .map((product) => (
+            <Item {...product} />
+          ))}
+      </AllLens>
       <CategoryBtn more>もっと見る</CategoryBtn>
       {/* 이벤트 배너 */}
       <Event />
@@ -76,11 +102,10 @@ const Center = styled.div`
 
 const MenuHr = styled.hr`
   margin-top: -4px;
-  // width:1275px;
-  margin-right: 8vw;
-  margin-left: 8vw;
-  border: 0px;
-  border-bottom: 4px solid #d3d6db;
+  margin-right: 10.5vw;
+  margin-left: 10.5vw;
+  border: none;
+  border-top: 4px solid #d3d6db;
 `;
 
 const NoticImg = styled.div`
@@ -88,4 +113,23 @@ const NoticImg = styled.div`
   margin-bottom: 53px;
 `;
 
+const AllLens = styled.div`
+  margin: 0 8vw 16px 8vw;
+  display: grid;
+  grid-template-columns: repeat(5, 220px);
+  grid-gap: 25px;
+  justify-content: center;
+`;
+
+const PickLens = styled.div`
+  margin: 0 8vw 16px 8vw;
+  display: grid;
+  grid-template-columns: repeat(4, 282px);
+  gap: 24px;
+  justify-content: center;
+`;
+
+const TagStyle = styled.div`
+  position: absolute;
+`;
 export default Main;

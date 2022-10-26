@@ -1,6 +1,6 @@
-import event1 from '../../img/event1.png';
-import event2 from '../../img/event2.png';
-import event3 from '../../img/event3.png';
+import event1 from '../img/event1.png';
+import event2 from '../img/event2.png';
+import event3 from '../img/event3.png';
 
 export const EventSlideList = [
   {
