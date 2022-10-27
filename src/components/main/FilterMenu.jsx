@@ -5,8 +5,12 @@ function FilterMenu() {
   return (
     <CenterDiv>
       {MenuItem.map((data) => (
-        <StyledLink to={data.url} onClick={(e) => e.preventDefault()}>
-          <CategroyDiv className="first_Menu" key={data.title}>
+        <StyledLink
+          to={data.url}
+          key={data.title}
+          onClick={(e) => e.preventDefault()}
+        >
+          <CategroyDiv className="first_Menu">
             <MenuContent>{data.title}</MenuContent>
           </CategroyDiv>
         </StyledLink>

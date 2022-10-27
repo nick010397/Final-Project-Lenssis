@@ -5,12 +5,18 @@ import ShoppingBasketModal from '../../modals/ShoppingBasketModal';
 
 function WrapDetail({ product, handleClick, Cart, setCart }) {
   const [openModal, setOpenModal] = useState(false);
+  const [useDate, setuseDate] = useState();
+
+  window.localStorage.setItem('CartItem', useDate);
+  console.log(useDate);
+
   const handleCart = () => {
     const CartItem = {
       id: product.id,
       image: product.image1,
     };
   };
+
   return (
     <Container>
       <form>
@@ -44,7 +50,10 @@ function WrapDetail({ product, handleClick, Cart, setCart }) {
         <div>
           <Commonspan>
             사용 기간&nbsp;&nbsp;&nbsp;
-            <Graphicdiameterbtn type="button">
+            <Graphicdiameterbtn
+              type="button"
+              onClick={(e) => setuseDate(e.target.innerText)}
+            >
               {product.spec.duration}
             </Graphicdiameterbtn>
           </Commonspan>
