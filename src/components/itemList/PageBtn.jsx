@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-export default function StyledPagesBtn() {
-  const pages = 10;
+export default function PageBtn() {
+  const pages = 3;
   const numberOfPages = [];
   for (let i = 1; i <= pages; i++) {
     numberOfPages.push(i);

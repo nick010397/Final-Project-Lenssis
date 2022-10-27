@@ -13,3 +13,11 @@ export const useGetProducts = () =>
       console.log(e.message);
     },
   });
+
+const getProductList = (page) => () =>
+  axios.get(`api/v1/product?page=${page}&size = 10`, {
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+export const useGetProductList = (page) =>
+  useQuery('productList', getProductList(page));

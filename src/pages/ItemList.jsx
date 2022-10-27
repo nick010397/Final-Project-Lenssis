@@ -4,7 +4,7 @@ import Button from '../components/common/CategoryBtn';
 import LensItem from '../components/common/LensItem';
 import { useGetProducts } from '../api/productApi';
 import FilterMenu from '../components/main/FilterMenu';
-import StyledPagesBtn from '../components/itemList/StyledPagesBtn';
+import StyledPagesBtn from '../components/itemList/PageBtn';
 
 export default function ItemList() {
   const { data, isLoading } = useGetProducts();
