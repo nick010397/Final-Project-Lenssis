@@ -9,7 +9,6 @@ import MainSlide from '../components/main/MainSlide';
 import PickupItem from '../components/itemList/PickupItem';
 import Notice from '../components/main/Notice';
 import Item from '../components/itemList/Item';
-import Tag from '../components/main/Tag';
 import { Link } from 'react-router-dom';
 
 function Main() {
@@ -40,33 +39,19 @@ function Main() {
       </div>
       {/* 렌즈 아이템 */}
 
-      <Cursor>
-        <Index>
-          <Rel>
-            <Grid>
-              {data.data.data
-                .map((product, index) => (
-                  <Tag key={product.id} product={product} index={index + 1} />
-                ))
-                .splice(0, 15)}
-            </Grid>
-          </Rel>
-        </Index>
-
-        <AllLens>
-          {data.data.data
-            ?.map((product, index) => {
-              return (
-                <Item
-                  key={product.id}
-                  {...product}
-                  onClick={(e) => e.preventDefault()}
-                />
-              );
-            })
-            .splice(0, 15)}
-        </AllLens>
-      </Cursor>
+      <AllLens>
+        {data.data.data
+          ?.map((product, index) => {
+            return (
+              <Item
+                key={product.id}
+                {...product}
+                onClick={(e) => e.preventDefault()}
+              />
+            );
+          })
+          .splice(0, 15)}
+      </AllLens>
       <StyledLink to="/itemlist">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
       </StyledLink>
@@ -154,31 +139,6 @@ const PickLens = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 282px);
   gap: 24px;
-  justify-content: center;
-`;
-const Cursor = styled.div`
-  cursor: pointer;
-  point-events: none;
-`;
-const Index = styled.div`
-  display: inline-block;
-  position: absolute;
-  z-index: 1;
-`;
-
-const Rel = styled.div`
-  position: relative;
-  float: left;
-  width: 100%;
-  margin-top: 2.7%;
-`;
-const Grid = styled.div`
-  position: relative;
-  margin: 0 10.4vw 16px 10.4vw;
-  display: grid;
-  grid-template-columns: repeat(5, 220px);
-  grid-column-gap: 25px;
-  grid-row-gap: 390px;
   justify-content: center;
 `;
 
