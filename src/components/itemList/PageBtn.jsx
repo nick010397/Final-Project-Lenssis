@@ -1,28 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
 
-export default function PageBtn({ currentPage }) {
-  const pages = [1, 2, 3];
-  const navigate = useNavigate();
+export default function PageBtn() {
+  const pages = 3;
+  const numberOfPages = [];
+  for (let i = 1; i <= pages; i++) {
+    numberOfPages.push(i);
+  }
+
+  const [currentButton, setCurrentButton] = useState(1);
+  const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
+
+  useEffect(() => {
+    let tempNumberOfPages = [...numberOfPages];
+    if (currentButton >= 1 && currentButton <= 3) {
+      tempNumberOfPages = [1, 2, 3, '...', numberOfPages.length];
+    } else if (currentButton === 3) {
+      const sliced = numberOfPages.slice(0, 5);
+      tempNumberOfPages = [...sliced, '...', numberOfPages.length];
+    }
+    setArrOfCurrButtons(tempNumberOfPages);
+  }, [currentButton]);
 
   return (
     <>
-      {pages.map((page, index) => {
+      {arrOfCurrButtons.map((page, index) => {
         return (
-          <Link to={`/itemlist/${page}`} key={index}>
-            <StyledPageBtn className={currentPage === page && 'active'}>
-              {page}
-            </StyledPageBtn>
-          </Link>
+          <StyledPageBtn
+            key={index}
+            className={currentButton === page && 'active'}
+            onClick={() => setCurrentButton(page)}
+          >
+            {page}
+          </StyledPageBtn>
         );
       })}
       <StyledPagenationBtn
-        onClick={() => {
-          if (currentPage < pages.length) {
-            navigate(`/itemlist/${Number(currentPage) + 1}`);
-          }
-        }}
+        onClick={() =>
+          setCurrentButton((prev) =>
+            prev === numberOfPages.length + 1 ? prev : prev + 1
+          )
+        }
       >
         ▶
       </StyledPagenationBtn>
