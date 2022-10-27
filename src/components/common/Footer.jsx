@@ -126,7 +126,7 @@ const StyledDiv = styled.div`
   color: #7b8392;
 `;
 const StyledLogo = styled.img`
-  margin: 40px;
+  margin: 100px 40px 40px 40px;
   width: 92.18px;
   height: 20px;
 `;
