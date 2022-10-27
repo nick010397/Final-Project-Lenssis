@@ -7,22 +7,19 @@ import FilterMenu from '../components/main/FilterMenu';
 import { useGetProducts } from '../api/productApi';
 import MainSlide from '../components/main/MainSlide';
 import PickupItem from '../components/itemList/PickupItem';
-import NewItem from '../components/itemList/NewItem';
 import Notice from '../components/main/Notice';
 import Item from '../components/itemList/Item';
-import { useProducts } from '../api/testApi';
 import Tag from '../components/main/Tag';
+import { Link } from 'react-router-dom';
 
 function Main() {
   const { data, isLoading } = useGetProducts();
-  // const { data, isLoading } = useProducts('price_asc');
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
-  console.log(data);
 
   return (
-    <div>
+    <Container>
       {/* 메인 슬라이드 */}
       <div>
         <MainSlide />
@@ -42,23 +39,25 @@ function Main() {
         <MenuHr />
       </div>
       {/* 렌즈 아이템 */}
-      <div>
-        <AllLens>
+
+      <Index>
+        <Grid>
           {data.data.data
-            ?.map((product, index) => {
-              return (
-                <>
-                  <TagStyle>
-                    <Tag index={product.index} />
-                  </TagStyle>
-                  <Item {...product} />
-                </>
-              );
-            })
-            .slice(0, 15)}
-        </AllLens>
-      </div>
-      <CategoryBtn more>もっと見る</CategoryBtn>
+            .map((product, index) => <Tag index={index + 1} />)
+            .splice(0, 15)}
+        </Grid>
+      </Index>
+
+      <AllLens>
+        {data.data.data
+          ?.map((product, index) => {
+            return <Item {...product} />;
+          })
+          .slice(0, 15)}
+      </AllLens>
+      <StyledLink to="/itemlist">
+        <CategoryBtn className="more">もっと見る</CategoryBtn>
+      </StyledLink>
       {/* 추천 아이템 */}
       <TitleName title="PICKUP ITEM" subtitle="スタッフおすすめ" />
       <PickLens>
@@ -67,7 +66,9 @@ function Main() {
           .map((product) => <PickupItem {...product} />)
           .splice(0, 8)}
       </PickLens>
-      <CategoryBtn more>もっと見る</CategoryBtn>
+      <StyledLink to="/itemlist">
+        <CategoryBtn className="more">もっと見る</CategoryBtn>
+      </StyledLink>
       {/* 신상품 */}
       <TitleName title="NEW ARRIVAL" subtitle="新商品" />
       <AllLens>
@@ -77,7 +78,9 @@ function Main() {
             <Item {...product} />
           ))}
       </AllLens>
-      <CategoryBtn more>もっと見る</CategoryBtn>
+      <StyledLink to="/itemlist">
+        <CategoryBtn className="more">もっと見る</CategoryBtn>
+      </StyledLink>
       {/* 이벤트 배너 */}
       <Event />
       {/* 공지 */}
@@ -89,11 +92,22 @@ function Main() {
       <Notice />
       <Notice />
       <Notice />
-      <CategoryBtn end>もっと見る</CategoryBtn>
-    </div>
+      <StyledLink to="/">
+        <CategoryBtn className="end">もっと見る</CategoryBtn>
+      </StyledLink>
+    </Container>
   );
 }
-
+const Container = styled.div`
+  .more {
+    margin-top: 96px;
+    margin-bottom: 225px;
+  }
+  .end {
+    margin-top: 85px;
+    margin-bottom: 165px;
+  }
+`;
 const Center = styled.div`
   display: flex;
   flex-direction: row;
@@ -129,7 +143,22 @@ const PickLens = styled.div`
   justify-content: center;
 `;
 
-const TagStyle = styled.div`
+const Index = styled.div`
   position: absolute;
+  margin-top: 40px;
+  z-index: 8;
+`;
+
+const Grid = styled.div`
+  margin: 0 10.4vw 16px 10.4vw;
+  display: grid;
+  grid-template-columns: repeat(5, 220px);
+  grid-column-gap: 25px;
+  grid-row-gap: 390px;
+  justify-content: center;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 export default Main;
