@@ -5,11 +5,11 @@ function FilterMenu() {
   return (
     <CenterDiv>
       {MenuItem.map((data) => (
-        <CategroyDiv key={data.title}>
-          <StyledLink to={data.url}>
+        <StyledLink to={data.url} onClick={(e) => e.preventDefault()}>
+          <CategroyDiv className="first_Menu" key={data.title}>
             <MenuContent>{data.title}</MenuContent>
-          </StyledLink>
-        </CategroyDiv>
+          </CategroyDiv>
+        </StyledLink>
       ))}
     </CenterDiv>
   );
@@ -42,6 +42,9 @@ const CenterDiv = styled.div`
   margin-left: 10.5vw;
   margin-right: 10.5vw;
   margin-top: 80px;
+  .first_Menu {
+    padding-left: 18px;
+  }
 `;
 
 const MenuContent = styled.p`

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cart from '../../static/img/Icon_Cart.png';
 import Logo from '../../static/img/Lensis_Logo.png';
 import mypage from '../../static/img/Icon_MyPage.png';
@@ -52,21 +52,31 @@ export default function NavBar() {
         </StyledIconsDiv>
       </StyledNavItem>
       <StyledMenuContainerUl>
-        <li>
-          <FirstBtn>カラコン</FirstBtn>
-        </li>
-        <li>
-          <StyledMenuBtn>新着順</StyledMenuBtn>
-        </li>
-        <li>
-          <StyledMenuBtn>パーソナル診断</StyledMenuBtn>
-        </li>
-        <li>
-          <StyledMenuBtn>人生カラコン探し</StyledMenuBtn>
-        </li>
-        <li>
-          <StyledMenuBtn>私にぴったりのレンズを探す</StyledMenuBtn>
-        </li>
+        <Link to="/itemlist/1">
+          <li>
+            <FirstBtn>カラコン</FirstBtn>
+          </li>
+        </Link>
+        <Link to="/itemlist/1">
+          <li>
+            <StyledMenuBtn>新着順</StyledMenuBtn>
+          </li>
+        </Link>
+        <Link to="/itemlist/1">
+          <li>
+            <StyledMenuBtn>パーソナル診断</StyledMenuBtn>
+          </li>
+        </Link>
+        <Link to="/itemlist/1">
+          <li>
+            <StyledMenuBtn>人生カラコン探し</StyledMenuBtn>
+          </li>
+        </Link>
+        <Link to="/itemlist/1">
+          <li>
+            <StyledMenuBtn>私にぴったりのレンズを探す</StyledMenuBtn>
+          </li>
+        </Link>
         <li>
           <StyledBarDiv></StyledBarDiv>
         </li>
