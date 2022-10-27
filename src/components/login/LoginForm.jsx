@@ -3,19 +3,19 @@ import styled from 'styled-components';
 import Button from './Button';
 import LoginInputField from './LoginInputField';
 
-export default function LoginForm({ onSubmit }) {
+export default function LoginForm({ onSubmit, setLoginInfor }) {
   return (
-    <form method="post" onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
       <InputBox>
         <label>아이디</label>
-        <LoginInputField name={'text'} />
+        <LoginInputField name="loginId" setLoginInfor={setLoginInfor} />
       </InputBox>
       <InputBox>
         <label>비밀번호</label>
-        <LoginInputField name={'password'} />
+        <LoginInputField name="password" setLoginInfor={setLoginInfor} />
       </InputBox>
 
-      <Button infor={{ text: '로그인', disabled: false }} />
+      <Button text="로그인" onClick={onSubmit} />
     </form>
   );
 }

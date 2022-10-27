@@ -1,44 +1,31 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setLoginInfor } from '../../store/loginInfor';
 import styled from 'styled-components';
 import deleteIcon from '../../static/img/VectordeleteIcon.png';
 
-export default function LoginInputField({ name }) {
+export default function LoginInputField({ name, setLoginInfor }) {
   const [value, setValue] = useState('');
-  const [isFocused, setIsFocused] = useState(false);
-  const dispatch = useDispatch();
 
   return (
     <div>
       <InputField
-        type={name}
+        type={name === 'loginId' ? 'text' : 'password'}
         value={value}
         onChange={(e) => {
-          setValue(e.target.value.trim());
-          dispatch(
-            setLoginInfor({
-              name: name === 'text' ? 'loginId' : 'password',
-              value: e.target.value.trim(),
-            })
-          );
-        }}
-        onFocus={() => {
-          setIsFocused(true);
-        }}
-        onBlur={() => {
-          setIsFocused(false);
+          setValue(e.target.value);
+          setLoginInfor((infor) => ({ ...infor, [name]: e.target.value }));
         }}
       />
-      <DeleteBtn
-        onClick={() => {
-          setValue('');
-        }}
-        style={{
-          display: isFocused && value ? 'inline' : 'none',
-          transform: name === 'password' ? 'translate(-50px, 15px)' : '',
-        }}
-      />
+      {value && (
+        <DeleteBtn
+          onClick={() => {
+            setValue('');
+            setLoginInfor((infor) => ({ ...infor, [name]: '' }));
+          }}
+          style={{
+            transform: name === 'password' ? 'translate(-50px, 15px)' : '',
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import NavBar from './components/common/NavBar';
 import Footer from './components/common/Footer';
+import MyPage from './pages/MyPage';
 import Scroll from './components/common/Scroll';
 
 const queryClient = new QueryClient();
@@ -25,18 +26,19 @@ function App() {
       <Scroll />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
+          <NavBar />
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/itemdetail/:id" element={<ItemDetail />} />
-            <Route path="/shoppingbasket" element={<ShoppingBasket />} />
+            <Route path="/myPage" element={<MyPage />} />
+            <Route path="/ItemDetail/:id" element={<ItemDetail />} />
             <Route path="/itemList" element={<ItemList />} />
           </Routes>
+          <Footer />
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </Provider>
-      <Footer />
     </BrowserRouter>
   );
 }

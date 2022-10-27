@@ -15,7 +15,7 @@ export default function Footer() {
         <StyledLogo src={Logo} alt="렌시스 로고" />
         <StyledFooterContainer>
           <div>
-            <StyledP>
+            <div>
               <p>
                 レンシスは #私らしさから 出発しました。
                 <br />
@@ -30,12 +30,12 @@ export default function Footer() {
                 <br />
                 #JUST_BE_YOURSELF
               </p>
-            </StyledP>
+            </div>
           </div>
 
           <div>
             <StyledTitleDiv>CONTACT</StyledTitleDiv>
-            <p>주식회사VIVA</p>
+            <div>주식회사VIVA</div>
             <ul>
               <li>
                 <StyledItem>

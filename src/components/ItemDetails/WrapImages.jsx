@@ -70,12 +70,11 @@ const Picture = styled.div`
   text-align: center;
 `;
 const MiniPicture = styled.div`
-width:600px  
-height: auto;
-cursor: pointer;
-display: flex;
-justify-content: space-between;
-
+  width: 600px;
+  height: auto;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 `;
 const StyledLensImg = styled.img`
   width: 550px;
