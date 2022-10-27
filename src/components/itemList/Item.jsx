@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Star from '../../static/img/Star.png';
 
 function Item(product) {
@@ -29,7 +29,7 @@ function Item(product) {
   );
 }
 
-const StyledLink = styled(NavLink)`
+const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 

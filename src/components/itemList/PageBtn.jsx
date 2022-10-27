@@ -44,7 +44,6 @@ const StyledPageBtn = styled.button`
   letter-spacing: 0.15px;
   color: #23314a;
   border: 0;
-
   &:hover {
     background: #23314a;
     color: #ffffff;
