@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import WrapDetail from './WrapDetail';
 import WrapImages from './WrapImages';
 
-function DetailWrap({ product }) {
+function DetailWrap({ product, handleClick }) {
   return (
     <Container>
       <WrapImages product={product}></WrapImages>
-      <WrapDetail product={product}></WrapDetail>
+      <WrapDetail product={product} handleClick={handleClick}></WrapDetail>
     </Container>
   );
 }

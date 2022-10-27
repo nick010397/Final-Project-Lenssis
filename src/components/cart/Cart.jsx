@@ -1,8 +1,12 @@
-import styles from './Cart.Module.css';
+import styles from './Cart.module.css';
+import styled from 'styled-components';
+import Delete from '../../static/img/icon-delete.svg';
+import Plus from '../../static/img/icon-plus-line.svg';
+import Minus from '../../static/img/icon-minus-line.svg';
 
 export const Cart = () => {
   return (
-    <>
+    <Container>
       <header className={styles.header}>
         <h1>장바구니</h1>
       </header>
@@ -33,20 +37,12 @@ export const Cart = () => {
         </div>
 
         <div className={styles.cart_product_count}>
-          <img
-            className={styles.minus}
-            src="/static/img/icon-minus-line.svg"
-            alt="minus"
-          />
+          <img className={styles.minus} src={Minus} alt="minus" />
 
           <div className={styles.count}>
             <span>5</span>
           </div>
-          <img
-            className={styles.plus}
-            src="/static/img/icon-plus-line.svg"
-            alt="plus"
-          />
+          <img className={styles.plus} src={Plus} alt="plus" />
         </div>
 
         <div className={styles.cart_product_price}>
@@ -55,7 +51,7 @@ export const Cart = () => {
         </div>
 
         <div className={styles.product_remove}>
-          <img src="/static/img/icon-delete.svg" alt="delete" />
+          <img src={Delete} alt="delete" />
         </div>
       </section>
       <div className={styles.total}>
@@ -64,14 +60,14 @@ export const Cart = () => {
           <p className={styles.cart_product_price}>0</p>
         </div>
         <div className={styles.pay_minus}>
-          <img src="/static/img/icon-minus-line.svg" alt="minus" />
+          <img src={Minus} alt="minus" />
         </div>
         <div className={styles.sale}>
           <p className={styles.cart_product_sale}>상품 할인</p>
           <p className={styles.cart_product_sale_price}>0원</p>
         </div>
         <div className={styles.pay_plus}>
-          <img src="/static/img/icon-plus-line.svg" alt="plus" />
+          <img src={Plus} alt="plus" />
         </div>
         <div className={styles.delivery}>
           <p className={styles.cart_product_delivery}>배송비</p>
@@ -83,6 +79,10 @@ export const Cart = () => {
           <p className={styles.cart_prouct_payment_price}>0</p>
         </div>
       </div>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  height: 800px;
+`;

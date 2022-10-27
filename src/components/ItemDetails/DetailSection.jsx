@@ -2,11 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-function DetailSection({ product }) {
-  function handleClick() {
-    alert('준비중입니다.');
-  }
-  console.log(product);
+function DetailSection({ product, handleClick }) {
   return (
     <Container>
       {/* <Btn>제품 상세설명</Btn>
@@ -157,9 +153,14 @@ function DetailSection({ product }) {
         </tr>
       </table>
 
-      <img src={product.image1} alt="" />
-      <img src={product.description} alt="" />
-      <div>{product.description}</div>
+      <img
+        src="https://lenssis.jp/data/editor/2112/dc0adf8c18404aa304f7803e94ce8ab6_1640067355_7707.jpg"
+        alt=""
+      />
+      <img
+        src="https://lenssis.jp/data/editor/2103/b18665a8c73e3fb369ef3eedf797e6ad_1617166449_9869.jpg"
+        alt=""
+      />
     </Container>
   );
 }

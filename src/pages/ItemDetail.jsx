@@ -8,6 +8,9 @@ import { useProductDetail } from '../api/productdetailApi';
 function ItemDetail() {
   const { id } = useParams();
   const { data, isLoading } = useProductDetail(id);
+  function handleClick() {
+    alert('준비중입니다.');
+  }
 
   if (isLoading) {
     return <div>loading....</div>;
@@ -21,15 +24,15 @@ function ItemDetail() {
             <Link to={'/'} style={{ textDecoration: 'none' }}>
               홈
             </Link>
-            &nbsp;&nbsp; > 제품 상세 페이지
+            &nbsp;&nbsp; {'>'} 제품 상세 페이지
           </span>
         </Itemdetaildiv>
 
-        <DetailWrap product={data.data.data} />
+        <DetailWrap product={data.data.data} handleClick={handleClick} />
 
-        <Wrapslide />
+        <Wrapslide handleClick={handleClick} />
 
-        <DetailSection product={data.data.data} />
+        <DetailSection product={data.data.data} handleClick={handleClick} />
       </Container>
     </div>
   );

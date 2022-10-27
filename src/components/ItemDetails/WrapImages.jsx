@@ -75,6 +75,7 @@ height: auto;
 cursor: pointer;
 display: flex;
 justify-content: space-between;
+
 `;
 const StyledLensImg = styled.img`
   width: 550px;
@@ -85,4 +86,8 @@ const StyledMiniImg = styled.img`
   height: 100px;
   margin-top: 10px;
   border: 1px solid black;
+  transition: 0.3s;
+  :hover {
+    opacity: 0.5;
+  }
 `;

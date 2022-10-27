@@ -8,11 +8,15 @@ function ShoppingBasketModal({ open, onClose }) {
     <Overlay>
       <Container>
         <Content>
-          <p>상품을 장바구니에 추가하셨습니다♥</p>
+          <div>
+            <p>상품을 장바구니에 추가하셨습니다♥</p>
+          </div>
+          <br />
           <Btndiv>
             <div>
               <button onClick={onClose}>계속 쇼핑하기</button>
             </div>
+            &nbsp;&nbsp;
             <div>
               <Link to={'/shoppingbasket/'}>
                 <button>장바구니 보러가기</button>

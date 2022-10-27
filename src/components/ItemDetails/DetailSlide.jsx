@@ -10,7 +10,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-function Wrapslide() {
+function Wrapslide({ handleClick }) {
   return (
     <Container>
       <Pdiv>
@@ -37,31 +37,31 @@ function Wrapslide() {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide>
+        <SwiperSlide onClick={handleClick}>
           <SlideLensImg img src={itemdetailslide1} alt="1번쨰"></SlideLensImg>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide onClick={handleClick}>
           <SlideLensImg img src={itemdetailslide2} alt="2번쨰"></SlideLensImg>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide onClick={handleClick}>
           <SlideLensImg img src={itemdetailslide3} alt="3번쨰"></SlideLensImg>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide onClick={handleClick}>
           <SlideLensImg img src={itemdetailslide4} alt="4번쨰"></SlideLensImg>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide onClick={handleClick}>
           <SlideLensImg
             src="https://lenssis.jp/data/item/8729694823/7JeQ7J2866aw6re466CI7J20_67Kg7Iqk7Yq466qo64247IKs7KeE.jpg"
             alt=""
           ></SlideLensImg>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide onClick={handleClick}>
           <SlideLensImg
             src="https://lenssis.jp/data/item/1660696120/4YSJ4YWz4YSG4YWu4YSD4YW14YSA4YWz4YSF4YWm4YSL4YW1_4YSH4YWm4YSJ4YWz4YSQ4YWz4YSG4YWp4YSD4YWm4Yav4YSJ4YWh4YSM4YW14Yar.jpg"
             alt=""
           ></SlideLensImg>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide onClick={handleClick}>
           <SlideLensImg
             src="https://lenssis.jp/data/item/1650959574/7L2U7KeA6re466CI7J20_66qo64247Lu3.jpg"
             alt=""
