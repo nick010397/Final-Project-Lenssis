@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-function DetailSection() {
+function DetailSection({ product, handleClick }) {
   return (
     <Container>
       {/* <Btn>제품 상세설명</Btn>
@@ -14,9 +14,15 @@ function DetailSection() {
           </NavLink>
         </GnbItem>
         <GnbItem>
-          <NavLink exact to="/itemList" activeClassName="active">
+          {/* <NavLink
+            // exact
+            // to="/itemList"
+            // activeClassName="active"
+            onClick={handleClick}
+          >
             리뷰(100)
-          </NavLink>
+          </NavLink> */}
+          <span onClick={handleClick}>리뷰(100)</span>
         </GnbItem>
       </GnbLists>
       <hr
@@ -46,43 +52,103 @@ function DetailSection() {
           </td>
         </tr>
         <tr>
-          <td>지름</td>
+          <td
+            style={{
+              backgroundColor: '#F5F6F8',
+            }}
+          >
+            지름
+          </td>
           <td>14.2mm</td>
         </tr>
         <tr>
-          <td>그래픽 지름</td>
+          <td
+            style={{
+              backgroundColor: '#F5F6F8',
+            }}
+          >
+            그래픽 지름
+          </td>
           <td>13.2mm</td>
         </tr>
         <tr>
-          <td>베이스커브</td>
+          <td
+            style={{
+              backgroundColor: '#F5F6F8',
+            }}
+          >
+            베이스커브
+          </td>
           <td>8.7</td>
         </tr>
         <tr>
-          <td>판매도수</td>
+          <td
+            style={{
+              backgroundColor: '#F5F6F8',
+            }}
+          >
+            판매도수
+          </td>
           <td>0.00~8.00</td>
         </tr>
         <tr>
-          <td>사용기간</td>
+          <td
+            style={{
+              backgroundColor: '#F5F6F8',
+            }}
+          >
+            사용기간
+          </td>
           <td>1개월용</td>
         </tr>
         <tr>
-          <td>수분량</td>
+          <td
+            style={{
+              backgroundColor: '#F5F6F8',
+            }}
+          >
+            수분량
+          </td>
           <td>45%</td>
         </tr>
         <tr>
-          <td>소재</td>
+          <td
+            style={{
+              backgroundColor: '#F5F6F8',
+            }}
+          >
+            소재
+          </td>
           <td>실리콘 하이드로겔(한상자당 2장)</td>
         </tr>
         <tr>
-          <td>포인트</td>
+          <td
+            style={{
+              backgroundColor: '#F5F6F8',
+            }}
+          >
+            포인트
+          </td>
           <td>구매금액의 1%</td>
         </tr>
         <tr>
-          <td>우송료</td>
+          <td
+            style={{
+              backgroundColor: '#F5F6F8',
+            }}
+          >
+            우송료
+          </td>
           <td>500엔(4500엔 이상 무료배송)</td>
         </tr>
         <tr>
-          <td>배송 안내</td>
+          <td
+            style={{
+              backgroundColor: '#F5F6F8',
+            }}
+          >
+            배송 안내
+          </td>
           <td>영업일 기준 5~7일 이내 배송</td>
         </tr>
       </table>
@@ -106,14 +172,7 @@ const Container = styled.div`
   height: auto;
   text-align: center;
 `;
-// const Btn = styled.button`
-//   width: 170px;
-//   height: 38px;
-//   background-color: white;
-//   border: none;
-//   borderbotttom: soild 1px blue;
-//   cursor: pointer;
-// `;
+
 const GnbLists = styled.ul`
   list-style: none;
   height: 60px;
@@ -139,5 +198,8 @@ const GnbItem = styled.li`
   }
   .active {
     border-bottom: solid 3px black;
+  }
+  span {
+    cursor: pointer;
   }
 `;
