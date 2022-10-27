@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router';
 import { validation } from '../utils/validation';
 import { useDispatch } from 'react-redux';
 import { setLogIn } from '../store/loginInfor';
+import { useEffect } from 'react';
 
 export default function Login() {
   const [loginInfor, setLoginInfor] = useState({ loginId: '', password: '' });
@@ -35,12 +36,19 @@ export default function Login() {
         setShowPopup(true);
       } else {
         console.log(data);
-        //전역상태 로그인으로 바꾸는 거
         dispatch(setLogIn({ login: true }));
-        //navigate('/');
+        localStorage.setItem('Login', 'true');
+        //-1 쓰고 싶은데 페이지 새로 고침 되서 로그인정보 날라감.
+        navigate('/');
       }
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('Login')) {
+      navigate('/myPage');
+    }
+  }, []);
 
   return (
     <Container>
