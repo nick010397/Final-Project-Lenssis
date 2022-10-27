@@ -4,7 +4,6 @@ import Button from '../components/common/CategoryBtn';
 import LensItem from '../components/common/LensItem';
 import { useGetProductList } from '../api/productApi';
 import FilterMenu from '../components/main/FilterMenu';
-import StyledPagesBtn from '../components/itemList/PageBtn';
 import { useParams } from 'react-router';
 import PageBtn from '../components/itemList/PageBtn';
 

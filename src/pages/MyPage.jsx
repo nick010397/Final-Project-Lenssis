@@ -33,30 +33,31 @@ export default function MyPage() {
       ) : status === 'error' ? (
         <div>{error.message}</div>
       ) : (
-        <PageContent>
-          <div>닉네임: {data.data.data.username}</div>
-          <div>
-            성별:{' '}
-            {data.data.data.gender === 'X'
-              ? 'Not chosen'
-              : data.data.data.gender === 'F'
-              ? 'Female'
-              : 'Male'}
-          </div>
-          <div>생일: {data.data.data.birthday}</div>
-          <div>전화번호: {data.data.data.phone}</div>
-          <div>가입날짜: {data.data.data.joinedAt}</div>
-          <Buttons>
-            <Button
-              text="로그아웃"
-              onClick={() => {
-                const { data } = refetch();
-                console.log(data);
-              }}
-            ></Button>
-            <Button text="회원 정보 수정"></Button>
-          </Buttons>
-        </PageContent>
+        '로그인 되셨습니다.'
+        // <PageContent>
+        //   <div>닉네임: {data.data.data.username}</div>
+        //   <div>
+        //     성별:{' '}
+        //     {data.data.data.gender === 'X'
+        //       ? 'Not chosen'
+        //       : data.data.data.gender === 'F'
+        //       ? 'Female'
+        //       : 'Male'}
+        //   </div>
+        //   <div>생일: {data.data.data.birthday}</div>
+        //   <div>전화번호: {data.data.data.phone}</div>
+        //   <div>가입날짜: {data.data.data.joinedAt}</div>
+        //   <Buttons>
+        //     <Button
+        //       text="로그아웃"
+        //       onClick={() => {
+        //         const { data } = refetch();
+        //         console.log(data);
+        //       }}
+        //     ></Button>
+        //     <Button text="회원 정보 수정"></Button>
+        //   </Buttons>
+        // </PageContent>
       )}
     </PageWrapper>
   );
