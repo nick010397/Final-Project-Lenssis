@@ -5,8 +5,6 @@ import ShoppingBasketModal from '../../modals/ShoppingBasketModal';
 
 function WrapDetail({ product, handleClick }) {
   const [openModal, setOpenModal] = useState(false);
-<<<<<<< HEAD
-=======
   const [useDate, setuseDate] = useState();
 
   window.localStorage.setItem('CartItem', useDate);
@@ -18,7 +16,6 @@ function WrapDetail({ product, handleClick }) {
       image: product.image1,
     };
   };
->>>>>>> dfc204b0896ebd46dd73c5a8c54153554a675865
 
   return (
     <Container>
