@@ -3,8 +3,14 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import ShoppingBasketModal from '../../modals/ShoppingBasketModal';
 
-function WrapDetail({ product, handleClick }) {
+function WrapDetail({ product, handleClick, Cart, setCart }) {
   const [openModal, setOpenModal] = useState(false);
+  const handleCart = () => {
+    const CartItem = {
+      id: product.id,
+      image: product.image1,
+    };
+  };
   return (
     <Container>
       <form>
@@ -57,11 +63,26 @@ function WrapDetail({ product, handleClick }) {
         <div>
           <Commonspan>
             빈도&nbsp;&nbsp;
-            {product.spec.frequency.split(',')}
+            {product.spec.frequency.split(',').map((frequency) => (
+              <Frequencybtn
+                type="button"
+                key={frequency.id}
+                onClick={(e) => console.log(e.target.innerText)}
+              >
+                {frequency}
+              </Frequencybtn>
+            ))}
           </Commonspan>
         </div>
         <ResultPrice>
-          <span>총 금액</span>¥{product.sellPrice.toLocaleString()}
+          <div className="TotalPriceDiv">
+            <span className="TotalPrice">총 금액</span>
+          </div>
+          <div className="PriceResultDiv">
+            <span className="PriceResult">
+              ¥{product.sellPrice.toLocaleString()}
+            </span>
+          </div>
         </ResultPrice>
         <br />
         <br />
@@ -139,12 +160,9 @@ const Suggestionbtn = styled.button`
 const Bestbtn = styled(Suggestionbtn)`
   background-color: rgba(249, 176, 170, 1);
 `;
-const Vector2img = styled.img`
-  position: absolute;
-  margin: 10px, 10px, 10px, 10px;
-`;
+
 const Graphicdiameterbtn = styled.button`
-  box-sizing: border-box;
+  
   width: 86px;
   height: 42px;
   background: #ffffff;
@@ -160,15 +178,41 @@ const Graphicdiameterbtn = styled.button`
 const ResultPrice = styled.div`
   display: border-box;
   border: 1px solid black;
-
   width: 557px;
   height: 78px;
   left: -0.04px;
-  margin-top: 50px;
+  margin-top: 30px;
 
   background: #f9f9f9;
   border: 0.4px solid #c5c5c5;
   border-radius: 4px;
+  .TotalPrice {
+    display: flex;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.016em;
+    margin-top: 20px;
+  }
+  .PriceResult {
+    display: flex;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: -0.016em;
+    margin-top: 20px;
+  }
+  .TotalPriceDiv {
+    display: flex;
+    float: left;
+    justify-content: center;
+  }
+  .PriceResultDiv {
+    display: flex;
+    float: right;
+    justify-content: center;
+    flex-direction: row;
+  }
 `;
 
 const Orderbtn = styled.button`
@@ -209,4 +253,16 @@ const Chocobtn = styled(Brownbtn)`
 `;
 const Graybtn = styled(Brownbtn)`
   background-color: #797c82;
+`;
+const Frequencybtn = styled(Graphicdiameterbtn)`
+  margin: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+
+  text-align: center;
+  letter-spacing: -0.016em;
+  :active {
+    color: black;
+  }
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function ShoppingBasketModal({ open, onClose }) {
@@ -9,19 +9,20 @@ function ShoppingBasketModal({ open, onClose }) {
       <Container>
         <Content>
           <div>
-            <p>상품을 장바구니에 추가하셨습니다♥</p>
+            <p>장바구니에 추가완료!!</p>
           </div>
+          <br />
           <br />
           <Btndiv>
             <div>
-              <button onClick={onClose}>계속 쇼핑하기</button>
+              <Confirmbtn onClick={onClose}>확인</Confirmbtn>
             </div>
             &nbsp;&nbsp;
-            <div>
+            {/* <div>
               <Link to={'/shoppingbasket/'}>
                 <button>장바구니 보러가기</button>
               </Link>
-            </div>
+            </div> */}
           </Btndiv>
         </Content>
       </Container>
@@ -40,7 +41,7 @@ const Overlay = styled.div`
 const Container = styled.div`
   max-width: 1000px;
   width: 30%;
-  height: 20%;
+  height: 40%;
   position: fixed;
   top: 40%;
   left: 50%;
@@ -50,6 +51,16 @@ const Container = styled.div`
 
   background-color: #ffffff;
   box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+  P {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: center;
+
+    letter-spacing: -0.016em;
+
+    color: #606060;
+  }
 `;
 const Content = styled.div`
   margin: auto;
@@ -58,4 +69,14 @@ const Btndiv = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
+`;
+const Confirmbtn = styled.button`
+  width: 334px;
+  height: 48px;
+  left: 38px;
+  bottom: 30px;
+  color: white;
+
+  background: #23314a;
+  border-radius: 6px;
 `;
