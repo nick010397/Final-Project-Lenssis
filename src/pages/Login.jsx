@@ -37,8 +37,6 @@ export default function Login() {
       } else {
         console.log(data);
         dispatch(setLogIn({ login: true }));
-        localStorage.setItem('Login', 'true');
-        //-1 쓰고 싶은데 페이지 새로 고침 되서 로그인정보 날라감.
         navigate('/');
       }
     }

@@ -6,7 +6,6 @@ import SingupForm from '../components/signup/SingupForm';
 import Popup from '../components/common/Popup';
 import { usePostUser } from '../api/signupApi';
 import { validation } from '../utils/validation';
-import { useNavigate } from 'react-router';
 
 export default function Signup() {
   const [signupInfor, setSignupInfor] = useState({
@@ -24,7 +23,6 @@ export default function Signup() {
   const [errorMsg, setErrorMsg] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const { refetch } = usePostUser(signupInfor);
-  const navigate = useNavigate();
 
   const submitSignup = () => async (e) => {
     e.preventDefault();
@@ -46,8 +44,8 @@ export default function Signup() {
       validation.username(username);
 
     if (error) {
-      setShowPopup(true);
       setErrorMsg(error);
+      setShowPopup(true);
     } else {
       const { isSuccess, data } = await refetch({
         loginId,
@@ -60,8 +58,8 @@ export default function Signup() {
       });
       if (isSuccess) {
         console.log(data);
-        alert('회원가입에 성공하셨습니다.');
-        navigate('/login');
+        setErrorMsg('회원가입에 성공했습니다.');
+        showPopup(true);
       }
     }
   };
