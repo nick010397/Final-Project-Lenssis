@@ -4,10 +4,13 @@ import DetailWrap from '../components/ItemDetails/DetailWrap';
 import Wrapslide from '../components/ItemDetails/DetailSlide';
 import { Link, useParams } from 'react-router-dom';
 import { useProductDetail } from '../api/productdetailApi';
+import { useState } from 'react';
 
 function ItemDetail() {
   const { id } = useParams();
   const { data, isLoading } = useProductDetail(id);
+  const { cart, setCart } = useState([]);
+
   function handleClick() {
     alert('준비중입니다.');
   }
@@ -28,7 +31,12 @@ function ItemDetail() {
           </span>
         </Itemdetaildiv>
 
-        <DetailWrap product={data.data.data} handleClick={handleClick} />
+        <DetailWrap
+          product={data.data.data}
+          handleClick={handleClick}
+          cart={cart}
+          setCart={setCart}
+        />
 
         <Wrapslide handleClick={handleClick} />
 
