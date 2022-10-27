@@ -52,7 +52,7 @@ function Main() {
           })
           .splice(0, 15)}
       </AllLens>
-      <StyledLink to="/itemlist">
+      <StyledLink to="/itemlist/1">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
       </StyledLink>
       {/* 추천 아이템 */}
@@ -63,7 +63,7 @@ function Main() {
           .map((product) => <PickupItem key={product.id} {...product} />)
           .splice(0, 8)}
       </PickLens>
-      <StyledLink to="/itemlist">
+      <StyledLink to="/itemlist/1">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
       </StyledLink>
       {/* 신상품 */}
@@ -75,7 +75,7 @@ function Main() {
             <Item key={product.id} {...product} />
           ))}
       </AllLens>
-      <StyledLink to="/itemlist">
+      <StyledLink to="/itemlist/1">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
       </StyledLink>
       {/* 이벤트 배너 */}

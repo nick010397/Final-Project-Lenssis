@@ -2,17 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '../components/common/CategoryBtn';
 import LensItem from '../components/common/LensItem';
-import { useGetProducts } from '../api/productApi';
+import { useGetProductList } from '../api/productApi';
 import FilterMenu from '../components/main/FilterMenu';
-import StyledPagesBtn from '../components/itemList/StyledPagesBtn';
+import StyledPagesBtn from '../components/itemList/PageBtn';
+import { useParams } from 'react-router';
+import PageBtn from '../components/itemList/PageBtn';
 
 export default function ItemList() {
-  const { data, isLoading } = useGetProducts();
+  const { page } = useParams();
+  console.count(page);
+  const { data, isLoading, isError } = useGetProductList(page);
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
+
+  if (isError) {
+    return <h2>error</h2>;
+  }
   return (
     <>
+      {console.log(data.data.data)}
       <StyledListTitle>
         <TitleName>ALL LENS</TitleName>
       </StyledListTitle>
@@ -25,7 +34,7 @@ export default function ItemList() {
       <MenuHr />
       <LensItem products={data.data.data} />
       <StyledPageBtns>
-        <StyledPagesBtn />
+        <PageBtn currentPage={page} />
       </StyledPageBtns>
     </>
   );
