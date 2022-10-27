@@ -24,7 +24,7 @@ export default function Login() {
     if (isLogin) {
       navigate('/myPage');
     }
-  }, [isLogin]);
+  }, []);
 
   const tryToLogin = async (e) => {
     e.preventDefault();
