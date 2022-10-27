@@ -34,18 +34,5 @@ const NormalBtn = styled.button`
       display: block;
       margin: auto;
     `}
-
-  ${(props) =>
-    props.more &&
-    css`
-      margin-bottom: 225px;
-    `}
-
-  ${(props) =>
-    props.end &&
-    css`
-      margin-top: 85px;
-      margin-bottom: 165px;
-    `}
 `;
 export default Button;

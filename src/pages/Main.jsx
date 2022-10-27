@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import CategoryBtn from '../components/common/CategoryBtn';
-import LensItem from '../components/common/LensItem';
 import Event from '../components/main/Event';
 import notice from '../static/img/notice.png';
 import TitleName from '../components/main/TitleName';
@@ -8,8 +7,10 @@ import FilterMenu from '../components/main/FilterMenu';
 import { useGetProducts } from '../api/productApi';
 import MainSlide from '../components/main/MainSlide';
 import PickupItem from '../components/itemList/PickupItem';
-import NewItem from '../components/itemList/NewItem';
 import Notice from '../components/main/Notice';
+import Item from '../components/itemList/Item';
+import Tag from '../components/main/Tag';
+import { Link } from 'react-router-dom';
 
 function Main() {
   const { data, isLoading } = useGetProducts();
@@ -18,7 +19,7 @@ function Main() {
   }
 
   return (
-    <div>
+    <Container>
       {/* 메인 슬라이드 */}
       <div>
         <MainSlide />
@@ -33,25 +34,53 @@ function Main() {
         </Center>
       </div>
       {/* 메뉴필터 */}
-      <FilterMenu />
-      <MenuHr />
-      {/* 렌즈 아이템 */}
       <div>
-        <LensItem products={data.data.data} />
+        <FilterMenu />
+        <MenuHr />
       </div>
-      <CategoryBtn more>もっと見る</CategoryBtn>
+      {/* 렌즈 아이템 */}
+
+      <Index>
+        <Grid>
+          {data.data.data
+            .map((product, index) => <Tag index={index + 1} />)
+            .splice(0, 15)}
+        </Grid>
+      </Index>
+
+      <AllLens>
+        {data.data.data
+          ?.map((product, index) => {
+            return <Item {...product} />;
+          })
+          .slice(0, 15)}
+      </AllLens>
+      <StyledLink to="/itemlist">
+        <CategoryBtn className="more">もっと見る</CategoryBtn>
+      </StyledLink>
       {/* 추천 아이템 */}
       <TitleName title="PICKUP ITEM" subtitle="スタッフおすすめ" />
-      <Center>
-        <PickupItem products={data.data.data} />
-      </Center>
-      <CategoryBtn more>もっと見る</CategoryBtn>
+      <PickLens>
+        {data.data.data
+          ?.filter((product, index) => product.colorName === 'ブラウン')
+          .map((product) => <PickupItem {...product} />)
+          .splice(0, 8)}
+      </PickLens>
+      <StyledLink to="/itemlist">
+        <CategoryBtn className="more">もっと見る</CategoryBtn>
+      </StyledLink>
       {/* 신상품 */}
       <TitleName title="NEW ARRIVAL" subtitle="新商品" />
-      <Center>
-        <NewItem products={data.data.data} />
-      </Center>
-      <CategoryBtn more>もっと見る</CategoryBtn>
+      <AllLens>
+        {data.data.data
+          ?.filter((product) => product.sellPrice <= 990)
+          .map((product) => (
+            <Item {...product} />
+          ))}
+      </AllLens>
+      <StyledLink to="/itemlist">
+        <CategoryBtn className="more">もっと見る</CategoryBtn>
+      </StyledLink>
       {/* 이벤트 배너 */}
       <Event />
       {/* 공지 */}
@@ -63,11 +92,22 @@ function Main() {
       <Notice />
       <Notice />
       <Notice />
-      <CategoryBtn end>もっと見る</CategoryBtn>
-    </div>
+      <StyledLink to="/">
+        <CategoryBtn className="end">もっと見る</CategoryBtn>
+      </StyledLink>
+    </Container>
   );
 }
-
+const Container = styled.div`
+  .more {
+    margin-top: 96px;
+    margin-bottom: 225px;
+  }
+  .end {
+    margin-top: 85px;
+    margin-bottom: 165px;
+  }
+`;
 const Center = styled.div`
   display: flex;
   flex-direction: row;
@@ -76,11 +116,10 @@ const Center = styled.div`
 
 const MenuHr = styled.hr`
   margin-top: -4px;
-  // width:1275px;
-  margin-right: 8vw;
-  margin-left: 8vw;
-  border: 0px;
-  border-bottom: 4px solid #d3d6db;
+  margin-right: 10.5vw;
+  margin-left: 10.5vw;
+  border: none;
+  border-top: 4px solid #d3d6db;
 `;
 
 const NoticImg = styled.div`
@@ -88,4 +127,38 @@ const NoticImg = styled.div`
   margin-bottom: 53px;
 `;
 
+const AllLens = styled.div`
+  margin: 0 8vw 16px 8vw;
+  display: grid;
+  grid-template-columns: repeat(5, 220px);
+  grid-gap: 25px;
+  justify-content: center;
+`;
+
+const PickLens = styled.div`
+  margin: 0 8vw 16px 8vw;
+  display: grid;
+  grid-template-columns: repeat(4, 282px);
+  gap: 24px;
+  justify-content: center;
+`;
+
+const Index = styled.div`
+  position: absolute;
+  margin-top: 40px;
+  z-index: 8;
+`;
+
+const Grid = styled.div`
+  margin: 0 10.4vw 16px 10.4vw;
+  display: grid;
+  grid-template-columns: repeat(5, 220px);
+  grid-column-gap: 25px;
+  grid-row-gap: 390px;
+  justify-content: center;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 export default Main;

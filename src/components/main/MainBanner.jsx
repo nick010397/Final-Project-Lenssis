@@ -3,25 +3,26 @@ import styled from 'styled-components';
 import banner1 from '../../static/img/banner1.png';
 import banner2 from '../../static/img/banner2.png';
 import banner3 from '../../static/img/banner3.png';
+import { Link } from 'react-router-dom';
 
 function MainBanner() {
   return (
     //링크는 임시로.
     <Grid>
       <FirstItem className="one">
-        <a href="https://google.com">
+        <Link to="/">
           <img src={banner1} alt="배너1" />
-        </a>
+        </Link>
       </FirstItem>
       <SecondItem className="two">
-        <a href="https://naver.com">
+        <Link to="/">
           <img src={banner2} alt="배너2" />
-        </a>
+        </Link>
       </SecondItem>
       <ThirdItem className="three">
-        <a href="https://lenssis.jp">
+        <Link to="/">
           <img src={banner3} alt="배너3" />
-        </a>
+        </Link>
       </ThirdItem>
     </Grid>
   );
