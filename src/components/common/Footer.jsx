@@ -149,7 +149,6 @@ const StyledFooter = styled.div`
 const StyledItem = styled.li`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 `;
 
 const StyledLogoImg = styled.img`
@@ -168,7 +167,9 @@ const StyledTitleDiv = styled.div`
 `;
 
 const InfoName = styled.div`
-  margin: 8px 0px;
+  display: flex;
+  margin: 8px 20px 8px 0px;
+  width: 73px;
   flex-shrink: 0.5;
   font-family: 'Noto Sans JP';
   font-style: normal;
@@ -176,9 +177,9 @@ const InfoName = styled.div`
 `;
 
 const InfoContant = styled.div`
+  display: flex;
   margin: 8px 0px;
   flex-shrink: 1.5;
-
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 400;
@@ -189,6 +190,7 @@ const InfoContant = styled.div`
 `;
 
 const CompanyName = styled.div`
+  margin: 12px 0px;
   width: 109px;
   height: 22px;
   font-family: 'Noto Sans JP';
