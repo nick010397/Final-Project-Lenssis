@@ -5,7 +5,6 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ItemList from './pages/ItemList';
 import ItemDetail from './pages/ItemDetail';
-import ShoppingBasket from './pages/ShoppingBasket';
 import GlobalStyle from './styles/GlobalStyle';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';

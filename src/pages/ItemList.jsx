@@ -4,7 +4,6 @@ import Button from '../components/common/CategoryBtn';
 import LensItem from '../components/common/LensItem';
 import { useGetProductList } from '../api/productApi';
 import FilterMenu from '../components/main/FilterMenu';
-import StyledPagesBtn from '../components/itemList/PageBtn';
 import { useParams } from 'react-router';
 import PageBtn from '../components/itemList/PageBtn';
 
@@ -32,7 +31,11 @@ export default function ItemList() {
       </Center>
       <FilterMenu />
       <MenuHr />
-      <LensItem products={data.data.data} />
+      <AllLens>
+        {data.data.data?.map((product) => {
+          return <LensItem key={product.id} {...product} />;
+        })}
+      </AllLens>
       <StyledPageBtns>
         <PageBtn currentPage={page} />
       </StyledPageBtns>
@@ -71,4 +74,14 @@ const TitleName = styled.h1`
   letter-spacing: -0.016em;
   color: #23314a;
   margin: 70px 0px;
+`;
+
+const AllLens = styled.div`
+  cursor: pointer;
+  position: relative;
+  margin: 0 8vw 16px 8vw;
+  display: grid;
+  grid-template-columns: repeat(5, 220px);
+  grid-gap: 25px;
+  justify-content: center;
 `;

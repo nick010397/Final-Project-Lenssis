@@ -12,10 +12,13 @@ export default function Footer() {
   return (
     <>
       <StyledFooter>
-        <StyledLogo src={Logo} alt="렌시스 로고" />
+        <StyledLogoDiv>
+          <StyledLogo src={Logo} alt="렌시스 로고" />
+        </StyledLogoDiv>
+
         <StyledFooterContainer>
-          <div>
-            <div>
+          <EachFooter>
+            <StyledP>
               <p>
                 レンシスは #私らしさから 出発しました。
                 <br />
@@ -30,63 +33,61 @@ export default function Footer() {
                 <br />
                 #JUST_BE_YOURSELF
               </p>
-            </div>
-          </div>
+            </StyledP>
+          </EachFooter>
 
-          <div>
+          <EachFooter>
             <StyledTitleDiv>CONTACT</StyledTitleDiv>
-            <div>주식회사VIVA</div>
-            <ul>
-              <li>
-                <StyledItem>
-                  <p>LINE ID</p>
-                  <p>jp.lenssis</p>
-                </StyledItem>
-              </li>
-              <li>
-                <StyledItem>
-                  <p>전화번호</p>
-                  <p>050-3558-4887</p>
-                </StyledItem>
-              </li>
-              <li>
-                <StyledItem>
-                  <p>영업시간</p>
-                  <p>
-                    평일 10:00~17:30
-                    <br />
-                    SAT/SUN/HOLIDAY OFF
-                  </p>
-                </StyledItem>
-              </li>
-              <li>
-                <p>
-                  ※전화는 매우 연결되기 어려워지고 있으므로
-                  <br />
-                  공식 LINE에서 문의 부탁드리겠습니다.
-                </p>
-              </li>
-            </ul>
-          </div>
+            <CompanyName>株式会社LENSSIS</CompanyName>
 
-          <div>
+            <StyledItem>
+              <InfoName>LINE ID</InfoName>
+              <InfoContant>jp.lenssis</InfoContant>
+            </StyledItem>
+
+            <StyledItem>
+              <InfoName>電話番号</InfoName>
+              <InfoContant>050-3558-4887</InfoContant>
+            </StyledItem>
+
+            <StyledItem>
+              <InfoName>
+                お問い合わせ
+                <br />
+                時間
+              </InfoName>
+              <InfoContant>
+                平日 10:00~17:30
+                <br />
+                SAT/SUN/HOLIDAY OFF
+              </InfoContant>
+            </StyledItem>
+
+            <Precautions>
+              ※お電話は大変繋がりにくくなっていますので
+              <br />
+              公式LINEにてお問い合せお願いいたします。
+            </Precautions>
+          </EachFooter>
+
+          <EachFooter>
             <StyledTitleDiv>ABOUT</StyledTitleDiv>
             <ul>
-              <li>공지</li>
+              <AboutList>ショッピングガイド</AboutList>
 
-              <li>이용약관 및 정책</li>
+              <AboutList>利用規約とポリシー</AboutList>
 
-              <li>개인 정보 보호 정책</li>
+              <AboutList>個人情報保護方針</AboutList>
 
-              <li>쇼핑 가이드</li>
+              <AboutList>お知らせ</AboutList>
 
-              <li>특정 상거래에 관한 법률에 근거한 표기</li>
+              <AboutList>特定商取引に関する法律に基づく表記</AboutList>
 
-              <li>모바일 디스플레이</li>
+              <AboutList>モバイル表示</AboutList>
             </ul>
-          </div>
+          </EachFooter>
 
-          <div>
+          <EachFooter>
             <StyledTitleDiv>FOLLOW US</StyledTitleDiv>
             <StyledSnsLogo>
               <StyledLogoImg src={Instagram} alt="인스타" />
@@ -98,7 +99,7 @@ export default function Footer() {
               <StyledLogoImg src={Youtube} alt="유튜브" />
               <StyledLogoImg src={TikTok} alt="틱톡" />
             </StyledSnsLogo>
-          </div>
+          </EachFooter>
         </StyledFooterContainer>
       </StyledFooter>
     </>
@@ -113,6 +114,12 @@ const StyledFooterContainer = styled.div`
   justify-content: space-between;
 `;
 
+const EachFooter = styled.div`
+  width: 272px;
+  display: flex;
+  flex-direction: column;
+`;
+
 const StyledP = styled.p`
   font-family: 'Noto Sans JP';
   font-style: normal;
@@ -123,14 +130,13 @@ const StyledP = styled.p`
   color: #7b8392;
 `;
 const StyledLogo = styled.img`
-  margin-left: 8vw;
-  margin: 100px;
+  margin: 40px;
   width: 92.18px;
   height: 20px;
-  left: 360px;
-  top: 100px;
 `;
-
+const StyledLogoDiv = styled.div`
+  margin-left: 8vw;
+`;
 const StyledSnsLogo = styled.div`
   flex-wrap: wrap;
   align-content: stretch;
@@ -140,7 +146,7 @@ const StyledFooter = styled.div`
   background-color: #f5f5f5;
 `;
 
-const StyledItem = styled.div`
+const StyledItem = styled.li`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -157,6 +163,64 @@ const StyledTitleDiv = styled.div`
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+`;
+
+const InfoName = styled.div`
+  margin: 8px 0px;
+  flex-shrink: 0.5;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 500;
+`;
+
+const InfoContant = styled.div`
+  margin: 8px 0px;
+  flex-shrink: 1.5;
+
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+`;
+
+const CompanyName = styled.div`
+  width: 109px;
+  height: 22px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.016em;
+  color: #23314a;
+`;
+
+const Precautions = styled.p`
+  width: 272px;
+  height: 44px;
+  margin-top: 20px;
+  margin-bottom: 102px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 22px;
+  letter-spacing: -0.016em;
+  color: #7b8392;
+`;
+
+const AboutList = styled.li`
+  margin: 8px 0px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
   letter-spacing: -0.016em;
   color: #23314a;
 `;
