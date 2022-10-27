@@ -94,7 +94,7 @@ export default function NavBar() {
 
 const StyledmarketingBanner = styled.img`
   width: 100vw;
-  height: 56px;
+  height: 43px;
   left: 0px;
   top: 0px;
   background: #f5f5f5;
