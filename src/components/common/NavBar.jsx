@@ -16,7 +16,7 @@ export default function NavBar() {
       <StyledNavItem id="Lens" className="nav-items">
         <Styledlogo>
           <StyledLogoImg
-          title = 'home으로 이동'
+            title="home으로 이동"
             src={Logo}
             alt="렌시스 로고"
             onClick={() => {
@@ -93,6 +93,7 @@ const StyledmarketingBanner = styled.img`
   top: 0px;
   background: #f5f5f5;
   text-align: center;
+  cursor: pointer;
 `;
 
 const StyledNavItem = styled.div`

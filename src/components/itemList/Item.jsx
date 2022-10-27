@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Star from '../../static/img/Star.png';
 
 function Item(product) {
   return (
-    <Itemdiv key={`key-${product.id}`}>
+    <Itemdiv key={product.id}>
       <StyledLink to={`/itemdetail/${product.id}`}>
         <IMG src={product.image1} alt="렌즈이미지" />
         <Title>{product.name}</Title>
@@ -29,7 +29,7 @@ function Item(product) {
   );
 }
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   text-decoration: none;
 `;
 
@@ -40,7 +40,6 @@ const IMG = styled.img`
 `;
 
 const Title = styled.p`
-  font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -51,7 +50,6 @@ const Title = styled.p`
 `;
 
 const Price = styled.p`
-  font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -72,7 +70,6 @@ const StyledStars = styled.div`
 const StyledReviewDiv = styled.div`
   width: 28px;
   height: 18px;
-  font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -90,7 +87,6 @@ const StyledTagDiv = styled.div`
   width: 64px;
   height: 28px;
   background: #e69cc4;
-  font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 500;
   font-size: 12px;

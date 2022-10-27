@@ -1,4 +1,4 @@
-import styles from './Cart.module.css';
+import styles from './Cart.Module.css';
 import styled from 'styled-components';
 import Delete from '../../static/img/icon-delete.svg';
 import Plus from '../../static/img/icon-plus-line.svg';
@@ -7,11 +7,11 @@ import Minus from '../../static/img/icon-minus-line.svg';
 export const Cart = () => {
   return (
     <Container>
-      <header className={styles.header}>
+      <header className="styles.header">
         <h1>장바구니</h1>
       </header>
-      <div className={styles.cart_title_wrap}>
-        <div className={styles.tab_title}>
+      <div className="styles.cart_title_wrap">
+        <div className="styles.tab_title">
           <input type="checkbox" />
           <span>상품정보</span>
           <span>수량</span>
@@ -21,18 +21,18 @@ export const Cart = () => {
         </div>
       </div>
 
-      <section className={styles.cart_product_list}>
+      <section className="styles.cart_product_list">
         <input type="checkbox" />
-        <div className={styles.cart_product_wrap}>
-          <div className={styles.cart_product_image}>
+        <div className="styles.cart_product_wrap">
+          <div className="styles.cart_product_image">
             <img src="/" alt="product-img" />
           </div>
 
-          <div className={styles.cart_product_info}>
-            <p className={styles.seller_store}>아이돈케어</p>
-            <p className={styles.product_name}>노트북 파우치</p>
-            <p className={styles.price}>1000원</p>
-            <p className={styles.delivery}>택배배송 / 무료배송</p>
+          <div className="styles.cart_product_info">
+            <p className="styles.seller_store">아이돈케어</p>
+            <p className="styles.product_name">노트북 파우치</p>
+            <p className="styles.price">1000원</p>
+            <p className="styles.delivery">택배배송 / 무료배송</p>
           </div>
         </div>
 
