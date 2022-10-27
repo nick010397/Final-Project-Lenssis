@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 function FilterMenu() {
   return (
     <CenterDiv>
       {MenuItem.map((data) => (
         <CategroyDiv key={data.title}>
-          <MenuATag href={data.url}>{data.title}</MenuATag>
+          <StyledLink to={data.url}>
+            <MenuContent>{data.title}</MenuContent>
+          </StyledLink>
         </CategroyDiv>
       ))}
     </CenterDiv>
@@ -16,33 +18,33 @@ function FilterMenu() {
 const MenuItem = [
   {
     title: '人気順',
-    url: 'http://localhost:3000',
+    url: '/',
   },
   {
     title: '新着順',
-    url: 'http://localhost:3000',
+    url: '/',
   },
   {
     title: '価格が低い順',
-    url: 'http://localhost:3000',
+    url: '/',
   },
   {
     title: '価格が高い順',
-    url: 'http://localhost:3000',
+    url: '/',
   },
   {
     title: 'レビュー件数順',
-    url: 'http://localhost:3000',
+    url: '/',
   },
 ];
 const CenterDiv = styled.div`
   display: flex;
-  margin-left: 8vw;
-  margin-right: 8vw;
+  margin-left: 10.5vw;
+  margin-right: 10.5vw;
   margin-top: 80px;
 `;
 
-const MenuATag = styled.a`
+const MenuContent = styled.p`
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 700;
@@ -52,17 +54,20 @@ const MenuATag = styled.a`
   color: #656f80;
   text-decoration: none;
 `;
-
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 const CategroyDiv = styled.div`
-  text-align: center;
   padding-right: 22px;
   padding-left: 22px;
   padding-bottom: 10px;
   &:hover {
-    ${MenuATag} {
+    ${MenuContent} {
       color: #23314a;
     }
     border-bottom: 4px solid #23314a;
+    padding-bottom: 5px;
+    cursor: pointer;
   }
 `;
 export default FilterMenu;

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Star from '../../static/img/Star.png';
 import { Link } from 'react-router-dom';
+import Star from '../../static/img/Star.png';
 
-function PickupItem(product) {
+function Item(product) {
   return (
     <Itemdiv key={`key-${product.id}`}>
       <StyledLink to={`/itemdetail/${product.id}`}>
@@ -32,9 +32,10 @@ function PickupItem(product) {
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
+
 const IMG = styled.img`
-  weight: 282px;
-  height: 282px;
+  weight: 220px;
+  height: 220px;
   margin: 0;
 `;
 
@@ -46,7 +47,7 @@ const Title = styled.p`
   line-height: 24px;
   letter-spacing: -0.016em;
   color: #23314a;
-  margin-bottom: 8px;
+  margin: 8px 0px;
 `;
 
 const Price = styled.p`
@@ -103,4 +104,5 @@ const Itemdiv = styled.div`
   height: 330px;
   margin: 40px 0px;
 `;
-export default PickupItem;
+
+export default Item;
