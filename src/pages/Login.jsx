@@ -23,15 +23,15 @@ export default function Login() {
   const tryToLogin = async (e) => {
     e.preventDefault();
     const { loginId, password } = loginInfor;
-    console.log('login');
     const clientError =
       validation.idforLogin(loginId) || validation.pwforLogin(password);
     if (clientError) {
       setErrorMsg(clientError);
       setShowPopup(true);
     } else {
-      const { data, isError } = await refetch();
+      const { data, isError, error } = await refetch();
       if (isError) {
+        console.log(error);
         setErrorMsg('존재하지 않는 아이디이거나 비밀번호가 틀립니다.');
         setShowPopup(true);
       } else {

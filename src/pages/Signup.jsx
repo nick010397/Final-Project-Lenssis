@@ -59,7 +59,7 @@ export default function Signup() {
       if (isSuccess) {
         console.log(data);
         setErrorMsg('회원가입에 성공했습니다.');
-        showPopup(true);
+        setShowPopup(true);
       }
     }
   };
