@@ -56,9 +56,8 @@ const StyledPageBtns = styled.div`
 
 const MenuHr = styled.hr`
   margin-top: -4px;
-  // width:1275px;
-  margin-right: 8vw;
-  margin-left: 8vw;
+  margin-right: 10.5vw;
+  margin-left: 10.5vw;
   border: 0px;
   border-bottom: 4px solid #d3d6db;
 `;
