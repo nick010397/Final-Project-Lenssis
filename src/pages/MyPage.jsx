@@ -33,10 +33,7 @@ export default function MyPage() {
       ) : status === 'error' ? (
         <div>{error.message}</div>
       ) : (
-        <>
-          '로그인에 성공하셨습니다.'
-          {console.log(data.data.data)}
-        </>
+        <>로그인에 성공하셨습니다.</>
         // <PageContent>
         //   <div>닉네임: {data.data.data.username}</div>
         //   <div>
