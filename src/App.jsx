@@ -22,7 +22,6 @@ function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <NavBar />
       <Scroll />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
@@ -33,7 +32,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/myPage" element={<MyPage />} />
             <Route path="/ItemDetail/:id" element={<ItemDetail />} />
-            <Route path="/itemList" element={<ItemList />} />
+            <Route path="/itemlist/:page" element={<ItemList />} />
           </Routes>
           <Footer />
           <ReactQueryDevtools initialIsOpen={false} />
