@@ -11,13 +11,13 @@ export default function PageBtn({ currentPage }) {
       {pages.map((page, index) => {
         return (
           <Link to={`/itemlist/${page}`} key={index}>
-            <StyledPageBtn className={currentPage === page && 'active'}>
+            <StyledPageBtn className={currentPage === String(page) && 'active'}>
               {page}
             </StyledPageBtn>
           </Link>
         );
       })}
-      <StyledPagenationBtn
+      <StyledPageBtn
         onClick={() => {
           if (currentPage < pages.length) {
             navigate(`/itemlist/${Number(currentPage) + 1}`);
@@ -25,7 +25,7 @@ export default function PageBtn({ currentPage }) {
         }}
       >
         ▶
-      </StyledPagenationBtn>
+      </StyledPageBtn>
     </>
   );
 }
@@ -45,49 +45,14 @@ const StyledPageBtn = styled.button`
   color: #23314a;
   border: 0;
 
-  &.active {
-    margin: 5px;
-    width: 48px;
-    height: 48px;
-    background: #23314a;
-    font-family: 'Noto Sans KR';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
-    text-align: center;
-    letter-spacing: 0.15px;
-    color: #ffffff;
-  }
-`;
-
-const StyledPagenationBtn = styled.button`
-  margin: 5px;
-  width: 48px;
-  height: 48px;
-  background: #e9eaed;
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-  letter-spacing: 0.15px;
-  color: #23314a;
-  border: 0;
-
   &:hover {
-    margin: 5px;
-    width: 48px;
-    height: 48px;
     background: #23314a;
-    font-family: 'Noto Sans KR';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
-    text-align: center;
-    letter-spacing: 0.15px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  &.active {
+    background: #23314a;
     color: #ffffff;
   }
 `;
