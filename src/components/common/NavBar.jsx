@@ -41,13 +41,7 @@ export default function NavBar() {
             />
           </div>
           <div className="nav-item">
-            <StyledCartImg
-              src={cart}
-              alt="장바구니"
-              onClick={() => {
-                navigate(`/Cart`);
-              }}
-            />
+            <StyledCartImg src={cart} alt="장바구니" />
           </div>
         </StyledIconsDiv>
       </StyledNavItem>
