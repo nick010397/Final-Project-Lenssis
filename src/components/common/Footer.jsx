@@ -51,11 +51,7 @@ export default function Footer() {
             </StyledItem>
 
             <StyledItem>
-              <InfoName>
-                お問い合わせ
-                <br />
-                時間
-              </InfoName>
+              <InfoName>お問い合わせ時間</InfoName>
               <InfoContant>
                 平日 10:00~17:30
                 <br />
