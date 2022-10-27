@@ -67,7 +67,7 @@ function WrapDetail({ product, handleClick, Cart, setCart }) {
               <Frequencybtn
                 type="button"
                 key={frequency.id}
-                onClick={(e) => console.log(e)}
+                onClick={(e) => console.log(e.target.innerText)}
               >
                 {frequency}
               </Frequencybtn>

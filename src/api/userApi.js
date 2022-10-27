@@ -11,4 +11,5 @@ const getUserInfor = () =>
 export const useGetUserInfor = () =>
   useQuery('loginInfor', getUserInfor, {
     retry: 0,
+    refetchOnWindowFocus: false,
   });

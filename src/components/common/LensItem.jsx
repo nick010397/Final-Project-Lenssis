@@ -1,48 +1,36 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Star from '../../static/img/Star.png';
 
-export default function LensItem({ products }) {
+function LensItem(product) {
   return (
-    <Items>
-      {products &&
-        products.map((product) => (
-          <Itemdiv key={`key-${product.id}`}>
-            <Link
-              to={`/itemdetail/${product.id}`}
-              style={{ textDecoration: 'none' }}
-            >
-              <IMG src={product.image1} alt="렌즈이미지" />
-              <Title>{product.name}</Title>
-              <Price>{product.sellPrice}円</Price>
-              <StyledStars>
-                <div>
-                  <img src={Star} alt="별점" />
-                  <img src={Star} alt="별점" />
-                  <img src={Star} alt="별점" />
-                  <img src={Star} alt="별점" />
-                  <img src={Star} alt="별점" />
-                </div>
-                <StyledReviewDiv>(180)</StyledReviewDiv>
-              </StyledStars>
-            </Link>
-            <StyledStars>
-              <StyledTagDiv>おすすめ</StyledTagDiv>
-              <StyledTagDiv>おすすめ</StyledTagDiv>
-            </StyledStars>
-          </Itemdiv>
-        ))}
-    </Items>
+    <Itemdiv key={product.id}>
+      <StyledLink to={`/itemdetail/${product.id}`}>
+        <IMG src={product.image1} alt="렌즈이미지" />
+        <Title>{product.name}</Title>
+        <Price>{product.sellPrice}円</Price>
+        <StyledStars>
+          <div>
+            <img src={Star} alt="별점" />
+            <img src={Star} alt="별점" />
+            <img src={Star} alt="별점" />
+            <img src={Star} alt="별점" />
+            <img src={Star} alt="별점" />
+          </div>
+          <StyledReviewDiv>(180)</StyledReviewDiv>
+        </StyledStars>
+      </StyledLink>
+      <StyledStars>
+        <StyledTagDiv>おすすめ</StyledTagDiv>
+        <StyledTagDiv>おすすめ</StyledTagDiv>
+      </StyledStars>
+    </Itemdiv>
   );
 }
 
-const Items = styled.div`
-  margin: 0 8vw 16px 8vw;
-  display: grid;
-  grid-template-columns: repeat(5, 220px);
-  justify-content: space-between;
-  gap: 24px;
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 
 const IMG = styled.img`
@@ -52,7 +40,6 @@ const IMG = styled.img`
 `;
 
 const Title = styled.p`
-  font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -63,7 +50,6 @@ const Title = styled.p`
 `;
 
 const Price = styled.p`
-  font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -84,7 +70,6 @@ const StyledStars = styled.div`
 const StyledReviewDiv = styled.div`
   width: 28px;
   height: 18px;
-  font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -102,7 +87,6 @@ const StyledTagDiv = styled.div`
   width: 64px;
   height: 28px;
   background: #e69cc4;
-  font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -113,7 +97,8 @@ const StyledTagDiv = styled.div`
 `;
 
 const Itemdiv = styled.div`
-  textdecoration: 'none';
   height: 330px;
   margin: 40px 0px;
 `;
+
+export default LensItem;
