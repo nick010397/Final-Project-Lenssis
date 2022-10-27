@@ -10,7 +10,6 @@ function WrapImages({ product }) {
     setImgChange(product.image1);
   }, [product]);
 
-  console.log(imgChange);
   return (
     <Container>
       <Picture>
