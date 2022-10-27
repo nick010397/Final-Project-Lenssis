@@ -1,23 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  loginId: '',
-  password: '',
+  isLogin: false,
 };
 
 export const userLoginInforSlice = createSlice({
   name: 'userLoginInfor',
   initialState,
   reducers: {
-    setLoginInfor: (state, action) => {
-      const name = action.payload.name;
-      const value = action.payload.value;
-      state[name] = value;
+    setLogIn: (state, action) => {
+      console.log(action.payload);
+      state.isLogin = action.payload.login;
     },
-    resetLoginInfor: () => initialState,
   },
 });
 
-export const { setLoginInfor, resetLoginInfor } = userLoginInforSlice.actions;
+export const { setLogIn } = userLoginInforSlice.actions;
 
 export default userLoginInforSlice.reducer;

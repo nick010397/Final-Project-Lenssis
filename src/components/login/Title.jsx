@@ -11,7 +11,7 @@ export default function Title({ text, subText }) {
 }
 
 const TitleBox = styled.div`
-  margin-bottom: 46px;
+  margin: 46px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
