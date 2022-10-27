@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-function WrapPvi({ product }) {
-  const [imgChange, setImgChange] = useState(product.image1);
-
+function WrapImages({ product }) {
+  const [imgChange, setImgChange] = useState();
   const setImg = (imgChange) => {
     setImgChange(imgChange);
   };
+  useEffect(() => {
+    setImgChange(product.image1);
+  }, [product]);
 
+  console.log(imgChange);
   return (
     <Container>
       <Picture>
@@ -53,10 +56,10 @@ function WrapPvi({ product }) {
   );
 }
 
-export default WrapPvi;
+export default WrapImages;
 
 const Container = styled.div`
-  width: 40%;
+  width: 30%;
   height: 900px;
   float: left;
 `;
@@ -67,19 +70,23 @@ const Picture = styled.div`
   text-align: center;
 `;
 const MiniPicture = styled.div`
-width:600px  
-height: auto;
-cursor: pointer;
-display: flex;
-justify-content: space-between;
+  width: 600px;
+  height: auto;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 `;
 const StyledLensImg = styled.img`
   width: 550px;
   height: 550px;
 `;
 const StyledMiniImg = styled.img`
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   margin-top: 10px;
   border: 1px solid black;
+  transition: 0.3s;
+  :hover {
+    opacity: 0.5;
+  }
 `;

@@ -2,18 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import Button from './Button';
+import Button from '../login/Button';
 import { useNavigate } from 'react-router';
 
 export default function Popup({ message, show }) {
   const navigate = useNavigate();
   return (
-    <>
-      <PopupBackDrop
-        onClick={() => {
-          show(false);
-        }}
-      />
+    <PopupBackDrop
+      onClick={() => {
+        show(false);
+      }}
+    >
       <PopupBox>
         <CloseIcon
           onClick={() => {
@@ -24,30 +23,32 @@ export default function Popup({ message, show }) {
         </CloseIcon>
         <p> {message}</p>
         <Button
-          infor={{ text: '확인', disabled: false }}
+          text="확인"
           onClick={() => {
             show(false);
-            if (message === '회원가입에 성공하셨습니다.') {
-              navigate('/login');
+            if (message === '회원가입에 성공했습니다.') {
+              navigate('/');
             }
           }}
         />
       </PopupBox>
-    </>
+    </PopupBackDrop>
   );
 }
 
 const PopupBackDrop = styled.div`
-  position: absolute;
+  background: #252424cc;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0;
   left: 0;
-  background: #252424cc;
-  height: 100%;
-  width: 100vw;
 `;
 
 const PopupBox = styled.div`
-  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;

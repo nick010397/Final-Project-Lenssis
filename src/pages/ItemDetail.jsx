@@ -1,47 +1,62 @@
 import styled from 'styled-components';
 import DetailSection from '../components/ItemDetails/DetailSection';
 import DetailWrap from '../components/ItemDetails/DetailWrap';
-import Footer from '../components/common/Footer';
-import NavBar from '../components/common/NavBar';
 import Wrapslide from '../components/ItemDetails/DetailSlide';
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useGetProducts } from '../api/productApi';
+import { Link, useParams } from 'react-router-dom';
+import { useProductDetail } from '../api/productdetailApi';
 
 function ItemDetail() {
   const { id } = useParams();
-  const [product, setProduct] = useState({});
-  const { data, isLoading } = useGetProducts();
-
-  useEffect(() => {
-    setProduct(data.data.data.find((product) => product.id === parseInt(id)));
-  }, [id]);
-
-  if (isLoading) {
-    return <h2>Loading...</h2>;
+  const { data, isLoading } = useProductDetail(id);
+  function handleClick() {
+    alert('준비중입니다.');
   }
 
-  console.log(product);
+  if (isLoading) {
+    return <div>loading....</div>;
+  }
 
   return (
     <div>
       <Container>
-        <NavBar />
+        <Itemdetaildiv>
+          <span>
+            <Link to={'/'} style={{ textDecoration: 'none' }}>
+              홈
+            </Link>
+            &nbsp;&nbsp; {'>'} 제품 상세 페이지
+          </span>
+        </Itemdetaildiv>
 
-        <DetailWrap product={product}></DetailWrap>
-        <Wrapslide></Wrapslide>
+        <DetailWrap product={data.data.data} handleClick={handleClick} />
 
-        <DetailSection></DetailSection>
+        <Wrapslide handleClick={handleClick} />
 
-        <Footer />
+        <DetailSection product={data.data.data} handleClick={handleClick} />
       </Container>
     </div>
   );
 }
 const Container = styled.div`
-  width: 100%;
+  width: 80%;
   height: auto;
   margin: 0 auto;
   padding: 0;
 `;
+const Itemdetaildiv = styled.div`
+  width: 12%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  span {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.016em;
+  }
+`;
+
 export default ItemDetail;
