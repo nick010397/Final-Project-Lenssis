@@ -3,14 +3,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import ShoppingBasketModal from '../../modals/ShoppingBasketModal';
 
-function WrapDetail({ product, handleClick, Cart, setCart }) {
+function WrapDetail({ product, handleClick }) {
   const [openModal, setOpenModal] = useState(false);
-  const handleCart = () => {
-    const CartItem = {
-      id: product.id,
-      image: product.image1,
-    };
-  };
+
   return (
     <Container>
       <form>

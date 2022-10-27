@@ -9,7 +9,7 @@ function DetailSection({ product, handleClick }) {
       <Btn>리뷰(100)</Btn> */}
       <GnbLists>
         <GnbItem>
-          <NavLink exact to="/itemDetail" activeClassName="active">
+          <NavLink exact to="/itemDetail" ClassName="active">
             제품 상세설명
           </NavLink>
         </GnbItem>
