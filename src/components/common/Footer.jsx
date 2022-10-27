@@ -148,6 +148,7 @@ const StyledItem = styled.div`
 
 const StyledLogoImg = styled.img`
   margin: 18px 16px;
+  cursor: pointer;
 `;
 
 const StyledTitleDiv = styled.div`

@@ -1,7 +1,12 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-function Tag({ index }) {
-  return <TagDiv>{index}</TagDiv>;
+
+function Tag({ product, index }) {
+  return (
+    // <Link to={`/itemdetail/${product.id}`}>
+    <TagDiv>{index}</TagDiv>
+  );
 }
 
 const TagDiv = styled.div`

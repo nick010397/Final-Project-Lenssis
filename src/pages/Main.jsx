@@ -39,23 +39,34 @@ function Main() {
         <MenuHr />
       </div>
       {/* 렌즈 아이템 */}
-      <Index>
-        <Rel>
-          <Grid>
-            {data.data.data
-              .map((product, index) => <Tag key={index} index={index + 1} />)
-              .splice(0, 15)}
-          </Grid>
-        </Rel>
-      </Index>
 
-      <AllLens>
-        {data.data.data
-          ?.map((product, index) => {
-            return <Item key={product.id} {...product} />;
-          })
-          .splice(0, 15)}
-      </AllLens>
+      <Cursor>
+        <Index>
+          <Rel>
+            <Grid>
+              {data.data.data
+                .map((product, index) => (
+                  <Tag key={product.id} product={product} index={index + 1} />
+                ))
+                .splice(0, 15)}
+            </Grid>
+          </Rel>
+        </Index>
+
+        <AllLens>
+          {data.data.data
+            ?.map((product, index) => {
+              return (
+                <Item
+                  key={product.id}
+                  {...product}
+                  onClick={(e) => e.preventDefault()}
+                />
+              );
+            })
+            .splice(0, 15)}
+        </AllLens>
+      </Cursor>
       <StyledLink to="/itemlist">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
       </StyledLink>
@@ -129,6 +140,7 @@ const NoticImg = styled.div`
 `;
 
 const AllLens = styled.div`
+  cursor: pointer;
   position: relative;
   margin: 0 8vw 16px 8vw;
   display: grid;
@@ -144,11 +156,14 @@ const PickLens = styled.div`
   gap: 24px;
   justify-content: center;
 `;
-
+const Cursor = styled.div`
+  cursor: pointer;
+  point-events: none;
+`;
 const Index = styled.div`
   display: inline-block;
   position: absolute;
-  z-index: 9;
+  z-index: 1;
 `;
 
 const Rel = styled.div`

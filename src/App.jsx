@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import NavBar from './components/common/NavBar';
 import Footer from './components/common/Footer';
+import Scroll from './components/common/Scroll';
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ function App() {
     <BrowserRouter>
       <GlobalStyle />
       <NavBar />
+      <Scroll />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <Routes>
