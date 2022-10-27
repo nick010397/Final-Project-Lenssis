@@ -95,6 +95,7 @@ const StyledmarketingBanner = styled.img`
   top: 0px;
   background: #f5f5f5;
   text-align: center;
+  cursor: pointer;
 `;
 
 const StyledNavItem = styled.div`

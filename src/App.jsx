@@ -14,6 +14,7 @@ import { store } from './store/store';
 import NavBar from './components/common/NavBar';
 import Footer from './components/common/Footer';
 import MyPage from './pages/MyPage';
+import Scroll from './components/common/Scroll';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,8 @@ function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
+      <NavBar />
+      <Scroll />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <NavBar />
