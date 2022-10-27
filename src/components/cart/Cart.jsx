@@ -1,4 +1,4 @@
-import styles from './Cart.Module.css';
+import styles from './Cart.module.css';
 import styled from 'styled-components';
 import Delete from '../../static/img/icon-delete.svg';
 import Plus from '../../static/img/icon-plus-line.svg';
@@ -29,10 +29,10 @@ export const Cart = () => {
           </div>
 
           <div className={styles.cart_product_info}>
-            <p className={styles.seller_store}>아이돈케어</p>
-            <p className={styles.product_name}>노트북 파우치</p>
+            <p className={styles.seller_store}>브랜드명</p>
+            <p className={styles.product_name}>물건이름</p>
             <p className={styles.price}>1000원</p>
-            <p className={styles.delivery}>택배배송 / 무료배송</p>
+            {/* <p className={styles.delivery}>택배배송 / 무료배송</p> */}
           </div>
         </div>
 
@@ -40,7 +40,7 @@ export const Cart = () => {
           <img className={styles.minus} src={Minus} alt="minus" />
 
           <div className={styles.count}>
-            <span>5</span>
+            <span>1</span>
           </div>
           <img className={styles.plus} src={Plus} alt="plus" />
         </div>

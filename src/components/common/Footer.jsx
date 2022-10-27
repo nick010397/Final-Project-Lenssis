@@ -18,7 +18,7 @@ export default function Footer() {
 
         <StyledFooterContainer>
           <EachFooter>
-            <StyledP>
+            <StyledDiv>
               <p>
                 レンシスは #私らしさから 出発しました。
                 <br />
@@ -33,7 +33,7 @@ export default function Footer() {
                 <br />
                 #JUST_BE_YOURSELF
               </p>
-            </StyledP>
+            </StyledDiv>
           </EachFooter>
 
           <EachFooter>
@@ -116,7 +116,7 @@ const EachFooter = styled.div`
   flex-direction: column;
 `;
 
-const StyledP = styled.p`
+const StyledDiv = styled.div`
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 400;
