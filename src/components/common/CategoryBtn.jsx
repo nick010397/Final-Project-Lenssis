@@ -16,6 +16,7 @@ const NormalBtn = styled.button`
   height: 56px;
   font-size: 20px;
   background-color: #ffffff;
+  cursor: pointer;
   &:hover {
     background-color: #23314a;
     border: 1px solid #23314a;

@@ -39,21 +39,22 @@ function Main() {
         <MenuHr />
       </div>
       {/* 렌즈 아이템 */}
-
       <Index>
-        <Grid>
-          {data.data.data
-            .map((product, index) => <Tag index={index + 1} />)
-            .splice(0, 15)}
-        </Grid>
+        <Rel>
+          <Grid>
+            {data.data.data
+              .map((product, index) => <Tag key={index} index={index + 1} />)
+              .splice(0, 15)}
+          </Grid>
+        </Rel>
       </Index>
 
       <AllLens>
         {data.data.data
           ?.map((product, index) => {
-            return <Item {...product} />;
+            return <Item key={product.id} {...product} />;
           })
-          .slice(0, 15)}
+          .splice(0, 15)}
       </AllLens>
       <StyledLink to="/itemlist">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
@@ -63,7 +64,7 @@ function Main() {
       <PickLens>
         {data.data.data
           ?.filter((product, index) => product.colorName === 'ブラウン')
-          .map((product) => <PickupItem {...product} />)
+          .map((product) => <PickupItem key={product.id} {...product} />)
           .splice(0, 8)}
       </PickLens>
       <StyledLink to="/itemlist">
@@ -75,7 +76,7 @@ function Main() {
         {data.data.data
           ?.filter((product) => product.sellPrice <= 990)
           .map((product) => (
-            <Item {...product} />
+            <Item key={product.id} {...product} />
           ))}
       </AllLens>
       <StyledLink to="/itemlist">
@@ -128,6 +129,7 @@ const NoticImg = styled.div`
 `;
 
 const AllLens = styled.div`
+  position: relative;
   margin: 0 8vw 16px 8vw;
   display: grid;
   grid-template-columns: repeat(5, 220px);
@@ -144,12 +146,19 @@ const PickLens = styled.div`
 `;
 
 const Index = styled.div`
+  display: inline-block;
   position: absolute;
-  margin-top: 40px;
-  z-index: 8;
+  z-index: 9;
 `;
 
+const Rel = styled.div`
+  position: relative;
+  float: left;
+  width: 100%;
+  margin-top: 2.7%;
+`;
 const Grid = styled.div`
+  position: relative;
   margin: 0 10.4vw 16px 10.4vw;
   display: grid;
   grid-template-columns: repeat(5, 220px);
