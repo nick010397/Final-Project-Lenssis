@@ -15,7 +15,7 @@ export default function LensItem({ products }) {
             >
               <IMG src={product.image1} alt="렌즈이미지" />
               <Title>{product.name}</Title>
-              <Price>{product.sellPrice.toLocaleString()}円</Price>
+              <Price>{product.sellPrice}円</Price>
               <StyledStars>
                 <div>
                   <img src={Star} alt="별점" />

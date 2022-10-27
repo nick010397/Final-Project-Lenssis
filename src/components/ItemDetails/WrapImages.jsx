@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 function WrapImages({ product }) {
-  const [imgChange, setImgChange] = useState(product);
+  const [imgChange, setImgChange] = useState();
   const setImg = (imgChange) => {
     setImgChange(imgChange);
   };
