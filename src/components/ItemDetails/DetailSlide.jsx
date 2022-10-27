@@ -91,23 +91,19 @@ const SlideLensImg = styled.img`
 
 const Pdiv = styled.div`
   width: 33%;
-  height: 400px
-  float:left;
- text-align:right;
- 
- .aboutproduct{
-  font-family: 'Noto Sans JP';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 32px;
-text-align: center;
-letter-spacing: -0.016em;
-color: #171717;
-padding-right: 30px;
+  height: 400px;
+  float: left;
+  text-align: right;
 
-
- }
- 
-  
+  .aboutproduct {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+    letter-spacing: -0.016em;
+    color: #171717;
+    padding-right: 30px;
+  }
 `;
