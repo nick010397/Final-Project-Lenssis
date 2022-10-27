@@ -7,11 +7,11 @@ import Minus from '../../static/img/icon-minus-line.svg';
 export const Cart = () => {
   return (
     <Container>
-      <header className={styles.header}>
+      <header className="styles.header">
         <h1>장바구니</h1>
       </header>
-      <div className={styles.cart_title_wrap}>
-        <div className={styles.tab_title}>
+      <div className="styles.cart_title_wrap">
+        <div className="styles.tab_title">
           <input type="checkbox" />
           <span>상품정보</span>
           <span>수량</span>
@@ -21,10 +21,10 @@ export const Cart = () => {
         </div>
       </div>
 
-      <section className={styles.cart_product_list}>
+      <section className="styles.cart_product_list">
         <input type="checkbox" />
-        <div className={styles.cart_product_wrap}>
-          <div className={styles.cart_product_image}>
+        <div className="styles.cart_product_wrap">
+          <div className="styles.cart_product_image">
             <img src="/" alt="product-img" />
           </div>
 

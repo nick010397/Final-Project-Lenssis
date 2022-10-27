@@ -1,16 +1,42 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { InforEach } from './SingupForm';
+import { InforEach, Label, InputField } from './SingupForm';
 import { useCheckValidity } from '../../api/signupApi';
-import { useDispatch } from 'react-redux';
-import { setInfor } from '../../store/signupInfor';
+import { validation } from '../../utils/validation';
+import Popup from '../common/Popup';
 
-const EMAIL_REG = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-
-export default function CheckInputField({ title, name }) {
+export default function CheckInputField({ title, name, setUserInfor }) {
   const [value, setValue] = useState('');
-  const { data, refetch } = useCheckValidity(name, value);
-  const dispatch = useDispatch();
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const { refetch } = useCheckValidity(name, value);
+
+  const checkClientValidity = () => {
+    const error = validation[name](value);
+    if (error) {
+      setPopupMessage(error);
+      setShowPopup(true);
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const setInfor = async () => {
+    const data = await refetch();
+
+    if (data.data.data.data.exists) {
+      setPopupMessage(`이미 존재하는 ${title}입니다.`);
+      setShowPopup(true);
+      setUserInfor(`is${name}Unique`, false);
+    } else {
+      setPopupMessage(`사용 가능한 ${title}입니다`);
+      setShowPopup(true);
+      setUserInfor(`is${name}Unique`, true);
+    }
+    setUserInfor(name, value);
+  };
+
   return (
     <InforEach>
       <Label>{title}</Label>
@@ -22,62 +48,21 @@ export default function CheckInputField({ title, name }) {
       <RepetitionCheckBtn
         onClick={async (e) => {
           e.preventDefault();
-          console.log(value);
-          if (name === 'email') {
-            if (!EMAIL_REG.test(value)) {
-              alert('유효하지 않는 형식의 이메일입니다');
-              return;
-            }
-          } else if (name === 'loginId') {
-            if (value.length < 8) {
-              alert('아이디는 최소 8글자여야 합니다.');
-              return;
-            }
-          }
-          //네트워크 통신으로 데이터가 넘어왔는데 왜 브라우저는 에러를 내보내지?
-          //data 가 undefined라고 하네?...음 두번째 click부터는 제대로 동작하긴 함..
-          //요청이 한 클릭씩늦네.
-          await refetch();
-          console.log(data.data.data.exists);
-          if (data.data.data.exists) {
-            alert(`이미 존재하는 ${title}입니다.`);
-          } else {
-            dispatch(setInfor({ name, value }));
+          const result = checkClientValidity();
+
+          if (result) {
+            await setInfor();
           }
         }}
       >
         중복 확인
       </RepetitionCheckBtn>
+      {showPopup && <Popup message={popupMessage} show={setShowPopup} />}
     </InforEach>
   );
 }
-
-const Label = styled.div`
-  font-size: 14px;
-  color: #606060;
-  padding-bottom: 15px;
-`;
-
-const InputField = styled.input.attrs({ requried: true })`
-  border: none;
-  border-bottom: 2px solid #f0f0f0;
-  width: '238px';
-  height: 16px;
-  padding-bottom: 8px;
-
-  &:focus {
-    outline: none;
-  }
-
-  &::-ms-reveal,
-  ::-ms-clear {
-    display: none;
-  }
-`;
-
 const RepetitionCheckBtn = styled.button`
-  position: absolute;
-  transform: translate(260px, 10px);
+  transform: translate(260px, -50px);
   width: 72px;
   height: 48px;
   background-color: white;

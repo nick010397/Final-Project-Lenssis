@@ -9,7 +9,6 @@ import MainSlide from '../components/main/MainSlide';
 import PickupItem from '../components/itemList/PickupItem';
 import Notice from '../components/main/Notice';
 import Item from '../components/itemList/Item';
-import Tag from '../components/main/Tag';
 import { Link } from 'react-router-dom';
 
 function Main() {
@@ -40,22 +39,20 @@ function Main() {
       </div>
       {/* 렌즈 아이템 */}
 
-      <Index>
-        <Grid>
-          {data.data.data
-            .map((product, index) => <Tag index={index + 1} />)
-            .splice(0, 15)}
-        </Grid>
-      </Index>
-
       <AllLens>
         {data.data.data
           ?.map((product, index) => {
-            return <Item {...product} />;
+            return (
+              <Item
+                key={product.id}
+                {...product}
+                onClick={(e) => e.preventDefault()}
+              />
+            );
           })
-          .slice(0, 15)}
+          .splice(0, 15)}
       </AllLens>
-      <StyledLink to="/itemlist">
+      <StyledLink to="/itemlist/1">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
       </StyledLink>
       {/* 추천 아이템 */}
@@ -63,10 +60,10 @@ function Main() {
       <PickLens>
         {data.data.data
           ?.filter((product, index) => product.colorName === 'ブラウン')
-          .map((product) => <PickupItem {...product} />)
+          .map((product) => <PickupItem key={product.id} {...product} />)
           .splice(0, 8)}
       </PickLens>
-      <StyledLink to="/itemlist">
+      <StyledLink to="/itemlist/1">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
       </StyledLink>
       {/* 신상품 */}
@@ -75,10 +72,10 @@ function Main() {
         {data.data.data
           ?.filter((product) => product.sellPrice <= 990)
           .map((product) => (
-            <Item {...product} />
+            <Item key={product.id} {...product} />
           ))}
       </AllLens>
-      <StyledLink to="/itemlist">
+      <StyledLink to="/itemlist/1">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
       </StyledLink>
       {/* 이벤트 배너 */}
@@ -128,6 +125,8 @@ const NoticImg = styled.div`
 `;
 
 const AllLens = styled.div`
+  cursor: pointer;
+  position: relative;
   margin: 0 8vw 16px 8vw;
   display: grid;
   grid-template-columns: repeat(5, 220px);
@@ -140,21 +139,6 @@ const PickLens = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 282px);
   gap: 24px;
-  justify-content: center;
-`;
-
-const Index = styled.div`
-  position: absolute;
-  margin-top: 40px;
-  z-index: 8;
-`;
-
-const Grid = styled.div`
-  margin: 0 10.4vw 16px 10.4vw;
-  display: grid;
-  grid-template-columns: repeat(5, 220px);
-  grid-column-gap: 25px;
-  grid-row-gap: 390px;
   justify-content: center;
 `;
 

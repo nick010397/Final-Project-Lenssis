@@ -6,9 +6,11 @@ import Logo from '../../static/img/Lensis_Logo.png';
 import mypage from '../../static/img/Icon_MyPage.png';
 import Search from '../../static/img/Icon_Search.png';
 import banner from '../../static/img/Banner_Header.jpeg';
+import { useSelector } from 'react-redux';
 
 export default function NavBar() {
   const navigate = useNavigate();
+  const isLogin = useSelector((state) => state.isLogin);
 
   return (
     <>
@@ -16,11 +18,11 @@ export default function NavBar() {
       <StyledNavItem id="Lens" className="nav-items">
         <Styledlogo>
           <StyledLogoImg
-          title = 'home으로 이동'
+            title="home으로 이동"
             src={Logo}
             alt="렌시스 로고"
             onClick={() => {
-              navigate(`/`);
+              navigate('/');
             }}
           />
         </Styledlogo>
@@ -34,7 +36,7 @@ export default function NavBar() {
               src={mypage}
               alt="마이페이지"
               onClick={() => {
-                navigate(`/login`);
+                navigate(isLogin ? '/myPage' : `/login`);
               }}
             />
           </div>
@@ -93,6 +95,7 @@ const StyledmarketingBanner = styled.img`
   top: 0px;
   background: #f5f5f5;
   text-align: center;
+  cursor: pointer;
 `;
 
 const StyledNavItem = styled.div`

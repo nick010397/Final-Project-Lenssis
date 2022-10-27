@@ -64,14 +64,25 @@ function WrapDetail({ product, handleClick, Cart, setCart }) {
           <Commonspan>
             빈도&nbsp;&nbsp;
             {product.spec.frequency.split(',').map((frequency) => (
-              <Frequencybtn type="button" key={frequency.id}>
+              <Frequencybtn
+                type="button"
+                key={frequency.id}
+                onClick={(e) => console.log(e)}
+              >
                 {frequency}
               </Frequencybtn>
             ))}
           </Commonspan>
         </div>
         <ResultPrice>
-          <span>총 금액</span>¥{product.sellPrice.toLocaleString()}
+          <div className="TotalPriceDiv">
+            <span className="TotalPrice">총 금액</span>
+          </div>
+          <div className="PriceResultDiv">
+            <span className="PriceResult">
+              ¥{product.sellPrice.toLocaleString()}
+            </span>
+          </div>
         </ResultPrice>
         <br />
         <br />
@@ -167,15 +178,41 @@ const Graphicdiameterbtn = styled.button`
 const ResultPrice = styled.div`
   display: border-box;
   border: 1px solid black;
-
   width: 557px;
   height: 78px;
   left: -0.04px;
-  margin-top: 50px;
+  margin-top: 30px;
 
   background: #f9f9f9;
   border: 0.4px solid #c5c5c5;
   border-radius: 4px;
+  .TotalPrice {
+    display: flex;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.016em;
+    margin-top: 20px;
+  }
+  .PriceResult {
+    display: flex;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: -0.016em;
+    margin-top: 20px;
+  }
+  .TotalPriceDiv {
+    display: flex;
+    float: left;
+    justify-content: center;
+  }
+  .PriceResultDiv {
+    display: flex;
+    float: right;
+    justify-content: center;
+    flex-direction: row;
+  }
 `;
 
 const Orderbtn = styled.button`
