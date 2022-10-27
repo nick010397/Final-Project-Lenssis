@@ -108,7 +108,7 @@ export default function Footer() {
 
 const StyledFooterContainer = styled.div`
   margin-right: 8vw;
-  margin-left: 8vw;
+  margin-left: 10.5vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -157,6 +157,7 @@ const StyledLogoImg = styled.img`
 `;
 
 const StyledTitleDiv = styled.div`
+  margin-bottom: 12px;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 700;
