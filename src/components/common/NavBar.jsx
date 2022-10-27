@@ -16,6 +16,7 @@ export default function NavBar() {
       <StyledNavItem id="Lens" className="nav-items">
         <Styledlogo>
           <StyledLogoImg
+          title = 'home으로 이동'
             src={Logo}
             alt="렌시스 로고"
             onClick={() => {

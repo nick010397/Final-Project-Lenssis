@@ -8,10 +8,7 @@ import styled from 'styled-components';
 
 // import required modules
 import { Pagination } from 'swiper';
-import event1 from '../../static/img/event1.png';
-import event2 from '../../static/img/event2.png';
-import event3 from '../../static/img/event3.png';
-
+import { EventSlideList } from '../../static/data/EventSlide';
 export default function EventSlide() {
   return (
     <Container>
@@ -45,29 +42,6 @@ export default function EventSlide() {
   );
 }
 
-const EventSlideList = [
-  {
-    src: event1,
-    title: 'イベントタイトル',
-    contents:
-      'イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...',
-    id: 1,
-  },
-  {
-    src: event2,
-    title: 'イベントタイトル',
-    contents:
-      'イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...',
-    id: 2,
-  },
-  {
-    src: event3,
-    title: 'イベントタイトル',
-    contents:
-      'イベント本文プレビューイベント本文プレビューイベント本文プレビューイベント本文プレビューイベン...',
-    id: 3,
-  },
-];
 const SwiperStyled = styled(SwiperSlide)`
   background: white;
   height: 384px;
