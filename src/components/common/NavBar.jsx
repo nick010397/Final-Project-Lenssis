@@ -45,7 +45,7 @@ export default function NavBar() {
               src={cart}
               alt="장바구니"
               onClick={() => {
-                navigate(`/cart`);
+                navigate(`/Cart`);
               }}
             />
           </div>
