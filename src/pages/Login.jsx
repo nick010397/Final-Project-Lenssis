@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import LoginForm from '../components/login/LoginForm';
 import LoginOther from '../components/login/LoginOther';
@@ -8,9 +8,8 @@ import Popup from '../components/common/Popup';
 import { useSendLogin } from '../api/loginApi';
 import { useNavigate } from 'react-router';
 import { validation } from '../utils/validation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setLogIn } from '../store/loginInfor';
-import { useEffect } from 'react';
 
 export default function Login() {
   const [loginInfor, setLoginInfor] = useState({ loginId: '', password: '' });
@@ -19,6 +18,13 @@ export default function Login() {
   const { refetch } = useSendLogin(loginInfor);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.isLogin);
+
+  useEffect(() => {
+    if (isLogin) {
+      navigate('/myPage');
+    }
+  }, []);
 
   const tryToLogin = async (e) => {
     e.preventDefault();
@@ -29,24 +35,16 @@ export default function Login() {
       setErrorMsg(clientError);
       setShowPopup(true);
     } else {
-      const { data, isError, error } = await refetch();
+      const { isError } = await refetch();
       if (isError) {
-        console.log(error);
         setErrorMsg('존재하지 않는 아이디이거나 비밀번호가 틀립니다.');
         setShowPopup(true);
       } else {
-        console.log(data);
         dispatch(setLogIn({ login: true }));
         navigate('/');
       }
     }
   };
-
-  useEffect(() => {
-    if (localStorage.getItem('Login')) {
-      navigate('/myPage');
-    }
-  }, []);
 
   return (
     <Container>

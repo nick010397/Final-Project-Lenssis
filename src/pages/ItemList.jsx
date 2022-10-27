@@ -9,7 +9,6 @@ import PageBtn from '../components/itemList/PageBtn';
 
 export default function ItemList() {
   const { page } = useParams();
-  console.count(page);
   const { data, isLoading, isError } = useGetProductList(page);
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -20,7 +19,6 @@ export default function ItemList() {
   }
   return (
     <>
-      {console.log(data.data.data)}
       <StyledListTitle>
         <TitleName>ALL LENS</TitleName>
       </StyledListTitle>
