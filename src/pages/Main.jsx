@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import CategoryBtn from '../components/common/CategoryBtn';
+import LensItem from '../components/common/LensItem';
 import Event from '../components/main/Event';
 import notice from '../static/img/notice.png';
 import TitleName from '../components/main/TitleName';
 import FilterMenu from '../components/main/FilterMenu';
 import { useGetProducts } from '../api/productApi';
 import MainSlide from '../components/main/MainSlide';
-import PickupItem from '../components/itemList/PickupItem';
+import PickupItem from '../components/main/PickupItem';
 import Notice from '../components/main/Notice';
-import Item from '../components/itemList/Item';
 import { Link } from 'react-router-dom';
 
 function Main() {
@@ -19,11 +19,9 @@ function Main() {
 
   return (
     <Container>
-      {/* 메인 슬라이드 */}
       <div>
         <MainSlide />
       </div>
-      {/* 모든 아이템 */}
       <TitleName title="ALL LENS" subtitle="カラコン" />
       <div>
         <Center>
@@ -32,55 +30,42 @@ function Main() {
           <CategoryBtn category>1MONTH</CategoryBtn>
         </Center>
       </div>
-      {/* 메뉴필터 */}
       <div>
         <FilterMenu />
         <MenuHr />
       </div>
-      {/* 렌즈 아이템 */}
-
       <AllLens>
         {data.data.data
-          ?.map((product, index) => {
-            return (
-              <Item
-                key={product.id}
-                {...product}
-                onClick={(e) => e.preventDefault()}
-              />
-            );
+          ?.map((product) => {
+            return <LensItem key={product.id} {...product} />;
           })
           .splice(0, 15)}
       </AllLens>
       <StyledLink to="/itemlist/1">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
       </StyledLink>
-      {/* 추천 아이템 */}
       <TitleName title="PICKUP ITEM" subtitle="スタッフおすすめ" />
       <PickLens>
         {data.data.data
-          ?.filter((product, index) => product.colorName === 'ブラウン')
+          ?.filter((product) => product.colorName === 'ブラウン')
           .map((product) => <PickupItem key={product.id} {...product} />)
           .splice(0, 8)}
       </PickLens>
       <StyledLink to="/itemlist/1">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
       </StyledLink>
-      {/* 신상품 */}
       <TitleName title="NEW ARRIVAL" subtitle="新商品" />
       <AllLens>
         {data.data.data
           ?.filter((product) => product.sellPrice <= 990)
           .map((product) => (
-            <Item key={product.id} {...product} />
+            <LensItem key={product.id} {...product} />
           ))}
       </AllLens>
       <StyledLink to="/itemlist/1">
         <CategoryBtn className="more">もっと見る</CategoryBtn>
       </StyledLink>
-      {/* 이벤트 배너 */}
       <Event />
-      {/* 공지 */}
       <TitleName title="NOTICE" subtitle="お知らせ" />
       <NoticImg>
         <img src={notice} alt="공지" />
