@@ -14,19 +14,14 @@ function Wrapslide({ handleClick }) {
   return (
     <Container>
       <Pdiv>
-        <span className="aboutproduct">관련상품</span>
+        <span className="aboutproduct">관련 상품</span>
       </Pdiv>
-      <br />
-      <hr
-        style={{
-          width: '55%',
-          textAlign: 'right',
-          marginBottom: '50px',
-        }}
-      ></hr>
+      <Hrdiv>
+        <hr />
+      </Hrdiv>
       <Swiper
         slidesPerView={4}
-        spaceBetween={100}
+        spaceBetween={10}
         slidesPerGroup={4}
         loop={true}
         loopFillGroupWithBlank={true}
@@ -76,7 +71,7 @@ export default Wrapslide;
 
 const Container = styled.div`
   width: 100%;
-  height: 450px;
+  height: 400px;
   text-align: center;
   .mySwiper {
     width: 80%;
@@ -85,15 +80,13 @@ const Container = styled.div`
 `;
 
 const SlideLensImg = styled.img`
-  width: 250px;
-  height: 250px;
+  width: 230px;
+  height: 230px;
 `;
 
 const Pdiv = styled.div`
   width: 33%;
-  height: 400px;
-  float: left;
-  text-align: right;
+  height: 50px;
 
   .aboutproduct {
     font-family: 'Noto Sans JP';
@@ -105,5 +98,12 @@ const Pdiv = styled.div`
     letter-spacing: -0.016em;
     color: #171717;
     padding-right: 30px;
+  }
+`;
+const Hrdiv = styled.div`
+  height: 30px;
+  hr {
+    width: 80%;
+    background: #e9eaed;
   }
 `;

@@ -9,7 +9,7 @@ function DetailSection({ product, handleClick }) {
       <Btn>리뷰(100)</Btn> */}
       <GnbLists>
         <GnbItem>
-          <NavLink exact to="/itemDetail" ClassName="active">
+          <NavLink exact to="/itemDetail" className={'active'}>
             제품 상세설명
           </NavLink>
         </GnbItem>
@@ -28,6 +28,7 @@ function DetailSection({ product, handleClick }) {
       <hr
         style={{
           width: '50%',
+          backgroundColor: '#E9EAED',
         }}
       ></hr>
       <br />

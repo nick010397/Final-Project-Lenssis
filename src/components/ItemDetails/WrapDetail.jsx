@@ -1,22 +1,51 @@
+import { faRectangleAd } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import ShoppingBasketModal from '../../modals/ShoppingBasketModal';
+import WrapDetailList from './WrapDetailList';
 
-function WrapDetail({ product, handleClick }) {
+function WrapDetail({ product, handleClick, id }) {
   const [openModal, setOpenModal] = useState(false);
-  const [useDate, setuseDate] = useState();
+  const [openDiv, setOpenDiv] = useState(false);
+  const [count, setCount] = useState(0);
 
-  window.localStorage.setItem('CartItem', useDate);
-  console.log(useDate);
+  const [data, setData] = useState({
+    id: id,
+    name: product.nameKor,
+    price: product.sellPrice,
+  });
+  const dataString = JSON.stringify(data);
+  window.localStorage.setItem('itemDetail', dataString);
 
-  const handleCart = () => {
-    const CartItem = {
-      id: product.id,
-      image: product.image1,
-    };
-  };
+  const [free, setFree] = useState([]);
+  const freeString = JSON.stringify(free);
+  window.localStorage.setItem('fre', freeString);
+  const [countList, setCountList] = useState([1]);
 
+  function handleCart(e) {
+    // setData({ ...data, frequency: e.target.innerText });
+    // window.localStorage.setItem('itemDetail', data);
+    //fre
+    setFree([...free, e.target.innerText]);
+    window.localStorage.setItem('fre', free);
+    setOpenDiv(true);
+    setCount(count + 1);
+    function onAddDetailDiv() {
+      let countArr = [...countList];
+      let counter = countArr.slice(-1)[0];
+      counter += 1;
+      countArr.push(counter);
+      setCountList(countArr);
+    }
+    return onAddDetailDiv;
+  }
+  console.log(data);
+
+  const ITEM = JSON.parse(window.localStorage.getItem('itemDetail'));
+  const ITEMfre = JSON.parse(window.localStorage.getItem('fre'));
+  console.log(ITEM);
+  console.log(ITEMfre);
   return (
     <Container>
       <form>
@@ -39,8 +68,6 @@ function WrapDetail({ product, handleClick }) {
         <hr />
         <br />
         <div>
-          {/* <img src={Vector1} alt="Vector1" />
-          <Vector2img src={Vector2} alt="Vector2"></Vector2img> */}
           <Commonspan>그래픽 지름&nbsp;&nbsp;&nbsp;</Commonspan>
           <Graphicdiameterbtn type="button">
             {product.spec.graphicDiameter}
@@ -50,10 +77,7 @@ function WrapDetail({ product, handleClick }) {
         <div>
           <Commonspan>
             사용 기간&nbsp;&nbsp;&nbsp;
-            <Graphicdiameterbtn
-              type="button"
-              onClick={(e) => setuseDate(e.target.innerText)}
-            >
+            <Graphicdiameterbtn type="button">
               {product.spec.duration}
             </Graphicdiameterbtn>
           </Commonspan>
@@ -76,12 +100,16 @@ function WrapDetail({ product, handleClick }) {
               <Frequencybtn
                 type="button"
                 key={frequency.id}
-                onClick={(e) => console.log(e.target.innerText)}
+                onClick={(e) => handleCart(e)}
               >
                 {frequency}
               </Frequencybtn>
             ))}
           </Commonspan>
+
+          {openDiv && (
+            <WrapDetailList fre={ITEMfre} item={ITEM} countList={countList} />
+          )}
         </div>
         <ResultPrice>
           <div className="TotalPriceDiv">
@@ -89,7 +117,7 @@ function WrapDetail({ product, handleClick }) {
           </div>
           <div className="PriceResultDiv">
             <span className="PriceResult">
-              ¥{product.sellPrice.toLocaleString()}
+              ¥{Number(product.sellPrice) * count}
             </span>
           </div>
         </ResultPrice>
@@ -116,32 +144,31 @@ export default WrapDetail;
 
 const Container = styled.div`
   width: 40%;
-  height: auto;
+  height: 100%;
   float: right;
   font-family: 'Noto Sans JP';
   font-style: normal;
   .p1 {
-    font-weight: 400; 'Noto Sans JP';
+    font-weight: 400;
     font-size: 30px;
     line-height: 48px;
     letter-spacing: -0.016em;
-
   }
-.price {
+  .price {
     color: red;
     font-weight: 300;
     font-size: 24px;
     line-height: 38px;
     letter-spacing: -0.016em;
   }
-  .円{
+  .円 {
     font-weight: 400;
     font-size: 30px;
     line-height: 38px;
     letter-spacing: -0.016em;
     color: #171717;
   }
-  `;
+`;
 const Commonspan = styled.span`
   font-weight: 500;
   font-size: 20px;
@@ -171,17 +198,18 @@ const Bestbtn = styled(Suggestionbtn)`
 `;
 
 const Graphicdiameterbtn = styled.button`
-  
   width: 86px;
   height: 42px;
   background: #ffffff;
   border: 1px solid #d3d6db;
   border-radius: 4px;
   cursor: pointer;
-  type='button' 
+
   opacity: 1;
   transition: 0.3s;
-  :hover {opacity: 0.5}
+  :hover {
+    opacity: 0.5;
+  }
 `;
 
 const ResultPrice = styled.div`
@@ -201,7 +229,8 @@ const ResultPrice = styled.div`
     font-size: 24px;
     line-height: 32px;
     letter-spacing: -0.016em;
-    margin-top: 20px;
+    margin-top: 25px;
+    margin-left: 10px;
   }
   .PriceResult {
     display: flex;
@@ -209,7 +238,8 @@ const ResultPrice = styled.div`
     font-size: 30px;
     line-height: 38px;
     letter-spacing: -0.016em;
-    margin-top: 20px;
+    margin-top: 18px;
+    margin-right: 10px;
   }
   .TotalPriceDiv {
     display: flex;
@@ -271,7 +301,10 @@ const Frequencybtn = styled(Graphicdiameterbtn)`
 
   text-align: center;
   letter-spacing: -0.016em;
-  :active {
-    color: black;
+  &:active {
+    background-color: gray;
+  }
+  &:focus {
+    background-color: gray;
   }
 `;

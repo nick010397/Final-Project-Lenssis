@@ -29,7 +29,11 @@ function ItemDetail() {
           </span>
         </Itemdetaildiv>
 
-        <DetailWrap product={data.data.data} handleClick={handleClick} />
+        <DetailWrap
+          product={data.data.data}
+          handleClick={handleClick}
+          id={id}
+        />
 
         <Wrapslide handleClick={handleClick} />
 
